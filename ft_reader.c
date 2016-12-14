@@ -16,9 +16,6 @@ int	ft_reader(t_env *env, va_list ap)
 			env->cur++;
 		}
 	}
-
-
-
 	return (0);
 }
 

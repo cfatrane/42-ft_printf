@@ -20,7 +20,6 @@ int ft_printf (const char *format, ...)
 
 	if (!format)
 		return (-1);
-	ft_bzero(&env, sizeof(t_env));
 	env.str = format;
 	va_start(ap, format);
 	ret = ft_reader(&env, ap);

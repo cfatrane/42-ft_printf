@@ -4,11 +4,6 @@ void	ft_write_arg(t_env *env, va_list ap)
 {
 	if ((env->conv == 's') || (env->conv == 'p') || (env->conv == 'd') || (env->conv == 'i') || (env->conv == 'o') || (env->conv == 'u') || (env->conv == 'x') ||  (env->conv == 'c'))
 		ft_write_min(env, ap);
-
-
-
-
-
 }
 
 void	ft_write_min(t_env *env, va_list ap)

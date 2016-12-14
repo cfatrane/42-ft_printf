@@ -14,7 +14,14 @@ NAME = libftprintf.a
 
 SRC_PATH = srcs
 
-SRC_NAME =	main.c
+SRC_NAME =	ft_printf.c			\
+			ft_parse_conv.c		\
+			ft_parse_flag.c		\
+			ft_reader.c			\
+			ft_write_arg.c		\
+			ft_write_char.c		\
+			ft_write_int.c		\
+			ft_write_string.c	\
 
 CPPFLAGS = -I includes/
 

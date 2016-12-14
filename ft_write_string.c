@@ -7,5 +7,4 @@ void	ft_write_string(t_env *env, va_list ap)
 
 	str = va_arg(ap, char *);
 	ft_putstr(str);
-
 }

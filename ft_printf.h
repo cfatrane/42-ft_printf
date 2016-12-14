@@ -34,5 +34,8 @@ int	ft_parse_flag(t_env *env);
 int	ft_parse_size(t_env *env);
 
 void	ft_write_arg(t_env *env, va_list ap);
+void	ft_write_string(t_env *env, va_list ap);
+void	ft_write_int(t_env *env, va_list ap);
+void	ft_write_char(t_env *env, va_list ap);
 
 #endif

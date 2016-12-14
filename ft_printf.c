@@ -15,10 +15,14 @@
 int ft_printf (const char *format, ...)
 {
 	size_t	ret;
+	t_env	env;
 	va_list ap;
 
+	if (!format)
+		return (-1);
+	env.str = format;
 	va_start(ap, format);
-	ret = ;
+	ret = ft_reader(&env, ap);
 	va_end(ap);
 	return (ret);
 }

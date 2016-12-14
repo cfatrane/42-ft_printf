@@ -6,6 +6,7 @@ int	ft_reader(t_env *env, va_list ap)
 	{
 		if (env->str[env->cur] == '%')
 		{
+			env->cur++;
 			ft_parse(env, ap);
 			ft_write_arg(env, ap);
 		}
@@ -26,7 +27,6 @@ int	ft_parse(t_env *env, va_list ap)
 {
 	ft_parse_conv(env);
 	ft_parse_flag(env);
-
 
 
 }

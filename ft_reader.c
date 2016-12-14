@@ -22,8 +22,8 @@ int	ft_reader(t_env *env; va_list ap)
 
 int	ft_parse(t_env *env, va_list ap)
 {
-	ft_parse_conv(t_env *env);
-
+	ft_parse_conv(env);
+	ft_parse_attr(env);
 
 
 

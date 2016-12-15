@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_write_string.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/15 14:03:09 by cfatrane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-void	ft_write_string(t_env *env, va_list ap)
+void	ft_write_string(t_env *arg, va_list ap)
 {
 	char	*str;
 	size_t	len;

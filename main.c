@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_int.c                                     :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 14:02:53 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/15 14:02:58 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/15 15:49:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "./includes/ft_printf.h"
 
-void	ft_write_int(t_env *arg, va_list ap)
+int	main(void)
 {
-	int di;
+	int nbr = 2;
 
-	di = va_arg(ap, int);
-	ft_putnbr(di);
-
+	ft_printf("Ceci est un nombre = %d et une chaine  = %s", 2, "string");
 }

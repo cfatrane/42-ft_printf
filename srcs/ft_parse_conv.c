@@ -1,34 +1,46 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_parse_conv.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/15 14:03:29 by cfatrane         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int	ft_parse_conv(t_env *env)
+int	ft_parse_conv(t_env *arg)
 {
-	if (env->str[env->cur] == 's')
-		env->conv = 's';
-	else if (env->str[env->cur] == 'S')
-		env->conv = 'S';
-	else if (env->str[env->cur] == 'p')
-		env->conv = 'p';
-	else if (env->str[env->cur] == 'd')
-		env->conv = 'd';
-	else if (env->str[env->cur] == 'D')
-		env->conv = 'D';
-	else if (env->str[env->cur] == 'i')
-		env->conv = 'i';
-	else if (env->str[env->cur] == 'o')
-		env->conv = 'o';
-	else if (env->str[env->cur] == 'O')
-		env->conv = 'O';
-	else if (env->str[env->cur] == 'u')
-		env->conv = 'u';
-	else if (env->str[env->cur] == 'U')
-		env->conv = 'U';
-	else if (env->str[env->cur] == 'x')
-		env->conv = 'x';
-	else if (env->str[env->cur] == 'X')
-		env->conv = 'X';
-	else if (env->str[env->cur] == 'c')
-		env->conv = 'c';
-	else if (env->str[env->cur] == 'C')
-		env->conv = 'C';
+	if (arg->str[arg->cur] == 's')
+		arg->conv = 's';
+	else if (arg->str[arg->cur] == 'S')
+		arg->conv = 'S';
+	else if (arg->str[arg->cur] == 'p')
+		arg->conv = 'p';
+	else if (arg->str[arg->cur] == 'd')
+		arg->conv = 'd';
+	else if (arg->str[arg->cur] == 'D')
+		arg->conv = 'D';
+	else if (arg->str[arg->cur] == 'i')
+		arg->conv = 'i';
+	else if (arg->str[arg->cur] == 'o')
+		arg->conv = 'o';
+	else if (arg->str[arg->cur] == 'O')
+		arg->conv = 'O';
+	else if (arg->str[arg->cur] == 'u')
+		arg->conv = 'u';
+	else if (arg->str[arg->cur] == 'U')
+		arg->conv = 'U';
+	else if (arg->str[arg->cur] == 'x')
+		arg->conv = 'x';
+	else if (arg->str[arg->cur] == 'X')
+		arg->conv = 'X';
+	else if (arg->str[arg->cur] == 'c')
+		arg->conv = 'c';
+	else if (arg->str[arg->cur] == 'C')
+		arg->conv = 'C';
 	return (0);
 }

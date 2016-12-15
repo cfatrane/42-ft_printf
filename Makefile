@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/12 16:47:42 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/15 15:08:26 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,9 +19,10 @@ SRC_NAME =	ft_printf.c			\
 			ft_parse_flag.c		\
 			ft_reader.c			\
 			ft_write_arg.c		\
-			ft_write_char.c		\
+			ft_write_string.c	\
 			ft_write_int.c		\
-			ft_write_string.c
+			ft_write_hexa.c		\
+			ft_write_char.c		\
 
 OBJ_PATH = ./obj/
 
@@ -30,7 +31,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-CPPFLAGS = -I ./includes/
+CPPFLAGS = -I./includes/
 
 LDFLAGS = -L./libft/
 
@@ -45,13 +46,13 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	make -C./libft/
 	@echo "Creation of $(NAME) ..."
-	@ar rc $(NAME) $(OBJ)
+	ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) created"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) $(CPPFLAGS) -o $@ -c $<
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 clean:
 	@make clean -C ./libft/

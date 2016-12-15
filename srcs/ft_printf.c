@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:20:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/15 14:26:43 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/15 16:42:03 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int ft_printf (const char *format, ...)
 	va_start(ap, format);
 	ret = ft_reader(&arg, ap);
 	va_end(ap);
-	return (ret);
+	return (arg.printcar);
 }

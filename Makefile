@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/15 15:08:26 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/15 18:15:38 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,7 @@ CPPFLAGS = -I./includes/
 
 LDFLAGS = -L./libft/
 
-LFT = -lft
+LFT = ./libft/libft.a
 
 CC = gcc
 

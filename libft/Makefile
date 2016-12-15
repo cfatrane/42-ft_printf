@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/15 18:39:49 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/15 19:28:12 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -110,7 +110,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) -I./includes/ -o $@ -c $<
+	@$(CC) $(CFLAGS) -I./includes/ -o $@ -c $<
 
 clean:
 	@echo "Removal of .o files of $(NAME) ..."

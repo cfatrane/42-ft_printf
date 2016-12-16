@@ -1,21 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_char.c                                    :+:      :+:    :+:   */
+/*   ft_itoa_base.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 11:32:44 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/16 11:24:12 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/16 11:25:09 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_write_char(t_env *arg, va_list ap)
+char	*ft_itoa_base(int num, int base)
 {
-	unsigned char c;
 
-	c = va_arg(ap, int);
-	ft_putchar(c);
+
+
+
+
+
+	return ();
 }

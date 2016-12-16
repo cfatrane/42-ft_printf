@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/15 19:29:03 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/16 11:35:43 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ SRC_NAME =	ft_printf.c			\
 
 SRC = $(addprefix $(SRC_PATH), $(SRC_NAME))
 
-OBJ_PATH = ./obj/
+OBJ_PATH = ./objs/
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
@@ -38,6 +38,8 @@ LDFLAGS = -L./libft/
 
 LFT = -lft
 
+LIB = ./libft/libft.a
+
 CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
@@ -46,14 +48,15 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@echo "Creation of $(NAME) ..."
-	ar rc $(NAME) $(OBJ)
-	@ranlib $(NAME)
-	@echo "$(NAME) created"
+	@ar rc $(NAME) $(OBJ)
+#	ar -rcT libaz.a $(NAME) $(LIB)
+#	@ranlib $(NAME)
+	@echo "$(NAME) created\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-	@make -C./libft/
+	@make -C ./libft/
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CPPFLAGS) -o $@ -c $^
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 clean:
 	@make clean -C ./libft/

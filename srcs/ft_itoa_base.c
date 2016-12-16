@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:24:12 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 16:42:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:55:27 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*ft_itoa_base(int num, size_t base)
 		return (NULL);
 	i = 0;
 	ret = (char*)malloc(sizeof(char) * (ft_count(num, base) + 1));
-	while (num != 0)
+	while (num > 0)
 	{
 		ret[i] = ft_convert(num % base);
 		num = num / base;

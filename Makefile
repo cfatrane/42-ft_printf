@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/16 16:48:31 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/16 18:14:00 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -130,12 +130,9 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@echo "Creation of $(NAME) ..."
 	@ar rc $(NAME) $(OBJ)
-	#	ar -rcT libaz.a $(NAME) $(LIB)
-	#	@ranlib $(NAME)
 	@echo "$(NAME) created\n"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
-#	@make -C ./libft/
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CPPFLAGS) -o $@ -c $<
 

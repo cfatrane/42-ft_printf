@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 17:28:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/16 17:44:21 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	ft_write_maj(t_env *arg, va_list ap)
 	}
 	else if (arg->conv == 'X')
 	{
-		ft_write_dec(arg, ap);
+		ft_write_hexa(arg, ap);
 	}
 	else if (arg->conv == 'C')
 	{

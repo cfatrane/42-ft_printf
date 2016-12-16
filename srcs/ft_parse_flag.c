@@ -14,7 +14,25 @@
 
 int	ft_parse_flag(t_env *arg)
 {
-
-
+	if (e->str[e->cur] == '-')
+	{
+		arg->flag = "MORE";
+		arg->cur++;
+	}
+	else if (arg->str[arg->cur] == '+')
+	{
+		arg->flag = "LESS";
+		arg->cur++;
+	}
+	else if (arg->str[arg->cur] == ' ')
+	{
+		arg->flag = "SPACE";
+		arg->cur++;
+	}
+	else if (arg->str[arg->cur] == '#')
+	{
+		arg->flag = "DIESE";
+		arg->cur++;
+	}
 	return (0);
 }

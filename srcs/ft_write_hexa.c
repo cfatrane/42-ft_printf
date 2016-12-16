@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/15 14:02:46 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/16 15:45:28 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,10 @@
 
 void	ft_write_hexa(t_env *arg, va_list ap)
 {
+	char	*str;
+	int		nbr;
 
-
-
+	nbr = va_arg(ap, int);
+	str = ft_itoa_base(nbr, 16);
+	ft_putstr(str);
 }

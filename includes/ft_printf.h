@@ -22,6 +22,7 @@ typedef struct	s_env
 	const char	*str;
 	size_t		cur;
 	char		conv;
+	char		*flag;
 	size_t		size;
 	int			precision;
 	size_t		printcar;

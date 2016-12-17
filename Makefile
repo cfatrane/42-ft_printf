@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/17 18:32:04 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/17 20:34:06 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,10 @@ SRC_NAME =	ft_printf.c			\
 			ft_write_string.c	\
 			ft_write_int.c		\
 			ft_write_octal.c	\
-			ft_write_dec.c		\
 			ft_write_hexa.c		\
 			ft_write_char.c		\
+			ft_write_signed_dec.c	\
+			ft_write_unsigned_dec.c	\
 			ft_memset.c				\
 			ft_bzero.c				\
 			ft_memcpy.c				\

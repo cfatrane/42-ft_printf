@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 17:30:24 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/17 13:57:37 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct	s_env
 	char		*flag;
 	size_t		size;
 	int			precision;
+	char		*modif;
 	size_t		printcar;
 }				t_env;
 

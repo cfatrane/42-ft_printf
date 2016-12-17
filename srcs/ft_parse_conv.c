@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 17:13:02 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/17 14:05:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parse_conv(t_env *arg)
+void	ft_parse_conv(t_env *arg)
 {
 	if (arg->str[arg->cur] == 's')
 		arg->conv = 's';
@@ -44,5 +44,4 @@ int	ft_parse_conv(t_env *arg)
 		arg->conv = 'C';
 	else if (arg->str[arg->cur] == '%')
 		arg->conv = '%';
-	return (0);
 }

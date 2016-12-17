@@ -6,12 +6,47 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 11:24:12 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/16 17:55:27 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/17 18:28:13 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+/*
+size_t	ft_strlen_bin(int num, int base)
+{
+	size_t	i;
 
+	while (num % 2)
+	{
+	num % 2;
+
+	return (i);
+}*/
+
+static char	*ft_convert_binaire(int num)
+{
+	char	*str;
+	size_t	i;
+
+	while (num / 2 != 0)
+	{
+		str[i] = num / 2;
+		i++;
+	}
+	return (ft_strrev(str));
+}
+
+char	*ft_itoa_base(int num, int base)
+{
+	char	*str;
+
+//	if (!(str = ft_strnew(ft_strlen_bin(num, 2))))
+//		return (NULL);
+	str = ft_convert_binaire(num);
+	return (str);
+}
+
+/*
 static size_t	ft_count(unsigned int c, size_t base)
 {
 	size_t i;
@@ -50,4 +85,4 @@ char	*ft_itoa_base(int num, size_t base)
 	}
 	ret[i] = '\0';
 	return (ft_strrev(ret));
-}
+}*/

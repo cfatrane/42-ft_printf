@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:02:53 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/15 14:02:58 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/17 15:32:02 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_write_int(t_env *arg, va_list ap)
 {
-	int di;
+	int nbr;
 
-	di = va_arg(ap, int);
-	ft_putnbr(di);
+	nbr = va_arg(ap, int);
+	ft_putnbr(nbr);
 
 }

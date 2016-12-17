@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/16 18:14:00 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/17 15:20:31 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC_NAME =	ft_printf.c			\
 			ft_write_dec.c		\
 			ft_write_hexa.c		\
 			ft_write_char.c		\
+			ft_itoa_base_min.c	\
+			ft_itoa_base_maj.c	\
 			ft_memset.c				\
 			ft_bzero.c				\
 			ft_memcpy.c				\

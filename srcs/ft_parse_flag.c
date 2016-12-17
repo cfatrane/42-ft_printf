@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:03:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/17 13:58:52 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/17 14:05:05 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parse_flag(t_env *arg)
+void	ft_parse_flag(t_env *arg)
 {
 	if (arg->str[arg->cur] == '-')
 	{
@@ -34,5 +34,4 @@ int	ft_parse_flag(t_env *arg)
 		arg->flag = "DIESE";
 		arg->cur++;
 	}
-	return (0);
 }

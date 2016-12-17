@@ -5,36 +5,50 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/11/22 10:33:45 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/11/25 16:47:36 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/17 15:34:00 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/17 15:38:17 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "ft_printf.h"
 
-char	*ft_itoa(int num)
+static size_t	ft_count(unsigned int c, size_t base)
 {
-	char		*str;
-	int			i;
-	int			lenght;
-	int			sign;
-	long int	n;
+	size_t i;
 
-	n = num;
-	if ((sign = n) < 0)
-		n = -n;
-	lenght = ft_count_itoa(num);
-	if (!(str = (char*)malloc(sizeof(*str) * (lenght + 1))))
-		return (NULL);
-	str[0] = (n % 10) + 48;
-	i = 1;
-	while ((n /= 10) > 0)
+	i = 0;
+	while (c > 1)
 	{
-		str[i] = (n % 10) + 48;
+		c = c / base;
 		i++;
 	}
-	if (sign < 0)
-		str[i++] = '-';
-	str[i] = '\0';
-	return (ft_strrev_itoa(str));
+	return (i);
+}
+
+static char		ft_convert(int c)
+{
+	if (c > 9)
+		return ((c - 10) + 'A');
+	else
+		return (c + '0');
+}
+
+char	*ft_itoa_base(int num, size_t base)
+{		
+	int		i;
+	char	*ret;
+
+	if (base > 36)
+		return (NULL);
+	i = 0;
+	ret = (char*)malloc(sizeof(char) * (ft_count(num, base) + 1));
+	while (num != 0)
+	{
+		ret[i] = ft_convert(num % base);
+		num = num / base;
+		i++;
+	}
+	ret[i] = '\0';
+	return (ft_strrev(ret));
 }

@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/17 20:55:12 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/18 15:29:00 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,6 +17,8 @@ SRC_PATH = ./srcs/
 SRC_NAME =	ft_printf.c			\
 			ft_parse_conv.c		\
 			ft_parse_flag.c		\
+			ft_parse_size.c		\
+			ft_parse_precision.c\
 			ft_reader.c			\
 			ft_write_arg.c		\
 			ft_write_string.c	\

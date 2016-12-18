@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:35:57 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/17 14:21:24 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/18 16:46:55 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,9 @@
 
 int	ft_reader(t_env *arg, va_list ap)
 {
+	size_t	len;
+
+	len = 0;
 	while (arg->str[arg->cur] != '\0')
 	{
 		if (arg->str[arg->cur] == '%')
@@ -34,12 +37,20 @@ int	ft_reader(t_env *arg, va_list ap)
 	return (0);
 }
 
-
 int	ft_parse(t_env *arg, va_list ap)
 {
+	int	len;
+
+
+	len = 0;
+	if (arg->str[arg->cur] == '%' || arg->str == '\0')
+	{
+		ft_putchar('%');
+		arg->printcar++;
+	}
 	ft_parse_conv(arg);
 	ft_parse_flag(arg);
-//	ft_parse_size(arg);
-//	ft_parse_precision(arg);
+	ft_parse_size(arg);
+	ft_parse_precision(arg);
 	return (0);
 }

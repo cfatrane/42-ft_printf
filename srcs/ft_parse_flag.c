@@ -6,32 +6,36 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:03:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/17 14:05:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/18 16:42:12 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_parse_flag(t_env *arg)
+int	ft_parse_flag(t_env *arg)
 {
-	if (arg->str[arg->cur] == '-')
+	int i;
+
+	i = 0;
+	if (arg->str[i] == '-')
 	{
 		arg->flag = "MORE";
-		arg->cur++;
+		i++;
 	}
-	else if (arg->str[arg->cur] == '+')
+	else if (arg->str[i] == '+')
 	{
 		arg->flag = "LESS";
-		arg->cur++;
+		i++;
 	}
-	else if (arg->str[arg->cur] == ' ')
+	else if (arg->str[i] == ' ')
 	{
 		arg->flag = "SPACE";
-		arg->cur++;
+		i++;
 	}
-	else if (arg->str[arg->cur] == '#')
+	else if (arg->str[i] == '#')
 	{
 		arg->flag = "DIESE";
-		arg->cur++;
+		i++;
 	}
+	return (i);
 }

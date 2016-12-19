@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/19 11:29:08 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/19 15:03:04 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,10 +77,13 @@ SRC_NAME =	ft_memset.c				\
 			ft_isxdigit.c			\
 			ft_strndup.c			\
 			ft_abs.c				\
+			ft_print_hex.c			\
 			ft_tabintlen.c			\
 			ft_createtab.c			\
+			ft_nbrlen.c				\
 			ft_lstlen.c				\
 			ft_count_itoa.c			\
+			ft_putnbr_base.c		\
 			ft_itoa_base.c			\
 			ft_count_words_sep.c	\
 			ft_strlen_sep.c			\
@@ -112,7 +115,7 @@ $(NAME): $(OBJ)
 
 $(OBJ_PATH)%.o: $(SRC)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) $(CFLAGS) -o $@ -c $<
 
 clean:
 	@echo "Removal of .o files of $(NAME) ..."

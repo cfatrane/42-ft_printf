@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_parse_flag.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 17:02:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 15:12:49 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/15 14:03:35 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/19 16:25:58 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void ft_putnbr_base(int n, char *base)
+void	ft_parse_flag(t_env *arg)
 {
-	if (n < 0)
+	if (arg->str[arg->cur] == '-')
 	{
-		ft_putchar('-');
-		n = -n;
+		arg->flag = 1;
+		arg->cur++;
 	}
-	if (n >= (int)ft_strlen(base))
+	else if (arg->str[arg->cur] == '+')
 	{
-		ft_putnbr_base(n / ft_strlen(base), base);
-		ft_putnbr_base(n % ft_strlen(base), base);
+		arg->flag = 2;
+		arg->cur++;
 	}
-	else
+	else if (arg->str[arg->cur] == ' ')
 	{
-		ft_putchar(base[n]);
+		arg->flag = 3;
+		arg->cur++;
+	}
+	else if (arg->str[arg->cur] == '#')
+	{
+		arg->flag = 4;
+		arg->cur++;
 	}
 }

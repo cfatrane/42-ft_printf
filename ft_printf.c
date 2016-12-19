@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 17:02:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 15:12:49 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/19 13:01:55 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/19 13:28:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/ft_printf.h"
 
-void ft_putnbr_base(int n, char *base)
+int ft_printf (const char *format, ...)
 {
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= (int)ft_strlen(base))
-	{
-		ft_putnbr_base(n / ft_strlen(base), base);
-		ft_putnbr_base(n % ft_strlen(base), base);
-	}
-	else
-	{
-		ft_putchar(base[n]);
-	}
+	size_t	ret;
+	t_env	arg;
+	va_list	ap;
+
+	if (!format)
+		return (-1);
+	ft_bzero(&arg, sizeof(t_env));
+	arg.str = format;
+	va_start(ap, format);
+	ret = ft_reader(&arg, ap);
+	va_end(ap);
+	return (ret);
 }

@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_nbrlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 17:02:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 15:12:49 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/19 13:10:19 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/19 13:12:58 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void ft_putnbr_base(int n, char *base)
+int	ft_nbrlen(int nbr)
 {
-	if (n < 0)
+	int		len;
+	size_t	nb;
+
+	len = 0;
+	nb = nbr;
+	if (nbr == 0)
+		return (1);
+	if (nbr < 0)
 	{
-		ft_putchar('-');
-		n = -n;
+		nb = -nbr;
+		len++;
 	}
-	if (n >= (int)ft_strlen(base))
+	while (nb > 0)
 	{
-		ft_putnbr_base(n / ft_strlen(base), base);
-		ft_putnbr_base(n % ft_strlen(base), base);
+		nb /= 10;
+		len++;
 	}
-	else
-	{
-		ft_putchar(base[n]);
-	}
+	return (len);
 }

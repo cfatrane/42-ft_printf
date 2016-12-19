@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_write_pointor.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 17:02:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 15:12:49 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/19 16:26:54 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/19 16:30:49 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void ft_putnbr_base(int n, char *base)
+int	ft_write_pointor(t_env *arg, va_list ap)
 {
-	if (n < 0)
-	{
-		ft_putchar('-');
-		n = -n;
-	}
-	if (n >= (int)ft_strlen(base))
-	{
-		ft_putnbr_base(n / ft_strlen(base), base);
-		ft_putnbr_base(n % ft_strlen(base), base);
-	}
-	else
-	{
-		ft_putchar(base[n]);
-	}
+	void	*pointor;
+
+	pointor = va_arg(ap, void *);
+	ft_putstr("0x");
+	ft_putnbr_base((size_t)pointor, "0123456789abcdef");
+	return (size_tab_base((int)pointor + 2, 16));
 }

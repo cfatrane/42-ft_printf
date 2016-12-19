@@ -1,31 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_base.c                                   :+:      :+:    :+:   */
+/*   ft_write_string.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/16 17:02:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 15:12:49 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/19 16:30:31 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void ft_putnbr_base(int n, char *base)
+int	ft_write_string(t_env *arg, va_list ap)
 {
-	if (n < 0)
+	char	*str;
+	size_t	len;
+
+	len = 0;
+	if (arg->conv == 's')
 	{
-		ft_putchar('-');
-		n = -n;
+		str = va_arg(ap, char *);
+		ft_putstr(str);
+		len = ft_strlen(str);
 	}
-	if (n >= (int)ft_strlen(base))
-	{
-		ft_putnbr_base(n / ft_strlen(base), base);
-		ft_putnbr_base(n % ft_strlen(base), base);
-	}
-	else
-	{
-		ft_putchar(base[n]);
-	}
+	return (len);
 }

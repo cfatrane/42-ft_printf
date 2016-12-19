@@ -6,18 +6,19 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:22:52 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/18 16:39:16 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/19 17:29:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_parse_precision(t_env *arg)
+void	ft_parse_precision(t_env *arg)
 {
-	int i;
-
-	i = 0;
-	if (arg->str[i] == '.')
-		i++;
-	return (i);
+	if (arg->str[arg->cur] == '.')
+	{
+		arg->cur++;
+		arg->precision = 1;
+	}
+	else
+		arg->precision = 0;
 }

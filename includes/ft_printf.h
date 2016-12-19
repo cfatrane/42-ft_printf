@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 16:27:51 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/19 17:37:41 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,9 @@ int		ft_reader(t_env *arg, va_list ap);
 int		ft_parse(t_env *arg, va_list ap);
 void	ft_parse_conv(t_env *arg);
 void	ft_parse_flag(t_env *arg);
-int		ft_parse_size(t_env *arg);
-int		ft_parse_precision(t_env *arg);
+void	ft_parse_size(t_env *arg);
+void	ft_parse_precision(t_env *arg);
+void	ft_parse_modif(t_env *arg);
 
 int		ft_write_arg(t_env *arg, va_list ap);
 int		ft_write_string(t_env *arg, va_list ap);

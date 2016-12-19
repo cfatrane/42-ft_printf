@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 16:10:05 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 16:41:01 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/19 17:44:29 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,9 @@ int	ft_parse(t_env *arg, va_list ap)
 	//	arg->printcar++;
 	}
 	ft_parse_flag(arg);
-//	ft_parse_size(arg);
-//	ft_parse_precision(arg);
+	ft_parse_size(arg);
+	ft_parse_precision(arg);
+	ft_parse_modif(arg);
 	ft_parse_conv(arg);
 	return (len);
 }

@@ -6,28 +6,29 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/19 17:40:45 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/19 18:46:36 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC  =		ft_printf.c			\
-			ft_parse.c			\
-			ft_parse_conv.c		\
-			ft_parse_flag.c		\
-			ft_parse_size.c		\
-			ft_parse_precision.c\
-			ft_parse_modif.c	\
-			ft_reader.c			\
-			ft_write_arg.c		\
-			ft_write_string.c	\
-			ft_write_pointor.c	\
-			ft_write_int.c		\
-			ft_write_octal.c	\
-			ft_write_dec.c		\
-			ft_write_hexa.c		\
-			ft_write_char.c		\
+SRC  =		ft_printf.c				\
+			ft_parse.c				\
+			ft_parse_conv.c			\
+			ft_parse_flag.c			\
+			ft_parse_size.c			\
+			ft_parse_precision.c	\
+			ft_parse_modif.c		\
+			ft_reader.c				\
+			ft_write_arg.c			\
+			ft_write_string.c		\
+			ft_write_pointor.c		\
+			ft_write_signed_int.c	\
+			ft_write_unsigned_int.c	\
+			ft_write_long_int.c		\
+			ft_write_octal.c		\
+			ft_write_hexa.c			\
+			ft_write_char.c			\
 
 
 OBJ = $(SRC:.c=.o)
@@ -56,7 +57,7 @@ $(NAME): $(OBJ)
 	@echo "$(NAME) created\n"
 
 $(OBJ): $(SRC)
-	@$(CC) -o $@ -c $<
+	$(CC) -o $@ -c $<
 
 clean:
 	@make clean -C ./libft/

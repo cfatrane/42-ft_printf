@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 17:37:41 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/19 18:43:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,10 @@ void	ft_parse_modif(t_env *arg);
 int		ft_write_arg(t_env *arg, va_list ap);
 int		ft_write_string(t_env *arg, va_list ap);
 int		ft_write_pointor(t_env *arg, va_list ap);
-int		ft_write_int(t_env *arg, va_list ap);
+int		ft_write_signed_int(t_env *arg, va_list ap);
+int		ft_write_unsigned_int(t_env *arg, va_list ap);
+int		ft_write_long_int(t_env *arg, va_list ap);
 int		ft_write_octal(t_env *arg, va_list ap);
-int		ft_write_dec(t_env *arg, va_list ap);
 int		ft_write_hexa(t_env *arg, va_list ap);
 int		ft_write_char(t_env *arg, va_list ap);
 

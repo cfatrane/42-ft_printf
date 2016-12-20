@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:40:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/20 18:50:09 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,13 @@
 # define LESS 4
 # define SPACE 5
 
+# define hh 1
+# define h 2
+# define ll 3
+# define l 4
+# define j 5
+# define z 6
+
 typedef struct	s_env
 {
 	const char	*str;
@@ -34,7 +41,7 @@ typedef struct	s_env
 	int			flag;
 	size_t		size;
 	int			precision;
-	char		*modif;
+	int			modif;
 	size_t		printcar;
 	size_t		len;
 }				t_env;
@@ -58,7 +65,8 @@ int		ft_write_octal(t_env *arg, va_list ap);
 int		ft_write_hexa(t_env *arg, va_list ap);
 int		ft_write_char(t_env *arg, va_list ap);
 
+int		ft_write_flag_diese(void);
 
-void	ft_flag_zero(t_env *arg);
+int		ft_flag_zero(t_env *arg);
 
 #endif

@@ -1,31 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_size.c                                    :+:      :+:    :+:   */
+/*   ft_write_flag_diese.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 17:56:51 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/20 18:48:05 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/20 18:49:46 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_parse_size(t_env *arg)
+int	ft_write_flag_diese(void)
 {
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = ft_strnew(2);
-	while (ft_isdigit(arg->str[arg->cur]))
-	{
-		str[i] = arg->str[arg->cur];
-		arg->cur++;
-		i++;
-	}
-	str[i] = '\0';
-	arg->size = ft_atoi(str);
-	free (str);
+		ft_putstr("0x");
+	return (2);
 }

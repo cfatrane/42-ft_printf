@@ -6,43 +6,57 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 14:01:23 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/20 18:56:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-
-int	ft_flag_justify(t_env *arg, int nbr)
+int	ft_flag_write(t_env *arg, int nbr)
 {
 	int		len;
 
 	len = 0;
 	if (arg->flag == ZERO)
-		ft_flag_zero(arg);
+		len += ft_flag_zero(arg);
 	if (arg->conv == 'x')
 	{
 		if (arg->flag == DIESE)
-		{
-			ft_putstr("0x");
-			len += 2;
-		}
+			len += ft_write_flag_diese();
 		ft_putnbr_base(nbr, "0123456789abcdef");
 	}
 	len += ft_nbrlen(nbr);
 	return (ft_nbcmp(arg->size, len));
 }
 
+int	ft_write_modif(t_env *arg, va_list ap)
+{
+	int		len;
+	unsigned int	nbr;
+	
+	len = 0;
+	nbr = va_arg(ap, unsigned long int);
+	if (arg->conv == 'x')
+	{
+		if (arg->flag == DIESE)
+			len += ft_write_flag_diese();
+		ft_putnbr_base(nbr, "0123456789");
+	}
+	len += ft_nbrlen(nbr);
+	return (len);
+}
+
+
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
-	int		nbr;
-	int		len;
+	int				len;
+	unsigned int	nbr;
 
 	len = 0;
 	nbr = va_arg(ap, unsigned int);
 	if (arg->flag == ZERO)
 	{
-		return (ft_flag_justify(arg, nbr));
+		return (ft_flag_write(arg, nbr));
 	}
 	if (nbr == 0)
 	{
@@ -52,11 +66,12 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 	if (arg->conv == 'x')
 	{
 		if (arg->flag == DIESE)
+			len += ft_write_flag_diese();
+	/*	if (arg->modif == l)
 		{
-			ft_putstr("0x");
-			len += 2;
+			return (ft_write_modif(arg, ap)); NE RENTRE PAS DANS LE UNSIGNED INT DE BASE
 		}
-		ft_putnbr_base(nbr, "0123456789abcdef");
+	*/	ft_putnbr_base(nbr, "0123456789abcdef");
 	}
 	else if (arg->conv == 'X')
 	{

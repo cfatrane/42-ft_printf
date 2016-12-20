@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/20 13:55:48 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/20 18:52:12 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC  =		ft_printf.c				\
 			ft_write_hexa.c			\
 			ft_write_char.c			\
 			ft_flag_zero.c			\
+			ft_write_flag_diese.c	\
 
 OBJ = $(SRC:.c=.o)
 

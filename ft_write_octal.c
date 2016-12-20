@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 18:41:46 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/20 14:08:20 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	ft_write_octal(t_env *arg, va_list ap)
 	if (arg->conv == 'o')
 	{
 		nbr = va_arg(ap, unsigned int);
+		if (arg->flag == DIESE)
+			ft_putchar('0');
 		ft_putnbr_base(nbr, "01234567");
 	}
 	else if (arg->conv == 'O')

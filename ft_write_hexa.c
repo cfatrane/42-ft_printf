@@ -6,11 +6,32 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 18:57:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/20 14:01:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+
+int	ft_flag_justify(t_env *arg, int nbr)
+{
+	int		len;
+
+	len = 0;
+	if (arg->flag == ZERO)
+		ft_flag_zero(arg);
+	if (arg->conv == 'x')
+	{
+		if (arg->flag == DIESE)
+		{
+			ft_putstr("0x");
+			len += 2;
+		}
+		ft_putnbr_base(nbr, "0123456789abcdef");
+	}
+	len += ft_nbrlen(nbr);
+	return (ft_nbcmp(arg->size, len));
+}
 
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
@@ -19,6 +40,10 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 
 	len = 0;
 	nbr = va_arg(ap, unsigned int);
+	if (arg->flag == ZERO)
+	{
+		return (ft_flag_justify(arg, nbr));
+	}
 	if (nbr == 0)
 	{
 		ft_putchar('0');
@@ -26,7 +51,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 	}
 	if (arg->conv == 'x')
 	{
-		if (arg->flag == 4)
+		if (arg->flag == DIESE)
 		{
 			ft_putstr("0x");
 			len += 2;
@@ -35,7 +60,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 	}
 	else if (arg->conv == 'X')
 	{
-		if (arg->flag == 4)
+		if (arg->flag == DIESE)
 		{
 			ft_putstr("0X");
 			len += 2;

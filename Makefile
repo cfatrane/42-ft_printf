@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/19 18:46:36 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/20 13:55:48 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,7 @@ SRC  =		ft_printf.c				\
 			ft_write_octal.c		\
 			ft_write_hexa.c			\
 			ft_write_char.c			\
-
+			ft_flag_zero.c			\
 
 OBJ = $(SRC:.c=.o)
 
@@ -57,7 +57,7 @@ $(NAME): $(OBJ)
 	@echo "$(NAME) created\n"
 
 $(OBJ): $(SRC)
-	$(CC) -o $@ -c $<
+	@$(CC) -o $@ -c $<
 
 clean:
 	@make clean -C ./libft/

@@ -1,31 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_size.c                                    :+:      :+:    :+:   */
+/*   ft_nbrlen_uns.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:55:25 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/20 17:28:12 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/20 17:29:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_parse_size(t_env *arg)
+int	ft_nbrlen_uns(long int nb)
 {
-	char	*str;
-	int		i;
+	int				len;
+	unsigned int	nbr;
 
-	i = 0;
-	str = ft_strnew(2);
-	while (arg->str[arg->cur] >= '1' && arg->str[arg->cur] <= '9')
+	len = 0;
+	nbr = nb;
+	if (nb == 0)
+		return (1);
+	if (nb < 0)
+		return (10);
+	while (nbr > 0)
 	{
-		str[i] = arg->str[arg->cur];
-		arg->cur++;
-		i++;
+		nbr /= 10;
+		len++;
 	}
-	str[i] = '\0';
-	arg->size = ft_atoi(str);
-	free (str);
+	return (len);
 }

@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_size.c                                    :+:      :+:    :+:   */
+/*   ft_nbcmp.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:55:25 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/20 13:18:49 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/20 13:20:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_parse_size(t_env *arg)
+int	ft_nbcmp(int nb1, int nb2)
 {
-	char	*str;
-	int		i;
-
-	i = 0;
-	str = ft_strnew(2);
-	while (arg->str[arg->cur] >= '1' && arg->str[arg->cur] <= '9')
-	{
-		str[i] = arg->str[arg->cur];
-		arg->cur++;
-		i++;
-	}
-	str[i] = '\0';
-	arg->size = ft_atoi(str);
-	free (str);
+	return (nb1 > nb2 ? nb1 : nb2);
 }

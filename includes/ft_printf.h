@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 18:43:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/20 13:40:05 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@
 # include <stdarg.h>
 # include "../libft/libft.h"
 
-# define MORE 1
-# define LESS 2
-# define SPACE 3
-# define DIESE 4
+#include <stdio.h> // A ENLEVER WALLAH
+
+
+# define DIESE 1
+# define ZERO 2
+# define MORE 3
+# define LESS 4
+# define SPACE 5
 
 typedef struct	s_env
 {
@@ -38,11 +42,11 @@ typedef struct	s_env
 int		ft_printf(const char *format, ...);
 int		ft_reader(t_env *arg, va_list ap);
 int		ft_parse(t_env *arg, va_list ap);
-void	ft_parse_conv(t_env *arg);
 void	ft_parse_flag(t_env *arg);
 void	ft_parse_size(t_env *arg);
 void	ft_parse_precision(t_env *arg);
 void	ft_parse_modif(t_env *arg);
+void	ft_parse_conv(t_env *arg);
 
 int		ft_write_arg(t_env *arg, va_list ap);
 int		ft_write_string(t_env *arg, va_list ap);
@@ -54,5 +58,7 @@ int		ft_write_octal(t_env *arg, va_list ap);
 int		ft_write_hexa(t_env *arg, va_list ap);
 int		ft_write_char(t_env *arg, va_list ap);
 
+
+void	ft_flag_zero(t_env *arg);
 
 #endif

@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_size.c                                    :+:      :+:    :+:   */
+/*   ft_flag_zero.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:55:25 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/20 12:02:33 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/20 14:03:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	ft_parse_size(t_env *arg)
+void	ft_flag_zero(t_env *arg)
 {
-	char	*str;
-	int		i;
+	int i;
 
 	i = 0;
-	str = ft_strnew(2);
-	while (arg->str[arg->cur] >= '1' && arg->str[arg->cur] <= '9')
+	while (i <= arg->size - arg->printcar)
 	{
-		str[i] = arg->str[arg->cur];
-		arg->cur++;
+		ft_putchar('0');
 		i++;
 	}
-	str[i] = '\0';
-	arg->size = ft_atoi(str);
-	free (str);
 }

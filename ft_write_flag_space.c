@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_flag_diese.c                              :+:      :+:    :+:   */
+/*   ft_write_flag_space.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 18:48:05 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 14:36:46 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/21 14:36:02 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/21 14:40:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_write_flag_diese(void)
+int	ft_write_flag_space(void)
 {
-	ft_putstr("0x");
-	return (2);
+	ft_putchar(' ');
+	return (1);
 }

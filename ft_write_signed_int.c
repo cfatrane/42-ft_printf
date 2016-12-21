@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 20:46:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 14:16:11 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 14:38:51 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	ft_write_flag(t_env *arg, int nbr)
 	len = 0;
 	len += ft_nbrlen(nbr);
 	if (arg->flag == ZERO)
-		len += ft_flag_zero(arg, len);
+		len += ft_write_flag_zero(arg, len);
 	if (arg->flag == DIESE)
 		len += ft_write_flag_diese();
 	ft_putnbr(nbr);
@@ -38,6 +38,8 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		ft_putchar('+');
 		len++;
 	}
+	if (arg->flag == SPACE && arg->flag != MORE && nbr >= 0)
+		len += ft_write_flag_space();
 //	if (arg->flag == ZERO)
 //		return (ft_write_flag(arg, nbr));
 	ft_putnbr(nbr);

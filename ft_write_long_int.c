@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:30:24 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 18:31:57 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 15:23:21 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	ft_write_long_int(t_env *arg, va_list ap)
 	}
 	else if (arg->conv == 'U')
 	{
-		nbr = va_arg(ap, unsigned int);
-		ft_putnbr(nbr);
-		len = ft_nbrlen(nbr);
+		nbr = va_arg(ap, unsigned long int);
+		ft_putnbr_uns(nbr);
+		len = ft_nbrlen_uns(nbr);
 	}
 	return (len);
 }

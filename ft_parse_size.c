@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 13:37:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 15:15:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void	ft_parse_size(t_env *arg)
 	int		i;
 
 	i = 0;
-	str = ft_strnew(2);
+	if (arg->str[arg->cur] == '0')
+		arg->cur++;
 	while (ft_isdigit(arg->str[i]))
 		i++;
 	if (!(str = ft_strnew(i)))

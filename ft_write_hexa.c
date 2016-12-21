@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 15:17:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 18:38:47 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 
 	len = 0;
 	nbr = va_arg(ap, unsigned int);
+//	printf(" SIZE DE CHAMP = %zu", arg->size);
+//	printf(" SIZE DE ZERO = %d", arg->flag);
 	if (nbr == 0)
 	{
 		ft_putchar('0');
@@ -64,8 +66,8 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 			len += ft_write_flag_diese();
 		if (arg->flag == ZERO)
 			return (ft_write_flag(arg, nbr));
-		//		if(arg->size)
-		//			return (ft_write_size(arg, nbr));
+	//	if(arg->size > 0)
+			return (ft_write_size(arg, nbr));
 		/*	if (arg->modif == l)
 			{
 			return (ft_write_modif(arg, ap)); NE RENTRE PAS DANS LE UNSIGNED INT DE BASE

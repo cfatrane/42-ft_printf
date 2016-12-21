@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 18:45:16 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 13:59:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	char test = 'c';
-	ft_printf("%lx", 4294967296);
+	ft_printf("%010x", 542);
 	ft_printf("\n");
 	printf("%x", 42996);
 }

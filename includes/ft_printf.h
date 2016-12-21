@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 18:50:09 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/21 13:52:15 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ typedef struct	s_env
 {
 	const char	*str;
 	size_t		cur;
-	char		conv;
 	int			flag;
 	size_t		size;
 	int			precision;
 	int			modif;
+	char		conv;
 	size_t		printcar;
 	size_t		len;
 }				t_env;
@@ -67,6 +67,6 @@ int		ft_write_char(t_env *arg, va_list ap);
 
 int		ft_write_flag_diese(void);
 
-int		ft_flag_zero(t_env *arg);
+int		ft_flag_zero(t_env *arg, int len);
 
 #endif

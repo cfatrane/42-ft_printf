@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 14:50:28 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 13:47:18 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 19:37:45 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,12 @@ int	ft_write_size(t_env *arg, int nbr)
 	len += ft_nbrlen(nbr);
 	if (arg->flags.flag[LESS] == 1)
 	{
-		ft_putnbr_base(nbr, "0123456789abcdef");
+		if (arg->conv == 'd' || arg->conv == 'i')
+			ft_putnbr(nbr);
+		if (arg->conv == 'x')
+			ft_putnbr_base(nbr, "0123456789abcdef");
+		if (arg->conv == 'o')
+			ft_putnbr_base(nbr, "01234567");
 		while (i < arg->size - len)
 		{
 			ft_putchar (' ');
@@ -36,7 +41,14 @@ int	ft_write_size(t_env *arg, int nbr)
 			ft_putchar (' ');
 			i++;
 		}
-		ft_putnbr_base(nbr, "0123456789abcdef");
+		if (arg->flags.flag[DIESE] == 1)
+			len += ft_write_flag_diese();
+		if (arg->conv == 'd' || arg->conv == 'i')
+			ft_putnbr(nbr);
+		if (arg->conv == 'x')
+			ft_putnbr_base(nbr, "0123456789abcdef");
+		if (arg->conv == 'o')
+			ft_putnbr_base(nbr, "01234567");
 	}
 	len += i;
 	return (len);

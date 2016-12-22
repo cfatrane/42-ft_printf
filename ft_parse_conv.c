@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/18 15:08:01 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 18:41:47 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void	ft_parse_conv(t_env *arg)
 			(arg->str[arg->cur] == 'U') || (arg->str[arg->cur] == 'X') || (arg->str[arg->cur] == 'C') || 
 			(arg->str[arg->cur] == '%'))
 		ft_parse_conv_maj(arg);
+	arg->cur++;
 }

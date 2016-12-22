@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/22 13:40:53 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2016/12/22 18:18:48 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,6 +33,7 @@ SRC  =		ft_printf.c				\
 			ft_write_flag_space.c	\
 			ft_write_flag_diese.c	\
 			ft_write_size.c			\
+			ft_caste.c				\
 
 OBJ = $(SRC:.c=.o)
 
@@ -55,7 +56,7 @@ $(NAME): $(OBJ)
 	@echo "Creation of $(NAME) ..."
 	@$(CC) $(CPPFLAGS) -c $(SRC)
 	@ar rc $(NAME) $(OBJ)
-	@libtool -static -o $(NAME) $(NAME) $(LIB)
+	@@libtool -static -o $(NAME) $(NAME) $(LIB)
 	@ranlib $(NAME)
 	@echo "$(NAME) created\n"
 

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:35:57 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:42:55 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 18:41:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	ft_reader(t_env *arg, va_list ap)
 		{
 			arg->cur++;
 			len += ft_parse(arg, ap);
-			arg->cur++;
 			len += ft_write_arg(arg, ap);
 		}
 		else

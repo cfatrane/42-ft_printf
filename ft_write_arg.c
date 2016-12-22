@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 13:41:17 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 15:20:14 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,62 +15,36 @@
 int	ft_write_min(t_env *arg, va_list ap)
 {
 	if (arg->conv == 's')
-	{
 		return (ft_write_string(arg, ap));
-	}
 	else if (arg->conv == 'p')
-	{
 		return (ft_write_pointor(arg, ap));
-	}
 	else if (arg->conv == 'd' || arg->conv == 'i')
-	{
 		return (ft_write_signed_int(arg, ap));
-	}
 	else if (arg->conv == 'o')
-	{
 		return (ft_write_octal(arg, ap));
-	}
 	else if (arg->conv == 'u')
-	{
 		return (ft_write_unsigned_int(arg, ap));
-	}
 	else if (arg->conv == 'x')
-	{
 		return (ft_write_hexa(arg, ap));
-	}
 	else if (arg->conv == 'c')
-	{
 		return (ft_write_char(arg, ap));
-	}
 	return (0);
 }
 
 int	ft_write_maj(t_env *arg, va_list ap)
 {
 	if (arg->conv == 'S')
-	{
 		return (ft_write_string(arg, ap));
-	}
 	else if (arg->conv == 'D')
-	{
 		return (ft_write_long_int(arg, ap));
-	}
 	else if (arg->conv == 'O')
-	{
 		return (ft_write_octal(arg, ap));
-	}
 	else if (arg->conv == 'U')
-	{
 		return (ft_write_long_int(arg, ap));
-	}
 	else if (arg->conv == 'X')
-	{
 		return (ft_write_hexa(arg, ap));
-	}
 	else if (arg->conv == 'C')
-	{
 		ft_write_hexa(arg, ap);
-	}
 	return (0);
 }
 

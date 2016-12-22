@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 14:51:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:39:43 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,16 @@
 # define j 5
 # define z 6
 
+typedef struct	s_flags
+{
+	char	flag[6];
+}				t_flags;
+
 typedef struct	s_env
 {
 	const char	*str;
 	size_t		cur;
-	int			flag;
+	struct s_flags flags;
 	size_t		size;
 	int			precision;
 	int			modif;

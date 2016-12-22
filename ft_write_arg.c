@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/19 18:42:16 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:41:17 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,11 @@ int	ft_write_maj(t_env *arg, va_list ap)
 	{
 		return (ft_write_hexa(arg, ap));
 	}
-/*	else if (arg->conv == 'C')
+	else if (arg->conv == 'C')
 	{
 		ft_write_hexa(arg, ap);
 	}
-*/	return (0);
+	return (0);
 }
 
 int	ft_write_arg(t_env *arg, va_list ap)

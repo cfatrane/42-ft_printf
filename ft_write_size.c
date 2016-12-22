@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 14:50:28 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 18:29:30 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:47:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_write_size(t_env *arg, int nbr)
 	i = 0;
 	len = 0;
 	len += ft_nbrlen(nbr);
-	if (arg->flag == LESS)
+	if (arg->flags.flag[LESS] == 1)
 	{
 		ft_putnbr_base(nbr, "0123456789abcdef");
 		while (i < arg->size - len)

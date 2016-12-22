@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 16:49:31 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/22 13:46:55 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int ft_write_size_char(t_env * arg, char c)
 
 	i = 0;
 	len = 0;
-	if (arg->flag == LESS)
+	if (arg->flags.flag[LESS] == 1)
 	{
 		ft_putchar(c);
 		while (i < arg->size - 1)

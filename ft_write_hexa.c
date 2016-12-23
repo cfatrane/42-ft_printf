@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 12:56:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/23 17:08:46 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,36 +16,75 @@ static int	ft_write_flag(t_env *arg, int nbr)
 {
 	int		len;
 
-	len = 0;
-	len += ft_nbrlen(nbr);
-	if (arg->flags.flag[ZERO] == 1)
-		len += ft_write_flag_zero(arg, len);
+	len = ft_nbrlen(nbr);
 	if (arg->conv == 'x')
 	{
 		if (arg->flags.flag[DIESE] == 1)
 			len += ft_write_flag_diese();
+		if (arg->flags.flag[ZERO] == 1)
+			len += ft_write_flag_zero(arg, len);
 		ft_putnbr_base(nbr, "0123456789abcdef");
 	}
 	return (ft_nbcmp(arg->size, len));
 }
 /*
-int	ft_write_modif(t_env *arg, va_list ap)
-{
-	int				len;
-	unsigned int	nbr;
+   int	ft_write_modif(t_env *arg, va_list ap)
+   {
+   int				len;
+   unsigned int	nbr;
 
-	len = 0;
-	nbr = va_arg(ap, unsigned long int);
-	if (arg->conv == 'x')
+   len = 0;
+   nbr = va_arg(ap, unsigned long int);
+   if (arg->conv == 'x')
+   {
+   if (arg->flag == DIESE)
+   len += ft_write_flag_diese();
+   ft_putnbr_base(nbr, "0123456789");
+   }
+   len += ft_nbrlen(nbr);
+   return (len);
+   }
+   */
+
+static int ft_write_size_hexa(t_env *arg, int nbr)
+{
+	int	i;
+	int	len;
+
+	len = ft_nbrlen(nbr);
+	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
-		if (arg->flag == DIESE)
-			len += ft_write_flag_diese();
-		ft_putnbr_base(nbr, "0123456789");
+		if (arg->flags.flag[DIESE] == 1)
+		{
+			ft_putstr("0x");
+			len += 2;
+		}
+		if (arg->conv == 'x')
+			ft_putnbr_base(nbr, "0123456789abcdef");
+		while (i < arg->size - len)
+		{
+			ft_putchar (' ');
+			i++;
+		}
 	}
-	len += ft_nbrlen(nbr);
+	else
+	{
+		if (arg->flags.flag[DIESE] == 1)
+			len += 2;
+		while (i < arg->size - len)
+		{
+			ft_putchar (' ');
+			i++;
+		}
+		if (arg->flags.flag[DIESE] == 1)
+			ft_putstr("0x");
+		if (arg->conv == 'x')
+			ft_putnbr_base(nbr, "0123456789abcdef");
+	}
+	len += i;
 	return (len);
 }
-*/
+
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
 	int				len;
@@ -53,8 +92,6 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 
 	len = 0;
 	nbr = va_arg(ap, unsigned int);
-//	printf("size =  %d\n", arg->size);
-//	printf("zero =  %d\n", arg->flags.flag[ZERO]);
 	if (nbr == 0)
 	{
 		ft_putchar('0');
@@ -65,7 +102,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		if (arg->flags.flag[ZERO] == 1)
 			return (ft_write_flag(arg, nbr));
 		if(arg->size)
-			return (ft_write_size(arg, nbr));
+			return (ft_write_size_hexa(arg, nbr));
 		if (arg->flags.flag[DIESE] == 1)
 			len += ft_write_flag_diese();
 		/*	if (arg->modif == l)

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 20:46:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 15:26:53 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/23 17:29:20 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 {
 	int			len;
 	signed int	nbr;
-
+	
 	len = 0;
 	nbr = va_arg(ap, signed int);
 	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)

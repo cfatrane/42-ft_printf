@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:45:03 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 17:29:21 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/23 14:55:07 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void				ft_print_hex(size_t n);
 size_t				ft_tabintlen(int *tab);
 int					**ft_createtab(int nblin, int nbcol);
 int					ft_nbrlen(int nbr);
-int					ft_nbrlen_uns(long int nb);
+int					ft_nbrlen_uns(unsigned long int nb);
 int					ft_nbcmp(int nb1, int nb2);
 size_t				ft_lstlen(t_list *list);
 int					ft_count_itoa(int num);

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 14:50:28 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 19:37:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/23 15:53:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_write_size(t_env *arg, int nbr)
 	i = 0;
 	len = 0;
 	len += ft_nbrlen(nbr);
-	if (arg->flags.flag[LESS] == 1)
+	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
 		if (arg->conv == 'd' || arg->conv == 'i')
 			ft_putnbr(nbr);
@@ -41,7 +41,7 @@ int	ft_write_size(t_env *arg, int nbr)
 			ft_putchar (' ');
 			i++;
 		}
-		if (arg->flags.flag[DIESE] == 1)
+		if (arg->flags.flag[DIESE] == 1 && arg->conv != 'o')
 			len += ft_write_flag_diese();
 		if (arg->conv == 'd' || arg->conv == 'i')
 			ft_putnbr(nbr);

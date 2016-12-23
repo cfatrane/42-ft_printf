@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_long_int.c                                :+:      :+:    :+:   */
+/*   ft_write_flag_zero_less.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/19 18:30:24 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 14:58:34 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/23 13:01:32 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/23 13:21:15 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_write_long_int(t_env *arg, va_list ap)
+int	ft_write_flag_zero_less(t_env *arg, int len)
 {
-	int			len;
-	long int	nbr;
+	int	i;
+	int	len;
 
+	i = 0;
 	len = 0;
-	if (arg->conv == 'D')
-	{
-		nbr = va_arg(ap, signed int);
-		ft_putnbr(nbr);
-		len = ft_nbrlen(nbr);
-	}
-	else if (arg->conv == 'U')
-	{
-		nbr = va_arg(ap, unsigned long int);
-		ft_putnbr_uns(nbr);
-		len = ft_nbrlen_uns(nbr);
-	}
+
+
+
+
+
+
 	return (len);
 }

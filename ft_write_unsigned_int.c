@@ -6,27 +6,29 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 19:25:25 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/23 15:38:42 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_flag(t_env *arg, int nbr)
+static int	ft_write_flag(t_env *arg, unsigned int nbr)
 {
 	int		len;
 
 	len = 0;
 	len += ft_nbrlen_uns(nbr);
-	if (arg->flags.flag[ZERO] == 1)
+	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
 		len += ft_write_flag_zero(arg, len);
+	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
+		return (ft_write_size(arg, nbr));
 	if (arg->flags.flag[DIESE] == 1)
 		len += ft_write_flag_diese();
 	ft_putnbr_uns(nbr);
 	return (ft_nbcmp(arg->size, len));
 }
 
-int	ft_write_size_uns_nbr(t_env *arg, int nbr)
+int	ft_write_size_uns_nbr(t_env *arg, unsigned int nbr)
 {
 	int	i;
 	int	len;
@@ -60,12 +62,12 @@ int	ft_write_size_uns_nbr(t_env *arg, int nbr)
 
 int	ft_write_unsigned_int(t_env *arg, va_list ap)
 {
-	int len;
-	signed int nbr;
+	int				len;
+	unsigned int	nbr;
 
 	len = 0;
 	nbr = va_arg(ap, unsigned int);
-	if (arg->flags.flag[ZERO] == 1)
+	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
 		return (ft_write_flag(arg, nbr));
 	if(arg->size)
 		return (ft_write_size_uns_nbr(arg, nbr));

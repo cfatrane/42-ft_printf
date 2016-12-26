@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 13:01:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:42:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 11:32:07 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/ft_printf.h"
 
-int ft_printf (const char *format, ...)
+int ft_printf(const char *format, ...)
 {
 	size_t	ret;
 	t_env	arg;

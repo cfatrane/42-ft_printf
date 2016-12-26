@@ -6,20 +6,19 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 19:21:15 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 13:24:08 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_write_size_str(t_env *arg, char *str)
+static int	ft_write_size_str(t_env *arg, char *str)
 {
 	int	i;
 	int	len;
 
 	i = 0;
-	len = 0;
-	len += ft_strlen(str);
+	len = ft_strlen(str);
 	if (arg->flags.flag[LESS] == 1)
 	{
 		ft_putstr(str);
@@ -36,21 +35,35 @@ int	ft_write_size_str(t_env *arg, char *str)
 			ft_putchar (' ');
 			i++;
 		}
-		if (arg->flags.flag[DIESE] == 1)
-			len += ft_write_flag_diese();
 		ft_putstr(str);
 	}
 	len += i;
 	return (len);
 }
 
+static int	ft_write_flag_string(t_env *arg, char *str)
+{
+	int		len;
+
+	len = 0;
+	len += ft_strlen(str);
+	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
+		len += ft_write_flag_zero(arg, len);
+	else
+		return (ft_write_size_str(arg, str));
+	ft_putstr(str);
+	return (ft_nbcmp(arg->size, len));
+}
+
 int	ft_write_string(t_env *arg, va_list ap)
 {
-	char	*str;
+	void	*str;
 	size_t	len;
 
 	len = 0;
 	str = va_arg(ap, char *);
+	if (arg->flags.flag[ZERO] == 1 || arg->flags.flag[LESS] == 1)
+		return (ft_write_flag_string(arg, str));
 	if(arg->size)
 		return (ft_write_size_str(arg, str));
 	if (arg->conv == 's')

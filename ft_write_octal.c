@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 16:51:42 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 12:02:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	ft_write_flag(t_env *arg, int nbr)
 	{
 		if (arg->flags.flag[DIESE] == 1)
 			ft_putchar('0');
-		ft_putnbr_base(nbr, "01234567");
+		ft_putnbr_base(nbr, OCTAL);
 	}
 	return (ft_nbcmp(arg->size, len));
 }
@@ -43,7 +43,7 @@ static int	ft_write_size_oct(t_env *arg, int nbr)
 			len++;
 		}
 		if (arg->conv == 'o')
-			ft_putnbr_base(nbr, "01234567");
+			ft_putnbr_base(nbr, OCTAL);
 		while (i < arg->size - len)
 		{
 			ft_putchar (' ');
@@ -62,7 +62,7 @@ static int	ft_write_size_oct(t_env *arg, int nbr)
 		if (arg->flags.flag[DIESE] == 1)
 			ft_putchar('0');
 		if (arg->conv == 'o')
-			ft_putnbr_base(nbr, "01234567");
+			ft_putnbr_base(nbr, OCTAL);
 	}
 	len += i;
 	return (len);
@@ -86,11 +86,11 @@ int	ft_write_octal(t_env *arg, va_list ap)
 			ft_putchar('0');
 			len++;
 		}
-		ft_putnbr_base(nbr, "01234567");
+		ft_putnbr_base(nbr, OCTAL);
 	}
 	else if (arg->conv == 'O')
 	{
-		ft_putnbr_base(nbr, "01234567");
+		ft_putnbr_base(nbr, OCTAL);
 	}
 	len = ft_nbrlen(nbr);
 	return (len);

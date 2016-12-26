@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 17:09:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 12:10:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@
 
 #include <stdio.h> // A ENLEVER WALLAH
 
+# define MAJ_HEXA "0123456789ABCDEF"
+# define MIN_HEXA "0123456789abcdef"
+# define OCTAL "01234567"
 
 # define DIESE 1
 # define ZERO 2

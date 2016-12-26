@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 16:47:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 17:41:40 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ typedef struct		s_flags
 	char			flag[6];
 }					t_flags;
 
-typedef struct	s_env
+typedef struct		s_env
 {
 	const char		*str;
 	size_t			cur;
@@ -52,7 +52,7 @@ typedef struct	s_env
 	char			conv;
 	size_t			printcar;
 	size_t			len;
-}				t_env;
+}					t_env;
 
 int		ft_printf(const char *format, ...);
 int		ft_reader(t_env *arg, va_list ap);

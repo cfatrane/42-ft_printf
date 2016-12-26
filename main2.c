@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 17:17:17 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 18:09:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(void)
 {
 	void	*ptr;
 
-	printf("ret = %d\n", printf("%x", 420));
+	printf("%-o", -42);
 	printf("\n");
-	printf("ret = %d\n", ft_printf("%x", 420));
+	printf("ret = %d\n", ft_printf("%-o", -42));
 }

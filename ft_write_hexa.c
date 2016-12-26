@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 12:04:08 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/26 17:58:21 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,8 @@ static int ft_write_size_hexa(t_env *arg, int nbr)
 	int	i;
 	int	len;
 
-	len = ft_nbrlen(nbr);
+	len = 0;
+	len += ft_nbrlen(nbr);
 	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
 		if (arg->flags.flag[DIESE] == 1)

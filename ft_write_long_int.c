@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:30:24 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 14:20:06 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 18:36:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_write_long_int(t_env *arg, va_list ap)
 	len = 0;
 	if (arg->conv == 'D')
 	{
-		nbr = va_arg(ap, signed int);
+		nbr = va_arg(ap, long int);
 		ft_putnbr(nbr);
 		len = ft_nbrlen(nbr);
 	}

@@ -6,19 +6,19 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 15:34:02 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 19:15:10 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_write_size_hexa(t_env *arg, unsigned int nbr)
+static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 {
 	int	i;
 	int	len;
 
-	len = 0;
-	len += ft_nbrlen_uns(nbr);
+	i = 0;
+	len = ft_nbrlen_uns(nbr);
 	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
 		if (arg->flags.flag[DIESE] == 1)
@@ -56,7 +56,7 @@ static int ft_write_size_hexa(t_env *arg, unsigned int nbr)
 	return (len);
 }
 
-static int	ft_write_flag(t_env *arg, unsigned int nbr)
+static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 {
 	int		len;
 
@@ -74,11 +74,24 @@ static int	ft_write_flag(t_env *arg, unsigned int nbr)
 
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
-	size_t			len;
-	unsigned int	nbr;
+	int						len;
+	unsigned long long int	nbr;
 
 	len = 0;
-	nbr = va_arg(ap, unsigned int);
+	if (!(arg->modif))
+		nbr = va_arg(ap, unsigned int);
+	else if (arg->modif == hh)
+		nbr = va_arg(ap, unsigned int);
+	else if (arg->modif == h)
+		nbr = va_arg(ap, unsigned int);
+	else if (arg->modif == ll)
+		nbr = va_arg(ap, unsigned long long int);
+	else if (arg->modif == l)
+		nbr = va_arg(ap, unsigned long int);
+	else if (arg->modif == j)
+		nbr = va_arg(ap, uintmax_t);
+	else if (arg->modif == z)
+		nbr = va_arg(ap, size_t);
 	if (nbr == 0)
 	{
 		ft_putchar('0');
@@ -86,7 +99,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 	}
 	if (arg->conv == 'x')
 	{
-		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1 || arg->flags.flag[SPACE] == 1)
+		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1)
 			return (ft_write_flag(arg, nbr));
 		if(arg->size)
 			return (ft_write_size_hexa(arg, nbr));

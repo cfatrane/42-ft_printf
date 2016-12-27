@@ -6,13 +6,19 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:07:15 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 18:28:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 15:22:28 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	*ft_caste(t_env *arg, void *arg_ptr)
+void	*ft_caste_unsigned(t_env *arg, void *arg_ptr)
+{
+
+	return (0);
+}
+
+void	*ft_caste_signed(t_env *arg, void *arg_ptr)
 {
 	if (arg->conv == 's')
 		return ((char*)arg_ptr);

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 18:09:39 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 18:13:03 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	main(void)
 {
 	void	*ptr;
 
-	printf("%-o", -42);
+	printf("%zd", 787);
 	printf("\n");
-	printf("ret = %d\n", ft_printf("%-o", -42));
+	ft_printf("%lld", 9223372036854775807);
 }

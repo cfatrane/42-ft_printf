@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 12:02:39 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 18:19:20 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,20 @@ int	ft_write_octal(t_env *arg, va_list ap)
 	int		nbr;
 
 	len = 0;
-	nbr = va_arg(ap, unsigned int);
+	if (!(arg->modif))
+		nbr = va_arg(ap, unsigned long long int);
+	else if (arg->modif == hh)
+		nbr = va_arg(ap, signed int);
+	else if (arg->modif == h)
+		nbr = va_arg(ap, signed int);
+	else if (arg->modif == ll)
+		nbr = va_arg(ap, long long int);
+	else if (arg->modif == l)
+		nbr = va_arg(ap, long int);
+	else if (arg->modif == j)
+		nbr = va_arg(ap, intmax_t);
+	else if (arg->modif == z)
+		nbr = va_arg(ap, size_t);
 	if (arg->conv == 'o')
 	{
 		if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)

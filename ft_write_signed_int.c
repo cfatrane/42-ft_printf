@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 17:49:42 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/27 18:16:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_size_dec(t_env *arg, int nbr)
+static int	ft_write_size_signed_int(t_env *arg, int nbr)
 {
 	int	i;
 	int	len;
@@ -47,37 +47,56 @@ static int	ft_write_flag_dec(t_env *arg, int nbr)
 
 	len = 0;
 	len += ft_nbrlen(nbr);
-	if (arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1 && nbr >= 0)
+	if (nbr >= 0)
 	{
-		ft_putchar('+');
-		len++;
+		if (arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1)
+		{
+			ft_putchar('+');
+			len++;
+		}
+		else if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1)
+		{
+			ft_putchar('+');
+			len++;
+		}
+		else if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] != 1)
+			len += ft_write_flag_space();
 	}
-	else if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1 && nbr >= 0)
-	{
-		ft_putchar('+');
-		len++;
-	}
-	else if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] != 1 && nbr >= 0)
-		len += ft_write_flag_space();
-	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
+/*	else
+		ft_putchar('-');
+*/	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
 		len += ft_write_flag_zero(arg, len);
 	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
-		return (ft_write_size(arg, nbr));
+		return (ft_write_size_signed_int(arg, nbr));
 	ft_putnbr(nbr);
 	return (ft_nbcmp(arg->size, len));
 }
 
+
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
-	int			len;
-	signed int	nbr;
+	int				len;
+	long long int	nbr;
 
 	len = 0;
-	nbr = va_arg(ap, signed int);
-	if (arg->flags.flag[ZERO] == 1 || arg->flags.flag[LESS] == 1 || arg->flags.flag[MORE] == 1 ||  arg->flags.flag[SPACE] == 1)
+	if (!(arg->modif))
+		nbr = va_arg(ap, signed int);
+	else if (arg->modif == hh)
+		nbr = va_arg(ap, signed int);
+	else if (arg->modif == h)
+		nbr = va_arg(ap, signed int);
+	else if (arg->modif == ll)
+		nbr = va_arg(ap, long long int);
+	else if (arg->modif == l)
+		nbr = va_arg(ap, long int);
+	else if (arg->modif == j)
+		nbr = va_arg(ap, intmax_t);
+	else if (arg->modif == z)
+		nbr = va_arg(ap, size_t);
+	if (arg->flags.flag[ZERO] == 1 || arg->flags.flag[MORE] == 1 || arg->flags.flag[SPACE] == 1)
 		return (ft_write_flag_dec(arg, nbr));
 	if(arg->size)
-		return (ft_write_size_dec(arg, nbr));
+		return (ft_write_size_signed_int(arg, nbr));
 	ft_putnbr(nbr);
 	len += ft_nbrlen(nbr);
 	return (len);

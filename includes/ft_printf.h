@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/26 17:41:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/28 18:28:00 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ int		ft_write_octal(t_env *arg, va_list ap);
 int		ft_write_hexa(t_env *arg, va_list ap);
 int		ft_write_char(t_env *arg, va_list ap);
 
-int		ft_write_flag_diese(void);
+int		ft_write_flag_diese_min(void);
+int		ft_write_flag_diese_maj(void);
 
 int		ft_write_flag_zero(t_env *arg, int len);
 int		ft_write_flag_space(void);

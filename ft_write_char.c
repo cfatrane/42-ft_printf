@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/22 13:46:55 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/28 19:45:38 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,10 @@ int	ft_write_char(t_env *arg, va_list ap)
 {
 	unsigned char	c;
 
-	c = va_arg(ap, int);
+//	if (!(arg->modif))
+		c = va_arg(ap, int);
+//	else if (arg->modif == l)
+//		c = va_arg(ap, wint_t);
 	if(arg->size)
 		return (ft_write_size_char(arg, c));
 	ft_putchar(c);

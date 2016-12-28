@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 19:23:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/28 18:31:34 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	ft_write_size_uns_nbr(t_env *arg, unsigned long long int nbr)
 			i++;
 		}
 		if (arg->flags.flag[DIESE] == 1)
-			len += ft_write_flag_diese();
+			len += ft_write_flag_diese_min();
 		ft_putnbr_uns(nbr);
 	}
 	len += i;

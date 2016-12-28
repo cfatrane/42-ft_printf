@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 19:18:13 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/28 18:49:05 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 	int	len;
 
 	i = 0;
-	len = ft_nbrlen(nbr);
+	len = ft_nbrlen_uns(nbr);
 	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
 		if (arg->flags.flag[DIESE] == 1)
@@ -26,8 +26,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 			ft_putchar('0');
 			len++;
 		}
-		if (arg->conv == 'o')
-			ft_putnbr_base(nbr, OCTAL);
+		ft_putnbr_base(nbr, OCTAL);
 		while (i < arg->size - len)
 		{
 			ft_putchar (' ');
@@ -45,8 +44,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 		}
 		if (arg->flags.flag[DIESE] == 1)
 			ft_putchar('0');
-		if (arg->conv == 'o')
-			ft_putnbr_base(nbr, OCTAL);
+		ft_putnbr_base(nbr, OCTAL);
 	}
 	len += i;
 	return (len);
@@ -56,15 +54,12 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 {
 	int		len;
 
-	len = ft_nbrlen(nbr);
+	len = ft_nbrlen_uns(nbr);
 	if (arg->flags.flag[ZERO] == 1)
 		len += ft_write_flag_zero(arg, len);
-	if (arg->conv == 'o')
-	{
-		if (arg->flags.flag[DIESE] == 1)
-			ft_putchar('0');
-		ft_putnbr_base(nbr, OCTAL);
-	}
+	if (arg->flags.flag[DIESE] == 1)
+		ft_putchar('0');
+	ft_putnbr_base(nbr, OCTAL);
 	return (ft_nbcmp(arg->size, len));
 }
 
@@ -88,23 +83,16 @@ int	ft_write_octal(t_env *arg, va_list ap)
 		nbr = va_arg(ap, uintmax_t);
 	else if (arg->modif == z)
 		nbr = va_arg(ap, size_t);
-	if (arg->conv == 'o')
+	if (arg->flags.flag[ZERO] == 1)
+		return (ft_write_flag(arg, nbr));
+	if(arg->size)
+		return (ft_write_size_oct(arg, nbr));
+	if (arg->flags.flag[DIESE] == 1)
 	{
-		if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
-			return (ft_write_flag(arg, nbr));
-		if(arg->size)
-			return (ft_write_size_oct(arg, nbr));
-		if (arg->flags.flag[DIESE] == 1)
-		{
-			ft_putchar('0');
-			len++;
-		}
-		ft_putnbr_base(nbr, OCTAL);
+		ft_putchar('0');
+		len++;
 	}
-	else if (arg->conv == 'O')
-	{
-		ft_putnbr_base(nbr, OCTAL);
-	}
-	len = ft_nbrlen(nbr);
+	ft_putnbr_base(nbr, OCTAL);
+	len = ft_nbrlen_uns(nbr);
 	return (len);
 }

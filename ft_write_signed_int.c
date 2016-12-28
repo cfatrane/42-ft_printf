@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 19:18:49 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/28 20:08:29 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,7 @@ static int	ft_write_flag_dec(t_env *arg, long long int nbr)
 	len = ft_nbrlen(nbr);
 	if (nbr >= 0)
 	{
-		if (arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1)
-		{
-			ft_putchar('+');
-			len++;
-		}
-		else if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1)
+		if ((arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1) || (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1))
 		{
 			ft_putchar('+');
 			len++;

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 17:34:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/29 18:39:36 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,7 +139,17 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		return (ft_write_flag_dec(arg, nbr));
 	if(arg->size)
 		return (ft_write_size_signed_int(arg, nbr));
-	ft_putnbr(nbr);
-	len += ft_nbrlen(nbr);
+	if (arg->modif == hh)
+		ft_putnbr((signed char)nbr);
+	else if (arg->modif == h)
+		ft_putnbr((short int)nbr);
+	else
+		ft_putnbr(nbr);
+	if (arg->modif == hh)
+		len = ft_nbrlen((signed char)nbr);
+	else if (arg->modif == h)
+		len = ft_nbrlen((short int)nbr);
+	else
+		len = ft_nbrlen(nbr);
 	return (len);
 }

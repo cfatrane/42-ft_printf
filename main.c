@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/28 14:08:28 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/29 14:53:44 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,6 @@ int	main(void)
 {
 	void	*ptr;
 
-	printf("%020p\n", &ptr);
-	ft_printf("%020p\n", &ptr);
+	printf("%15.10d\n", 15);
+	ft_printf("%15.10d\n", 15);
 }

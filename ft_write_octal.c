@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/28 18:49:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/29 14:14:08 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 
 	len = ft_nbrlen_uns(nbr);
 	if (arg->flags.flag[ZERO] == 1)
-		len += ft_write_flag_zero(arg, len);
+		len += ft_write_flag_zero_arg_size(arg, len);
 	if (arg->flags.flag[DIESE] == 1)
 		ft_putchar('0');
 	ft_putnbr_base(nbr, OCTAL);

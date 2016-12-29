@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 14:13:33 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/29 16:00:40 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,10 +65,7 @@ int	ft_write_string(t_env *arg, va_list ap)
 		return (ft_write_flag_string(arg, str));
 	if(arg->size)
 		return (ft_write_size_str(arg, str));
-	if (arg->conv == 's')
-	{
-		ft_putstr(str);
-		len = ft_strlen(str);
-	}
+	ft_putstr(str);
+	len = ft_strlen(str);
 	return (len);
 }

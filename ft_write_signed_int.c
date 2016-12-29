@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 15:50:19 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/29 17:34:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,9 @@ static int	ft_write_flag_dec(t_env *arg, long long int nbr)
 	}
 	/*	else
 		ft_putchar('-');
-		*/	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
-	len += ft_write_flag_zero_arg_size(arg, len);
+		*/	
+	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
+		len += ft_write_flag_zero_arg_size(arg, len);
 	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
 		return (ft_write_size_signed_int(arg, nbr));
 	ft_putnbr(nbr);
@@ -75,12 +76,6 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 	len = ft_nbrlen(nbr);
 	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
-		if ((arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1) || (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1))
-		{
-			ft_putchar('+');
-			len++;
-		}
-		len = ft_nbrlen(nbr);
 		while (i < arg->precision - len)
 		{
 			ft_putchar('0');
@@ -97,8 +92,6 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 	{
 		if (arg->size > arg->precision)
 		{
-			if ((arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1) || (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1))
-				len++;
 			while (i < arg->size - arg->precision)
 			{
 				ft_putchar (' ');
@@ -108,7 +101,6 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 		}
 		len += i;
 		i = 0;
-		if ((arg->flags.flag[SPACE] != 1 && arg->flags.flag[MORE] == 1) || (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] == 1))
 		len = ft_nbrlen(nbr);
 		while (i < arg->precision - len)
 		{

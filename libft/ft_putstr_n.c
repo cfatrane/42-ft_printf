@@ -1,26 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_flag_zero.c                                     :+:      :+:    :+:   */
+/*   ft_putstr_n.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 12:02:33 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/21 14:02:09 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/29 17:37:17 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/29 17:37:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_flag_zero(t_env *arg, int len)
+void	ft_putstr_n(const char *s, int n)
 {
 	int i;
 
 	i = 0;
-	while (i < arg->size - len)
+	while (i < n && s[i] != '\0')
 	{
-		ft_putchar('0');
+		ft_putchar(s[i]);
 		i++;
 	}
-	return (i);
 }

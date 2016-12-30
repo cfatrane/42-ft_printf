@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_flag_space.c                              :+:      :+:    :+:   */
+/*   ft_print_bits.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/21 14:36:02 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 17:07:13 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/30 18:53:46 by cfatrane          #+#    #+#             */
+/*   Updated: 2016/12/30 18:54:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_write_flag_space(void)
+void	print_bits(unsigned char octet)
 {
-	ft_putchar(' ');
-	return (1);
-}
-/*
-int	ft_write_flag_spaces()
-{
-	int i;
+	int				i;
+	unsigned char	c;
 
-	i = 0;
-
-		while (i < arg->size - len)
+	i = 128;
+	while (i > 0)
+	{
+		if (octet < i)
 		{
-			ft_putchar (' ');
-			i++;
+			c = '0';
+			i = i / 2;
+			write(1, &c, 1);
 		}
-
-
-}*/
+		else
+		{
+			c = '1';
+			write(1, &c, 1);
+			octet = octet - i;
+			i = i / 2;
+		}
+	}
+}

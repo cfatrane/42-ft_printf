@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 14:13:56 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 12:21:46 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,17 @@ int	ft_write_unsigned_int(t_env *arg, va_list ap)
 	len = 0;
 	if (!(arg->modif))
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == hh)
+	else if (arg->modif == HH)
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == h)
+	else if (arg->modif == H)
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == ll)
+	else if (arg->modif == LL)
 		nbr = va_arg(ap, unsigned long long int);
-	else if (arg->modif == l)
+	else if (arg->modif == L)
 		nbr = va_arg(ap, unsigned long int);
-	else if (arg->modif == j)
+	else if (arg->modif == J)
 		nbr = va_arg(ap, uintmax_t);
-	else if (arg->modif == z)
+	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
 	if (arg->flags.flag[ZERO] == 1)
 		return (ft_write_flag(arg, nbr));

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 16:06:10 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 12:22:19 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,17 +120,17 @@ int	ft_write_octal(t_env *arg, va_list ap)
 	len = 0;
 	if (!(arg->modif))
 		nbr = va_arg(ap, unsigned long long int);
-	else if (arg->modif == hh)
+	else if (arg->modif == HH)
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == h)
+	else if (arg->modif == H)
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == ll)
+	else if (arg->modif == LL)
 		nbr = va_arg(ap, unsigned long long int);
-	else if (arg->modif == l)
+	else if (arg->modif == L)
 		nbr = va_arg(ap, unsigned long int);
-	else if (arg->modif == j)
+	else if (arg->modif == J)
 		nbr = va_arg(ap, uintmax_t);
-	else if (arg->modif == z)
+	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
 //	if(arg->precision)
 //		return (ft_write_flag_precision(arg, nbr));

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 17:09:25 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 11:59:36 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,5 @@ void	ft_parse_size(t_env *arg)
 	}
 	str[i] = '\0';
 	arg->size = ft_atoi(str);
-	free (str);
+	free(str);
 }

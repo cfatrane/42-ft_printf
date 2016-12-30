@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 15:32:00 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 12:25:12 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,12 @@ int	ft_write_maj(t_env *arg, va_list ap)
 int	ft_write_arg(t_env *arg, va_list ap)
 {
 	if ((arg->conv == 's') || (arg->conv == 'p') || (arg->conv == 'd') ||
-			(arg->conv == 'i') || (arg->conv == 'o') || (arg->conv == 'u') || 
-			(arg->conv == 'x') ||  (arg->conv == 'c'))
+			(arg->conv == 'i') || (arg->conv == 'o') || (arg->conv == 'u') ||
+			(arg->conv == 'x') || (arg->conv == 'c'))
 		return (ft_write_min(arg, ap));
 	else if ((arg->conv == 'S') || (arg->conv == 'D') || (arg->conv == 'O') ||
-			(arg->conv == 'U') || (arg->conv == 'X') || (arg->conv == 'C') || (arg->conv == '%'))
+			(arg->conv == 'U') || (arg->conv == 'X') || (arg->conv == 'C') ||
+			(arg->conv == '%'))
 		return (ft_write_maj(arg, ap));
 	return (0);
 }
-
-
-

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 13:56:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 18:33:37 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 12:18:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 void	ft_parse_modif(t_env *arg)
 {
-	if (arg->str[arg->cur] == 'h' || arg->str[arg->cur] == 'l' || arg->str[arg->cur] == 'j' || arg->str[arg->cur] == 'z')
+	if (arg->str[arg->cur] == 'h' || arg->str[arg->cur] == 'l' ||
+			arg->str[arg->cur] == 'j' || arg->str[arg->cur] == 'z')
 	{
 		if (arg->str[arg->cur] == 'h' && arg->str[arg->cur + 1] == 'h')
 		{
-			arg->modif = hh;
+			arg->modif = HH;
 			arg->cur++;
 		}
 		else if (arg->str[arg->cur] == 'h')
-			arg->modif = h;
+			arg->modif = H;
 		else if (arg->str[arg->cur] == 'l' && arg->str[arg->cur + 1] == 'l')
 		{
-			arg->modif = ll;
+			arg->modif = LL;
 			arg->cur++;
 		}
 		else if (arg->str[arg->cur] == 'l')
-			arg->modif = l;
+			arg->modif = L;
 		else if (arg->str[arg->cur] == 'j')
-			arg->modif = j;
+			arg->modif = J;
 		else if (arg->str[arg->cur] == 'z')
-			arg->modif = z;
+			arg->modif = Z;
 		arg->cur++;
 	}
 }

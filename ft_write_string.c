@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/29 18:20:27 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/30 12:14:04 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	ft_write_size_str(t_env *arg, char *str)
 		ft_putstr(str);
 		while (i < arg->size - len)
 		{
-			ft_putchar (' ');
+			ft_putchar(' ');
 			i++;
 		}
 	}
@@ -32,7 +32,7 @@ static int	ft_write_size_str(t_env *arg, char *str)
 	{
 		while (i < arg->size - len)
 		{
-			ft_putchar (' ');
+			ft_putchar(' ');
 			i++;
 		}
 		ft_putstr(str);
@@ -73,11 +73,11 @@ int			ft_write_string(t_env *arg, va_list ap)
 
 	len = 0;
 	str = va_arg(ap, char *);
-	if(arg->precision)
+	if (arg->precision)
 		return (ft_write_flag_precision_str(arg, str));
 	if (arg->flags.flag[ZERO] == 1 || arg->flags.flag[LESS] == 1)
 		return (ft_write_flag_string(arg, str));
-	if(arg->size)
+	if (arg->size)
 		return (ft_write_size_str(arg, str));
 	ft_putstr(str);
 	len = ft_strlen(str);

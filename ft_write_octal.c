@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 12:22:19 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/31 15:51:17 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,20 +50,6 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 	return (len);
 }
 
-static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
-{
-	int		len;
-
-	len = ft_nbrlen_uns(nbr);
-	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
-		len += ft_write_flag_zero_arg_size(arg, len);
-	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
-		return (ft_write_size_oct(arg, nbr));
-	if (arg->flags.flag[DIESE] == 1)
-		ft_putchar('0');
-	ft_putnbr_base(nbr, OCTAL);
-	return (ft_nbcmp(arg->size, len));
-}
 
 static int	ft_write_flag_precision(t_env *arg, unsigned long long int nbr)
 {
@@ -111,6 +97,20 @@ static int	ft_write_flag_precision(t_env *arg, unsigned long long int nbr)
 	return (ft_nbcmp(ft_nbcmp(arg->precision, len), ft_nbcmp(arg->precision, arg->size)));
 }
 
+static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
+{
+	int		len;
+
+	len = ft_nbrlen_uns(nbr);
+	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
+		len += ft_write_flag_zero_arg_size(arg, len);
+	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
+		return (ft_write_size_oct(arg, nbr));
+	if (arg->flags.flag[DIESE] == 1)
+		ft_putchar('0');
+	ft_putnbr_base(nbr, OCTAL);
+	return (ft_nbcmp(arg->size, len));
+}
 
 int	ft_write_octal(t_env *arg, va_list ap)
 {

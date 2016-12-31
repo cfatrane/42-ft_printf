@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 12:22:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/31 14:36:12 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,28 +63,23 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 
 static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 {
-	int		len;
-
-	len = ft_nbrlen_uns(nbr);
 	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
-		len += ft_write_flag_diese_min();
+		arg->len += ft_write_flag_diese_min();
 	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
-		len += ft_write_flag_diese_maj();
+		arg->len += ft_write_flag_diese_maj();
 	if (arg->flags.flag[ZERO] == 1)
-		len += ft_write_flag_zero_arg_size(arg, len);
+		arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
 	if (arg->conv == 'x')
 		ft_putnbr_base(nbr, MIN_HEXA);
 	if (arg->conv == 'X')
 		ft_putnbr_base(nbr, MAJ_HEXA);
-	return (ft_nbcmp(arg->size, len));
+	return (ft_nbcmp(arg->size, arg->len));
 }
 
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
-	int						len;
 	unsigned long long int	nbr;
 
-	len = 0;
 	if (!(arg->modif))
 		nbr = va_arg(ap, unsigned int);
 	else if (arg->modif == HH)
@@ -104,6 +99,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		ft_putchar('0');
 		return (1);
 	}
+	arg->len = ft_nbrlen_uns(nbr);
 	if (arg->conv == 'x')
 	{
 		if(arg->size)
@@ -111,7 +107,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1)
 			return (ft_write_flag(arg, nbr));
 		ft_putnbr_base(nbr, MIN_HEXA);
-		len += ft_strlen(ft_itoa_base(nbr, MIN_HEXA));
+		arg->len = ft_strlen(ft_itoa_base(nbr, MIN_HEXA));
 	}
 	else if (arg->conv == 'X')
 	{
@@ -120,8 +116,8 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1)
 			return (ft_write_flag(arg, nbr));
 		ft_putnbr_base(nbr, MAJ_HEXA);
-		len += ft_strlen(ft_itoa_base(nbr, MAJ_HEXA));
+		arg->len = ft_strlen(ft_itoa_base(nbr, MAJ_HEXA));
 	}
 	//	len += ft_nbrlen_uns(nbr);
-	return (len);
+	return (arg->len);
 }

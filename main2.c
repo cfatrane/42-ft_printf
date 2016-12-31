@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/27 18:46:38 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/31 15:35:35 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,28 @@
 
 int	main(void)
 {
-	void	*ptr;
+	printf("%-+0 15d|\n", 4200);
+	ft_printf("%-+0 15d|\n", 4200);
+	printf("%-+0 15d|\n", -4200);
+	ft_printf("%-+0 15d|\n\n", -4200);
 
-	printf("%d", "str");
-	printf("\n");
-	ft_printf("%d", "str");
+	printf("%-+ 15d|\n", 4200);
+	ft_printf("%-+ 15d|\n", 4200);
+	printf("%-+ 15d|\n", -4200);
+	ft_printf("%-+ 15d|\n\n", -4200);
+	
+	printf("%+ 15d|\n", 4200);
+	ft_printf("%+ 15d|\n", 4200);
+	printf("%+ 15d|\n", -4200);
+	ft_printf("%+ 15d|\n\n", -4200);
+
+	printf("%+015d|\n", 4200);
+	ft_printf("%+015d|\n", 4200);
+	printf("%+015d|\n", -4200);
+	ft_printf("%+015d|\n\n", -4200);
+
+	printf("%-015d|\n", 4200);
+	ft_printf("%-015d|\n", 4200);
+	printf("%-015d|\n", -4200);
+	ft_printf("%-015d|\n\n", -4200);
 }

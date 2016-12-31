@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/31 17:24:20 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/31 18:13:40 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,23 +109,22 @@ static int	ft_write_size_signed_int(t_env *arg, long long int nbr)
 static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 {
 	int		i;
-	int		len;
+	int lenfin = 0;
 
 	i = 0;
-	len = ft_nbrlen(nbr);
 	if (nbr >= 0)
 	{
-	//	if (arg->flags.flag[LESS])
-	//		return (ft_write_justify_signed_int(arg, nbr));
+		//	if (arg->flags.flag[LESS])
+		//		return (ft_write_justify_signed_int(arg, nbr));
 		if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 		{
-			while (i < arg->precision - len)
+			while (i < arg->precision - arg->len)
 			{
 				ft_putchar('0');
 				i++;
 			}
 			ft_putnbr(nbr);
-			while (i < arg->size - len)
+			while (i < arg->size - arg->len)
 			{
 				ft_putchar (' ');
 				i++;
@@ -133,23 +132,41 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 		}
 		else
 		{
-			/*
-			if (arg->size > arg->precision)
+			lenfin += ft_write_flag_more(arg);
+			if (arg->flags.flag[SPACE] == 1 && arg->flags.flag[MORE] != 1)
+				lenfin += ft_write_flag_space();
+			while (i < arg->precision - arg->len)
 			{
-				while (i < arg->size - arg->precision)
-				{
-					ft_putchar (' ');
-					i++;
-				}
-				//	return (ft_nbcmp(arg->precision, len));
+				ft_putchar('0');
+				i++;
+			}
+			/*else
+			  {
+			  while (i < arg->precision - arg->len)
+			  {
+			  ft_putchar('0');
+			  i++;
+			  }
+			  }*/
+			ft_putnbr(nbr);
+			arg->len += i + lenfin;
+			/*
+			   if (arg->size > arg->precision)
+			   {
+			   while (i < arg->size - arg->precision)
+			   {
+			   ft_putchar (' ');
+			   i++;
+			   }
+			//	return (ft_nbcmp(arg->precision, len));
 			}
 			len += i;
 			i = 0;
 			len = ft_nbrlen(nbr);
 			while (i < arg->precision - len)
 			{
-				ft_putchar('0');
-				i++;
+			ft_putchar('0');
+			i++;
 			}
 			ft_putnbr(nbr);
 			len += i;*/
@@ -157,11 +174,23 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 	}
 	else
 	{
+		if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
+			return (0);
+		ft_putchar('-');
+		//	arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
+		while (i < arg->precision - arg->len + 1)
+		{
+			ft_putchar('0');
+			i++;
+		}
+		ft_putnbr(ft_abs(nbr));
+		arg->len += i + lenfin;
 
 
 
 	}
-	return (ft_nbcmp(ft_nbcmp(arg->precision, len), ft_nbcmp(arg->precision, arg->size)));
+	//	printf("len = %d||\n prec = %d||\n size = %d||\n\n", arg->len, arg->precision, arg->size);
+	return (ft_nbcmp(ft_nbcmp(arg->precision, arg->len), ft_nbcmp(arg->precision, arg->size)));
 }
 
 static int	ft_write_flag_dec(t_env *arg, long long int nbr)
@@ -202,7 +231,7 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		arg->len = ft_nbrlen(nbr);
 	if ((arg->flags.flag[MORE] == 1 || arg->flags.flag[SPACE] == 1) && (!arg->flags.flag[LESS]) && ((!arg->size) && (!arg->precision)))
 		return (ft_write_flag_dec(arg, nbr));
-	if(arg->size > arg->len && !arg->precision)
+	if(arg->size > arg->len && arg->precision < arg->len)
 		return (ft_write_size_signed_int(arg, nbr));
 	if(arg->precision > arg->len)
 		return (ft_write_flag_precision(arg, nbr));

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 20:22:09 by cfatrane         ###   ########.fr       */
+/*   Updated: 2016/12/31 12:31:11 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -201,51 +201,51 @@ int	main(void)
 	printf("----------------------------------\n\n");
 
 	printf("Vrai Simple et -	= ");
-	ret = printf("%-15d", nbrneg);
+	ret = printf("%-15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien Simple et -	= ");
-	ret = ft_printf("%-15d", nbrneg);
+	ret = ft_printf("%-15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("---------------------------------------\n");
 
 	printf("Vrai avec - et -	= ");
-	ret = printf("%--15d", nbrneg);
+	ret = printf("%--15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec - et -	= ");
-	ret = ft_printf("%--15d", nbrneg);
+	ret = ft_printf("%--15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("---------------------------------------\n");
 
 	printf("Vrai avec + et -	= ");
-	ret = printf("%-+15d", nbrneg);
+	ret = printf("%-+15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec + et -	= ");
-	ret = ft_printf("%-+15d", nbrneg);
+	ret = ft_printf("%-+15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("---------------------------------------\n");
 
 	printf("vrai avec 0 et -	= ");
-	ret = printf("%0-15d", nbrneg);
+	ret = printf("%0-15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec 0 et -	= ");
-	ret = ft_printf("%0-15d", nbrneg);
+	ret = ft_printf("%0-15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("---------------------------------------\n");
 
 	printf("Vrai avec espace et -	= ");
-	ret = printf("% -15d", nbrneg);
+	ret = printf("% -15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec espace et -	= ");
-	ret = ft_printf("% -15d", nbrneg);
+	ret = ft_printf("% -15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 
@@ -254,51 +254,51 @@ int	main(void)
 	printf("---------------------------------\n\n");
 
 	printf("Vrai Simple et +	= ");
-	ret = printf("%+15d", nbrneg);
+	ret = printf("%+15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	chr = ft_printf("Mien Simple et +	= ");
-	ret = ft_printf("%+15d", nbrneg);
+	ret = ft_printf("%+15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai avec - et +	= ");
-	ret = printf("%-+15d", nbrneg);
+	ret = printf("%-+15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec - et +	= ");
-	ret = ft_printf("%-+15d", nbrneg);
+	ret = ft_printf("%-+15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai avec + et +	= ");
-	ret = printf("%++15d", nbrneg);
+	ret = printf("%++15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec + et +	= ");
-	ret = ft_printf("%++15d", nbrneg);
+	ret = ft_printf("%++15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("vrai avec 0 et +	= ");
-	ret = printf("%0+15d", nbrneg);
+	ret = printf("%0+15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec 0 et +	= ");
-	ret = ft_printf("%0+15d", nbrneg);
+	ret = ft_printf("%0+15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai avec espace et +	= ");
-	ret = printf("% +15d", nbrneg);
+	ret = printf("% +15d|", nbrneg);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec espace et +	= ");
-	ret = ft_printf("% +15d", nbrneg);
+	ret = ft_printf("% +15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");

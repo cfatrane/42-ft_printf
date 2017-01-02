@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/02 17:38:42 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/02 18:16:51 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	ft_write_justify_signed_int(t_env *arg, long long int nbr)
 			if (arg->flags.flag[ZERO] == 1)
 			{
 				ft_putchar('-');
-	//		if (arg->flags.flag[ZERO] == 1)
+				//		if (arg->flags.flag[ZERO] == 1)
 				ft_putnbr(ft_abs(nbr));
 			}
 			else
@@ -73,10 +73,19 @@ static int	ft_write_justify_signed_int(t_env *arg, long long int nbr)
 		}
 		else
 		{
-				ft_putchar('-');
-				ft_putnbr(nbr);
-
-
+			ft_putchar('-');
+			while (i < arg->precision - arg->len + 1)
+			{
+				ft_putchar('0');
+				i++;
+			}
+			ft_putnbr(ft_abs(nbr));
+			i = 0;
+			while (i < arg->size - arg->precision - 1)
+			{
+				ft_putchar (' ');
+				i++;
+			}
 		}
 		return (ft_nbcmp(arg->precision, arg->size));
 	}

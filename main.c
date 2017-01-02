@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/31 18:08:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/02 17:37:21 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,14 @@ int	main(void)
 	int						ret = 0;
 	int						ret2 = 0;
 	int						nbr = 4200;
-	int						nbrneg = -420;
+	int						nbrneg = -4200;
 	short int				nbr2 = 45;
 	long int				nbr3 = 50;
 	long long int			nbr4 = 75;
 	unsigned long int		nbr5 = 90;
 	unsigned long long int	nbr6 = 1545478490;
 
-	char					*str = "This is s string";
+	char					*str = "This is a string";
 	char					car = 'a';
 
 	void	*ptr = &nbr2;
@@ -415,51 +415,157 @@ int	main(void)
 	printf("---------------------------------\n\n");
 
 	printf("Vrai Simple		= ");
-	ret = printf("%.5d|", nbrneg);
+	ret = printf("%.5d|", nbr);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien Simple		= ");
-	ret = ft_printf("%.5d|", nbrneg);
+	ret = ft_printf("%.5d|", nbr);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai Avec un moins	= ");
-	ret = printf("%-.5d|", nbrneg);
+	ret = printf("%-.5d|", nbr);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec un  moins	= ");
-	ret = ft_printf("%-.5d|", nbrneg);
+	ret = ft_printf("%-.5d|", nbr);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai avec un plus	= ");
-	ret = printf("%+.5d|", nbrneg);
+	ret = printf("%+.5d|", nbr);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec un plus	= ");
-	ret = ft_printf("%+.5d|", nbrneg);
+	ret = ft_printf("%+.5d|", nbr);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("vrai avec 0		= ");
-	ret = printf("%0.5d|", nbrneg);
+	ret = printf("%0.5d|", nbr);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec 0		= ");
-	ret = ft_printf("%0.5d|", nbrneg);
+	ret = ft_printf("%0.5d|", nbr);
 	ft_printf("\n");
 	ft_printf("ret = %d\n", ret);
 	printf("-----------------------------------------\n");
 
 	printf("Vrai avec espace	= ");
-	ret = printf("% .15d|", nbrneg);
+	ret = printf("% .15d|", nbr);
 	printf("\n");
 	printf("ret = %d\n\n", ret);
 	ft_printf("Mien avec espace	= ");
-	ret = ft_printf("% .15d|", nbrneg);
+	ret = ft_printf("% .15d|", nbr);
+	ft_printf("\n");
+	ft_printf("ret = %d\n\n", ret);
+
+	printf("--------------------------------------------------------\n");
+	printf("| TEST PRECISION SUPERIEUR SIMPLE ET LARGEUR SUPERIEUR |\n");
+	printf("--------------------------------------------------------\n\n");
+
+	printf("Vrai Simple		= ");
+	ret = printf("%10.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien Simple		= ");
+	ret = ft_printf("%10.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai Avec un moins	= ");
+	ret = printf("%-20.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec un  moins	= ");
+	ret = ft_printf("%-20.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai avec un plus	= ");
+	ret = printf("%+10.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec un plus	= ");
+	ret = ft_printf("%+10.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("vrai avec 0		= ");
+	ret = printf("%010.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec 0		= ");
+	ret = ft_printf("%010.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai avec espace	= ");
+	ret = printf("% 10.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec espace	= ");
+	ret = ft_printf("% 10.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n\n", ret);
+
+	printf("----------------------------------------------------------------\n");
+	printf("| TEST PRECISION SUPERIEUR SIMPLE ET LARGEUR SUPERIEUR ET MOINS|\n");
+	printf("----------------------------------------------------------------\n\n");
+
+	printf("Vrai Simple		= ");
+	ret = printf("%-20.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien Simple		= ");
+	ret = ft_printf("%-20.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai Avec un moins	= ");
+	ret = printf("%-20.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec un  moins	= ");
+	ret = ft_printf("%-20.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai avec un plus	= ");
+	ret = printf("%-+20.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec un plus	= ");
+	ret = ft_printf("%-+20.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("vrai avec 0		= ");
+	ret = printf("%-020.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec 0		= ");
+	ret = ft_printf("%-020.15d|", nbrneg);
+	ft_printf("\n");
+	ft_printf("ret = %d\n", ret);
+	printf("-----------------------------------------\n");
+
+	printf("Vrai avec espace	= ");
+	ret = printf("%- 20.15d|", nbrneg);
+	printf("\n");
+	printf("ret = %d\n\n", ret);
+	ft_printf("Mien avec espace	= ");
+	ret = ft_printf("%- 20.15d|", nbrneg);
 	ft_printf("\n");
 	ft_printf("ret = %d\n\n", ret);
 

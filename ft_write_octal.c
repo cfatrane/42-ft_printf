@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 17:17:17 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 17:35:27 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,6 @@ static int ft_write_justify_octal_size(t_env *arg, unsigned long long int nbr)
 	i += ft_write_flag_spaces(arg->size, arg->len);
 	arg->len += i;
 	return (arg->size);
-}
-
-static int ft_write_justify_octal_precision(t_env *arg, unsigned long long int nbr)
-{
-	int i;
-
-	i = 0;
-	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
-	{
-		i += ft_write_flag_zero(arg->precision, arg->len);
-		ft_putnbr_base(nbr, OCTAL);
-		i = 0;
-		i += ft_write_flag_spaces(arg->size, arg->precision);
-		return (arg->size);
-	}
-	else
-	{
-		i += ft_write_flag_zero(arg->precision, arg->len);
-		ft_putnbr_base(nbr, OCTAL);
-		return (arg->precision);
-	}
-	return (0);
 }
 
 static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
@@ -73,6 +51,28 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 	}
 //	arg->len += i;
 	return (arg->size);
+}
+
+static int ft_write_justify_octal_precision(t_env *arg, unsigned long long int nbr)
+{
+	int i;
+
+	i = 0;
+	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
+	{
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		i = 0;
+		i += ft_write_flag_spaces(arg->size, arg->precision);
+		return (arg->size);
+	}
+	else
+	{
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		return (arg->precision);
+	}
+	return (0);
 }
 
 static int	ft_write_precision_oct(t_env *arg, unsigned long long int nbr)

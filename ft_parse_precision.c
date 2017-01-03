@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:22:52 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 12:04:31 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 17:34:01 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	ft_parse_precision(t_env *arg)
 	}
 	else
 		arg->precision = 0;
-	if (arg->str[arg->cur] == '-' || (!(ft_isdigit(arg->str[arg->cur]))))
+	if (arg->str[arg->cur] == '-' || (!(ft_isdigit(arg->str[arg->cur])))/* || arg->str[arg->cur] == '0'*/)
 	{
 		arg->precision = 0;
 		return ;

@@ -6,12 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 16:55:38 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 18:14:30 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-
 
 static int ft_write_justify_size_uns_nbr(t_env *arg, unsigned long long int nbr)
 {
@@ -22,28 +21,6 @@ static int ft_write_justify_size_uns_nbr(t_env *arg, unsigned long long int nbr)
 	i += ft_write_flag_spaces(arg->size, arg->len);
 	arg->len += i;
 	return (arg->len);
-}
-
-static int ft_write_justify_precsion_uns_nbr(t_env *arg, unsigned long long int nbr)
-{
-	int i;
-
-	i = 0;
-	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
-	{
-		i += ft_write_flag_zero(arg->precision, arg->len);
-		ft_putnbr_uns(nbr);
-		i = 0;
-		i += ft_write_flag_spaces(arg->size, arg->precision);
-		return (arg->size);
-	}
-	else
-	{
-		i += ft_write_flag_zero(arg->precision, arg->len);
-		ft_putnbr_uns(nbr);
-		return (arg->precision);
-	}
-	return (0);
 }
 
 static int	ft_write_size_uns_nbr(t_env *arg, unsigned long long int nbr)
@@ -65,13 +42,35 @@ static int	ft_write_size_uns_nbr(t_env *arg, unsigned long long int nbr)
 	return (arg->size);
 }
 
+static int ft_write_justify_precision_uns_nbr(t_env *arg, unsigned long long int nbr)
+{
+	int i;
+
+	i = 0;
+	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
+	{
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_uns(nbr);
+		i = 0;
+		i += ft_write_flag_spaces(arg->size, arg->precision);
+		return (arg->size);
+	}
+	else
+	{
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_uns(nbr);
+		return (arg->precision);
+	}
+	return (0);
+}
+
 static int	ft_write_precision_uns_nbr(t_env *arg, unsigned long long int nbr)
 {
 	int		i;
 
 	i = 0;
 	if (arg->flags.flag[LESS] && arg->size)
-		return (ft_write_justify_precsion_uns_nbr(arg, nbr));
+		return (ft_write_justify_precision_uns_nbr(arg, nbr));
 	else
 	{
 		if (arg->size > arg->precision)

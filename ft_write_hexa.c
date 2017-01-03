@@ -6,20 +6,54 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 17:25:51 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 18:15:29 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int ft_write_justify_size_hexa(t_env *arg, unsigned long long int nbr)
+{
+	int i;
+
+	i = 0;
+	/*	ft_putnbr_uns(nbr);
+		i += ft_write_flag_spaces(arg->size, arg->len);
+		arg->len += i;
+		return (arg->len);*/
+	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
+		arg->len += ft_write_flag_diese_min();
+	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
+		arg->len += ft_write_flag_diese_maj();
+	if (arg->conv == 'x')
+		ft_putnbr_base(nbr, MIN_HEXA);
+	if (arg->conv == 'X')
+		ft_putnbr_base(nbr, MAJ_HEXA);
+	while (i < arg->size - arg->len)
+	{
+		ft_putchar (' ');
+		i++;
+	}
+	return (arg->size);
+}
+
 static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = ft_nbrlen_uns(nbr);
-	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
+	if (arg->flags.flag[LESS])
+		return (ft_write_justify_size_hexa(arg, nbr));
+	else
+	{
+		if (arg->flags.flag[DIESE] == 1)
+			arg->len += 2;
+		if (arg->flags.flag[ZERO] == 1/* && (arg->precision > arg->size || !arg->precision)*/)
+			arg->len += ft_write_flag_zero(arg->size, arg->len);
+
+
+	}
+/*	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
 	{
 		if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
 			len += ft_write_flag_diese_min();
@@ -57,8 +91,8 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 		if (arg->conv == 'X')
 			ft_putnbr_base(nbr, MAJ_HEXA);
 	}
-	len += i;
-	return (len);
+	len += i;*/
+	return (arg->size);
 }
 
 static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
@@ -67,8 +101,8 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 		arg->len += ft_write_flag_diese_min();
 	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
 		arg->len += ft_write_flag_diese_maj();
-	if (arg->flags.flag[ZERO] == 1)
-		arg->len += ft_write_flag_zero(arg->size, arg->len);
+	//	if (arg->flags.flag[ZERO] == 1)
+	//		arg->len += ft_write_flag_zero(arg->size, arg->len);
 	if (arg->conv == 'x')
 		ft_putnbr_base(nbr, MIN_HEXA);
 	if (arg->conv == 'X')
@@ -100,24 +134,13 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		return (1);
 	}
 	arg->len = ft_nbrlen_hexa(nbr);
+	if(arg->size > arg->len)
+		return (ft_write_size_hexa(arg, nbr));
+	if (arg->flags.flag[DIESE] == 1)
+		return (ft_write_flag(arg, nbr));
 	if (arg->conv == 'x')
-	{
-		if(arg->size)
-			return (ft_write_size_hexa(arg, nbr));
-		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1)
-			return (ft_write_flag(arg, nbr));
 		ft_putnbr_base(nbr, MIN_HEXA);
-		arg->len = ft_strlen(ft_itoa_base(nbr, MIN_HEXA));
-	}
 	else if (arg->conv == 'X')
-	{
-		if(arg->size)
-			return (ft_write_size_hexa(arg, nbr));
-		if (arg->flags.flag[DIESE] == 1 || arg->flags.flag[ZERO] == 1)
-			return (ft_write_flag(arg, nbr));
 		ft_putnbr_base(nbr, MAJ_HEXA);
-		arg->len = ft_strlen(ft_itoa_base(nbr, MAJ_HEXA));
-	}
-	//	len += ft_nbrlen_uns(nbr);
 	return (arg->len);
 }

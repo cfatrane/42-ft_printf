@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:12:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/02 17:37:21 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 14:11:32 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,16 @@ int	main(void)
 	int						ret2 = 0;
 	int						nbr = 4200;
 	int						nbrneg = -4200;
-	short int				nbr2 = 45;
-	long int				nbr3 = 50;
-	long long int			nbr4 = 75;
-	unsigned long int		nbr5 = 90;
-	unsigned long long int	nbr6 = 1545478490;
+	short int				shortnbr = 45;
+	long int				longnbr = 50;
+	long long int			longlongnbrnbr = 75;
+	unsigned long int		unslongnbr = 90;
+	unsigned long long int	unslonglongnbrnbr = 1545478490;
 
 	char					*str = "This is a string";
 	char					car = 'a';
 
-	void	*ptr = &nbr2;
+	void	*ptr = &nbr;
 
 	printf("---------------\n");
 	printf("| TEST SIMPLE |\n");

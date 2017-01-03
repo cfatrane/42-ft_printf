@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 13:47:49 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 14:56:28 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ static int ft_write_justify_octal(t_env *arg, unsigned long long int nbr)
 			arg->len++;
 		}
 		ft_putnbr_base(nbr, OCTAL);
-		while (i < arg->size - arg->len)
+		arg->len += ft_write_flag_spaces(arg->size, arg->len);
+/*		while (i < arg->size - arg->len)
 		{
 			ft_putchar (' ');
 			i++;
 		}
 		arg->len += i;
-		return (arg->len);
+*/		return (arg->len);
 	}
 	else if (arg->precision)
 	{
@@ -44,12 +45,13 @@ static int ft_write_justify_octal(t_env *arg, unsigned long long int nbr)
 			}
 			ft_putnbr_base(nbr, OCTAL);
 			i = 0;
-			while (i < arg->size - arg->precision)
+			i += ft_write_flag_spaces(arg->size, arg->precision);
+	/*		while (i < arg->size - arg->precision)
 			{
 				ft_putchar (' ');
 				i++;
 			}
-			return (arg->size);
+		*/	return (arg->size);
 		}
 		else
 		{
@@ -78,7 +80,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 		if (arg->flags.flag[DIESE] == 1)
 			arg->len++;
 		if (arg->flags.flag[ZERO] == 1/* && (arg->precision > arg->size || !arg->precision)*/)
-			arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
+			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 		{
 			while (i < arg->size - arg->len)

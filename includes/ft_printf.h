@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 17:28:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 14:38:31 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,10 @@ int					ft_write_char(t_env *arg, va_list ap);
 int					ft_write_flag_diese_min(void);
 int					ft_write_flag_diese_maj(void);
 
-int					ft_write_flag_zero_arg_size(t_env *arg, int len);
-int					ft_write_flag_zero_arg_prec(t_env *arg, int len);
-int					ft_write_flag_space(void);
+int					ft_write_flag_zero(int start, int end);
+int					ft_write_flag_spaces(int start, int end);
+
+int					ft_write_flag_space(t_env *arg);
 int					ft_write_flag_more(t_env *arg);
 
 int					ft_write_size(t_env *arg, int nbr);

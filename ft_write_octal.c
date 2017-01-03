@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 14:56:28 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 15:12:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,41 +25,23 @@ static int ft_write_justify_octal(t_env *arg, unsigned long long int nbr)
 			arg->len++;
 		}
 		ft_putnbr_base(nbr, OCTAL);
-		arg->len += ft_write_flag_spaces(arg->size, arg->len);
-/*		while (i < arg->size - arg->len)
-		{
-			ft_putchar (' ');
-			i++;
-		}
+		i += ft_write_flag_spaces(arg->size, arg->len);
 		arg->len += i;
-*/		return (arg->len);
+		return (arg->len);
 	}
 	else if (arg->precision)
 	{
 		if (arg->size > arg->precision/* && arg->precision > arg->len*/)
 		{
-			while (i < arg->precision - arg->len)
-			{
-				ft_putchar('0');
-				i++;
-			}
+			i += ft_write_flag_zero(arg->precision, arg->len);
 			ft_putnbr_base(nbr, OCTAL);
 			i = 0;
 			i += ft_write_flag_spaces(arg->size, arg->precision);
-	/*		while (i < arg->size - arg->precision)
-			{
-				ft_putchar (' ');
-				i++;
-			}
-		*/	return (arg->size);
+			return (arg->size);
 		}
 		else
 		{
-			while (i < arg->precision - arg->len)
-			{
-				ft_putchar('0');
-				i++;
-			}
+			i += ft_write_flag_zero(arg->precision, arg->len);
 			ft_putnbr_base(nbr, OCTAL);
 			return (arg->precision);
 		}
@@ -70,7 +52,6 @@ static int ft_write_justify_octal(t_env *arg, unsigned long long int nbr)
 static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 {
 	int	i;
-	//	int	len;
 
 	i = 0;
 	if (arg->flags.flag[LESS])
@@ -82,13 +63,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 		if (arg->flags.flag[ZERO] == 1/* && (arg->precision > arg->size || !arg->precision)*/)
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
-		{
-			while (i < arg->size - arg->len)
-			{
-				ft_putchar (' ');
-				i++;
-			}
-		}
+			i += ft_write_flag_spaces(arg->size, arg->len);
 		//	if (arg->flags.flag[ZERO] == 1/* && (arg->precision > arg->size || !arg->precision)*/)
 		//		arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
 		if (arg->flags.flag[DIESE] == 1)
@@ -110,19 +85,11 @@ static int	ft_write_flag_precision_oct(t_env *arg, unsigned long long int nbr)
 	{
 		if (arg->size > arg->precision)
 		{
-			while (i < arg->size - arg->precision)
-			{
-				ft_putchar (' ');
-				i++;
-			}
-			arg->len += i;
+			i += ft_write_flag_spaces(arg->size, arg->precision);
+			//	arg->len += i;
 			i = 0;
-			arg->len = ft_nbrlen_uns(nbr);
-			while (i < arg->precision - arg->len)
-			{
-				ft_putchar('0');
-				i++;
-			}
+			//	arg->len = ft_nbrlen_uns(nbr);
+			i += ft_write_flag_zero(arg->precision, arg->len);
 			ft_putnbr_base(nbr, OCTAL);
 			arg->len += i;
 			return (arg->size);
@@ -130,11 +97,7 @@ static int	ft_write_flag_precision_oct(t_env *arg, unsigned long long int nbr)
 		}
 		else
 		{
-			while (i < arg->precision - arg->len)
-			{
-				ft_putchar('0');
-				i++;
-			}
+			i += ft_write_flag_zero(arg->precision, arg->len);
 			ft_putnbr_base(nbr, OCTAL);
 			return (arg->precision);
 		}

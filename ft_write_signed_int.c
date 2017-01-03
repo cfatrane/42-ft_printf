@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 16:19:43 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 16:22:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,7 +209,7 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 				arg->len += ft_write_flag_zero(arg->precision, arg->len - 1);
 				ft_putnbr(ft_abs(nbr));
 				arg->len += i + lenfin;
-				return (arg->precision);
+				return (ft_nbcmp(arg->len, arg->precision));
 			}
 		}
 	}

@@ -6,45 +6,46 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 15:12:26 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 17:17:17 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_write_justify_octal(t_env *arg, unsigned long long int nbr)
+static int ft_write_justify_octal_size(t_env *arg, unsigned long long int nbr)
 {
 	int i;
 
 	i = 0;
-	if (!arg->precision)
+	if (arg->flags.flag[DIESE] == 1)
 	{
-		if (arg->flags.flag[DIESE] == 1)
-		{
-			ft_putchar('0');
-			arg->len++;
-		}
-		ft_putnbr_base(nbr, OCTAL);
-		i += ft_write_flag_spaces(arg->size, arg->len);
-		arg->len += i;
-		return (arg->len);
+		ft_putchar('0');
+		arg->len++;
 	}
-	else if (arg->precision)
+	ft_putnbr_base(nbr, OCTAL);
+	i += ft_write_flag_spaces(arg->size, arg->len);
+	arg->len += i;
+	return (arg->size);
+}
+
+static int ft_write_justify_octal_precision(t_env *arg, unsigned long long int nbr)
+{
+	int i;
+
+	i = 0;
+	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
 	{
-		if (arg->size > arg->precision/* && arg->precision > arg->len*/)
-		{
-			i += ft_write_flag_zero(arg->precision, arg->len);
-			ft_putnbr_base(nbr, OCTAL);
-			i = 0;
-			i += ft_write_flag_spaces(arg->size, arg->precision);
-			return (arg->size);
-		}
-		else
-		{
-			i += ft_write_flag_zero(arg->precision, arg->len);
-			ft_putnbr_base(nbr, OCTAL);
-			return (arg->precision);
-		}
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		i = 0;
+		i += ft_write_flag_spaces(arg->size, arg->precision);
+		return (arg->size);
+	}
+	else
+	{
+		i += ft_write_flag_zero(arg->precision, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		return (arg->precision);
 	}
 	return (0);
 }
@@ -55,7 +56,7 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 
 	i = 0;
 	if (arg->flags.flag[LESS])
-		return (ft_write_justify_octal(arg, nbr));
+		return (ft_write_justify_octal_size(arg, nbr));
 	else
 	{
 		if (arg->flags.flag[DIESE] == 1)
@@ -70,17 +71,17 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 			ft_putchar('0');
 		ft_putnbr_base(nbr, OCTAL);
 	}
-	arg->len += i;
-	return (arg->len);
+//	arg->len += i;
+	return (arg->size);
 }
 
-static int	ft_write_flag_precision_oct(t_env *arg, unsigned long long int nbr)
+static int	ft_write_precision_oct(t_env *arg, unsigned long long int nbr)
 {
 	int		i;
 
 	i = 0;
 	if (arg->flags.flag[LESS] && arg->size)
-		return (ft_write_justify_octal(arg, nbr));
+		return (ft_write_justify_octal_precision(arg, nbr));
 	else
 	{
 		if (arg->size > arg->precision)
@@ -107,13 +108,6 @@ static int	ft_write_flag_precision_oct(t_env *arg, unsigned long long int nbr)
 
 static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 {
-	//	int		len;
-
-	//	len = ft_nbrlen_uns(nbr);
-	//	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
-	//		arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
-	//	else if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] == 1)
-	//		return (ft_write_size_oct(arg, nbr));
 	if (arg->flags.flag[DIESE] == 1)
 	{
 		ft_putchar('0');
@@ -143,7 +137,7 @@ int	ft_write_octal(t_env *arg, va_list ap)
 		nbr = va_arg(ap, uintmax_t);
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
-	arg->len = ft_nbrlen_uns(nbr);
+	arg->len = ft_nbrlen_octal(nbr);
 	//	if(arg->precision)
 	//		return (ft_write_flag_precision(arg, nbr));
 	//	printf("len = %d||\n prec = %d||\n size = %d||\n\n", arg->len, arg->precision, arg->size);
@@ -152,15 +146,14 @@ int	ft_write_octal(t_env *arg, va_list ap)
 	if(arg->size > arg->len && (arg->precision <= arg->len || !arg->precision))
 		return (ft_write_size_oct(arg, nbr));
 	if(arg->precision > arg->len)
-	{
-		//	printf("ICI\n");
-		return (ft_write_flag_precision_oct(arg, nbr));
-	}
+		return (ft_write_precision_oct(arg, nbr));
 	/*	if (arg->flags.flag[DIESE] == 1)
 		{
 		ft_putchar('0');
 		len++;
 		}
-		*/	ft_putnbr_base(nbr, OCTAL);
+		*/	
+//	printf("LEN = %d\n", arg->len);
+	ft_putnbr_base(nbr, OCTAL);
 	return (arg->len);
 }

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 16:18:12 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 17:23:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,9 @@ int	main(void)
 	printf("%15d|\n", -4200);
 	ft_printf("%15d|\n\n", -4200);
 	*/
-	ret = printf("%10.5d|", -42);
+	ret = printf("%-x|", 120);
 	printf("\tret = %d\n", ret);
-	ret = ft_printf("%10.5d|", -42);
+	ret = ft_printf("%-x|", 120);
 	ft_printf("\tret = %d\n", ret);
 	printf("12345678901234567890123456789\n");
 	ret = printf("%-10.15d|", 42);

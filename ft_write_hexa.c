@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 14:35:16 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 17:25:51 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		ft_putchar('0');
 		return (1);
 	}
-	arg->len = ft_nbrlen_uns(nbr);
+	arg->len = ft_nbrlen_hexa(nbr);
 	if (arg->conv == 'x')
 	{
 		if(arg->size)

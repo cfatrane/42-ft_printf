@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 18:15:29 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 18:46:01 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,7 @@ static int ft_write_justify_size_hexa(t_env *arg, unsigned long long int nbr)
 		ft_putnbr_base(nbr, MIN_HEXA);
 	if (arg->conv == 'X')
 		ft_putnbr_base(nbr, MAJ_HEXA);
-	while (i < arg->size - arg->len)
-	{
-		ft_putchar (' ');
-		i++;
-	}
+	i += ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
 
@@ -46,66 +42,58 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 		return (ft_write_justify_size_hexa(arg, nbr));
 	else
 	{
-		if (arg->flags.flag[DIESE] == 1)
+		if (arg->flags.flag[DIESE])
 			arg->len += 2;
 		if (arg->flags.flag[ZERO] == 1/* && (arg->precision > arg->size || !arg->precision)*/)
+		{
+			if (arg->flags.flag[DIESE] && arg->conv == 'x')
+				ft_putstr("0x");
+			if (arg->flags.flag[DIESE] && arg->conv == 'X')
+				ft_putstr("0X");
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
-
-
-	}
-/*	if (arg->flags.flag[LESS] == 1 || (arg->flags.flag[LESS] == 1 && arg->flags.flag[ZERO] == 1))
-	{
-		if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
-			len += ft_write_flag_diese_min();
-		if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
-			len += ft_write_flag_diese_maj();
-		if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
-			len += ft_write_flag_zero(arg->size, len);
-		if (arg->conv == 'x')
 			ft_putnbr_base(nbr, MIN_HEXA);
-		if (arg->conv == 'X')
-			ft_putnbr_base(nbr, MAJ_HEXA);
-		while (i < arg->size - len)
-		{
-			ft_putchar (' ');
-			i++;
+			return (arg->size);
 		}
-	}
-	else
-	{
-		if (arg->flags.flag[DIESE] == 1)
-			len += 2;
-		if (arg->flags.flag[ZERO] == 1)
-			len += ft_write_flag_zero(arg->size, len);
-		while (i < arg->size - len)
+		else
 		{
-			ft_putchar (' ');
-			i++;
+			arg->len += ft_write_flag_spaces(arg->size, arg->len);
+			if (arg->flags.flag[DIESE])
+			{
+				if (arg->conv == 'x')
+				{
+					ft_putstr("0x");
+					ft_putnbr_base(nbr, MIN_HEXA);
+				}
+				else if (arg->conv == 'X')
+				{
+					ft_putstr("0X");
+					ft_putnbr_base(nbr, MAJ_HEXA);
+					exit (0);
+				}
+			}
+			else
+			{
+				if (arg->conv == 'x')
+					ft_putnbr_base(nbr, MIN_HEXA);
+				else if (arg->conv == 'X')
+					ft_putnbr_base(nbr, MAJ_HEXA);
+			}
+			return (arg->size);
 		}
-		if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
-			ft_putstr("0x");
-		if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
-			ft_putstr("0X");
-		if (arg->conv == 'x')
-			ft_putnbr_base(nbr, MIN_HEXA);
-		if (arg->conv == 'X')
-			ft_putnbr_base(nbr, MAJ_HEXA);
+
 	}
-	len += i;*/
-	return (arg->size);
+	return (0);
 }
 
 static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 {
-	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'x')
+	if (arg->flags.flag[DIESE] && arg->conv == 'x')
 		arg->len += ft_write_flag_diese_min();
-	if (arg->flags.flag[DIESE] == 1 && arg->conv == 'X')
-		arg->len += ft_write_flag_diese_maj();
-	//	if (arg->flags.flag[ZERO] == 1)
-	//		arg->len += ft_write_flag_zero(arg->size, arg->len);
-	if (arg->conv == 'x')
+	else if (arg->conv == 'x')
 		ft_putnbr_base(nbr, MIN_HEXA);
-	if (arg->conv == 'X')
+	if (arg->flags.flag[DIESE] && arg->conv == 'X')
+		arg->len += ft_write_flag_diese_maj();
+	else if (arg->conv == 'X')
 		ft_putnbr_base(nbr, MAJ_HEXA);
 	return (ft_nbcmp(arg->size, arg->len));
 }

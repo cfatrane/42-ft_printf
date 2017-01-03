@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 18:14:30 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 18:38:50 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static int ft_write_justify_size_uns_nbr(t_env *arg, unsigned long long int nbr)
 	ft_putnbr_uns(nbr);
 	i += ft_write_flag_spaces(arg->size, arg->len);
 	arg->len += i;
-	return (arg->len);
+	return (arg->size);
 }
 
 static int	ft_write_size_uns_nbr(t_env *arg, unsigned long long int nbr)

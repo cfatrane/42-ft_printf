@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 19:14:15 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 19:45:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,14 @@ int	main(void)
 	ft_printf("%15d|\n\n", -4200);
 	*/
 //	ret = printf("@moulitest: %5.o %5.0o|\n", 0, 0);
-	ret = printf("%#10.5x|", 42);
-	printf("\tret = %d\n", ret);
-	ret = ft_printf("%#10.5x|", 42);
-	ft_printf("\tret = %d\n", ret);
+//	ret = printf("%##++#- 83...32...d|", 42);
+	ret = printf("%-#10.5X|", 42);
+	printf("\tret = %d\n", ret - 1);
+	ret = ft_printf("%-#10.5X|", 42);
+	ft_printf("\tret = %d\n", ret - 1);
 	printf("12345678901234567890123456789\n");
-	ret = printf("%-10.15d|", 42);
-	printf("\tret = %d\n", ret);
+	ret = printf("%-.15d|", 42);
+	printf("\tret = %d\n", ret - 1);
 	ret = ft_printf("%-10.15d|", 42);
-	ft_printf("\tret = %d\n", ret);
+	ft_printf("\tret = %d\n", ret - 1);
 }

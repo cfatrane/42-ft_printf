@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 19:13:39 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/03 19:46:38 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,10 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 			if (arg->flags.flag[DIESE] && arg->conv == 'X')
 				ft_putstr("0X");
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
-			ft_putnbr_base(nbr, MIN_HEXA);
+			if (arg->conv == 'x')
+				ft_putnbr_base(nbr, MIN_HEXA);
+			else if (arg->conv == 'X')
+				ft_putnbr_base(nbr, MAJ_HEXA);
 			return (arg->size);
 		}
 		else
@@ -83,14 +86,25 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 static int ft_write_justify_precision_hexa(t_env *arg, unsigned long long int nbr)
 {
 	int i;
+	int		lenfin;
 
 	i = 0;
+	lenfin = 0;
 	if (arg->size > arg->precision/* && arg->precision > arg->len*/)
 	{
+		if (arg->flags.flag[DIESE])
+			lenfin = 2;
+		if (arg->flags.flag[DIESE] && arg->conv == 'x')
+			ft_putstr("0x");
+		if (arg->flags.flag[DIESE] && arg->conv == 'X')
+			ft_putstr("0X");
 		i += ft_write_flag_zero(arg->precision, arg->len);
-		ft_putnbr_uns(nbr);
+		if (arg->conv == 'x')
+			ft_putnbr_base(nbr, MIN_HEXA);
+		else if (arg->conv == 'X')
+			ft_putnbr_base(nbr, MAJ_HEXA);
 		i = 0;
-		i += ft_write_flag_spaces(arg->size, arg->precision);
+		i += ft_write_flag_spaces(arg->size, arg->precision + lenfin);
 		return (arg->size);
 	}
 	else
@@ -115,11 +129,19 @@ static int	ft_write_precision_hexa(t_env *arg, unsigned long long int nbr)
 	{
 		if (arg->size > arg->precision)
 		{
-			i += ft_write_flag_spaces(arg->size, arg->precision);
+			if (arg->flags.flag[DIESE])
+				lenfin = 2;
+			i += ft_write_flag_spaces(arg->size, arg->precision + lenfin);
 			i = 0;
+			if (arg->flags.flag[DIESE] && arg->conv == 'x')
+				ft_putstr("0x");
+			if (arg->flags.flag[DIESE] && arg->conv == 'X')
+				ft_putstr("0X");
 			i += ft_write_flag_zero(arg->precision, arg->len);
-			ft_putnbr_base(nbr, MIN_HEXA);
-		//	arg->len += i;
+			if (arg->conv == 'x')
+				ft_putnbr_base(nbr, MIN_HEXA);
+			else if (arg->conv == 'X')
+				ft_putnbr_base(nbr, MAJ_HEXA);
 			return (arg->size);
 		}
 		else
@@ -129,9 +151,11 @@ static int	ft_write_precision_hexa(t_env *arg, unsigned long long int nbr)
 			if (arg->flags.flag[DIESE] && arg->conv == 'X')
 				lenfin += ft_write_flag_diese_maj();
 			i += ft_write_flag_zero(arg->precision, arg->len);
-			arg->len += lenfin;
-			ft_putnbr_base(nbr, MIN_HEXA);
-			arg->len += i;
+			if (arg->conv == 'x')
+				ft_putnbr_base(nbr, MIN_HEXA);
+			else if (arg->conv == 'X')
+				ft_putnbr_base(nbr, MAJ_HEXA);
+			arg->len += i + lenfin;
 			return (ft_nbcmp(arg->len, arg->precision));
 		}
 	}

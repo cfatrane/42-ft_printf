@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 13:57:35 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 14:39:33 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct			s_flags
 typedef struct			s_precision
 {
 	int					actif;
-	int					nbr;
+	int					len;
 }						t_precision;
 
 typedef struct			s_env

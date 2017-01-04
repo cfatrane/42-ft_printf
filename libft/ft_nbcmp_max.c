@@ -1,29 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_flag_zero_less.c                          :+:      :+:    :+:   */
+/*   ft_nbcmp_max.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/23 13:01:32 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/23 13:21:15 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/04 14:59:21 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/04 14:59:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_write_flag_zero_less(t_env *arg, int len)
+int	ft_nbcmp_max(int nb1, int nb2)
 {
-	int	i;
-	int	len;
-
-	i = 0;
-	len = 0;
-
-
-
-
-
-
-	return (len);
+	return (nb1 > nb2 ? nb1 : nb2);
 }

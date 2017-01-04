@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_nbcmp.c                                         :+:      :+:    :+:   */
+/*   ft_nbcmp_min.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 13:18:49 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/20 13:20:24 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/04 15:00:22 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/04 15:04:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_nbcmp(int nb1, int nb2)
+int	ft_nbcmp_min(int nb1, int nb2)
 {
-	return (nb1 > nb2 ? nb1 : nb2);
+	return (nb1 < nb2 ? nb1 : nb2);
 }

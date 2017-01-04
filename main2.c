@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 13:51:51 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 15:16:17 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,19 @@ int	main(void)
 	printf("%15d|\n", -4200);
 	ft_printf("%15d|\n\n", -4200);
 	*/
-	ret = printf("@moulitest: %#.x %#.0x|", 7, 0);
+/*	ret = printf("%5.2s is a string|", "this");
 	printf("\tret = %d\n", ret - 1);
-	ret = ft_printf("@moulitest: %#.x %#.0x|", 7, 0);
-	ft_printf("\tret = %d\n\n\n", ret - 1);
-
-
-	ret = printf("%10s|", "string");
-	printf("\tret = %d\n", ret - 1);
-	ret = ft_printf("%10s|", "string");
+	ret = ft_printf("%5.2s is a string|", "this");
 	ft_printf("\tret = %d\n", ret - 1);
-	printf("12345678901234567890123456789\n");
+*/
+	ret = printf("%5.0s|", "this");
+	printf("\tret = %d\n", ret - 1);
+	ret = ft_printf("%5.1s|", "this");
+	ft_printf("\tret = %d\n", ret - 1);
+	
+	ft_printf("%s", "this is a string\n");
+	printf("1234567890123456789012345678901234567890123456789\n");
+	
 	ret = printf("%.x|", 0);
 	printf("\tret = %d\n", ret - 1);
 	ret = ft_printf("%.x|", 0);

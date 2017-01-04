@@ -6,13 +6,13 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2016/12/30 16:57:40 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/04 16:16:42 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
 
-SRC  =		ft_printf.c				\
+SRC_NAME =	ft_printf.c				\
 			ft_parse.c				\
 			ft_parse_conv.c			\
 			ft_parse_flag.c			\
@@ -36,13 +36,15 @@ SRC  =		ft_printf.c				\
 			ft_write_size.c			\
 			ft_caste.c				\
 
-OBJ = $(SRC:.c=.o)
+OBJ_PATH = ./objs/
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+
+OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
 CPPFLAGS = -I./includes/
 
 LDFLAGS = -L./libft/
-
-LFT = -lft
 
 LIB = ./libft/libft.a
 
@@ -50,30 +52,34 @@ CC = gcc
 
 CFLAGS = -Wall -Wextra -Werror
 
+TEMP = temp.a
+
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C ./libft/
 	@echo "Creation of $(NAME) ..."
-	@$(CC) $(CPPFLAGS) -c $(SRC)
-	@ar rc $(NAME) $(OBJ)
-	@@libtool -static -o $(NAME) $(NAME) $(LIB)
+#	@$(CC) $(CPPFLAGS) -c $(SRC)
+	@ar rc $(TEMP) $(OBJ)
+	@libtool -static -o $(NAME) $(TEMP) $(LIB)
 	@ranlib $(NAME)
 	@echo "$(NAME) created\n"
 
-$(OBJ): $(SRC)
-	@$(CC) -o $@ -c $<
+$(OBJ_PATH)%.o: %.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	$(CC) $(CPPFLAGS) -o $@ -c $<
 
 clean:
 	@make clean -C ./libft/
 	@echo "Removal of .o files of $(NAME) ..."
 	@rm -f $(OBJ)
+	@rmdir $(OBJ_PATH) 2> /dev/null || true
 	@echo "Files .o deleted\n"
 
 fclean: clean
 	@make fclean -C ./libft/
 	@echo "Removal of $(NAME)..."
-	@rm -f $(NAME)
+	@rm -f $(NAME) $(TEMP)
 	@echo "Binary $(NAME) deleted\n"
 
 re: fclean all

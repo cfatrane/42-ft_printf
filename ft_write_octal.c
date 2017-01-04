@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 20:10:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 20:25:56 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 			i += ft_write_flag_spaces(arg->size, arg->len);
-		//	if (arg->flags.options[ZERO] == 1/* && (arg->precision.len > arg->size || !arg->precision.len)*/)
-		//		arg->len += ft_write_flag_zero_arg_size(arg, arg->len);
 		if (arg->flags.options[DIESE] == 1)
 			ft_putchar('0');
 		ft_putnbr_base(nbr, OCTAL);
@@ -176,8 +174,6 @@ int	ft_write_octal(t_env *arg, va_list ap)
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
 	arg->len = ft_nbrlen_octal(nbr);
-	//	if(arg->precision.len)
-	//		return (ft_write_flag_precision(arg, nbr));
 	//	printf("len = %d||\n prec = %d||\n size = %d||\n\n", arg->len, arg->precision.len, arg->size);
 	if (nbr == 0 && arg->precision.actif == 1)
 		return (ft_write_precision_zero_oct(arg, nbr));

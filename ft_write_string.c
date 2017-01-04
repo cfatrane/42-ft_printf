@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 16:43:43 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 20:34:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ static int	ft_write_size_str(t_env *arg, char *str)
 		return (ft_write_justify_size_str(arg, str));
 	else
 	{
-		i += ft_write_flag_spaces(arg->size, arg->len);
+		if (arg->flags.options[ZERO] == 1)
+			i += ft_write_flag_zero(arg->size, arg->len);
+		else
+			i += ft_write_flag_spaces(arg->size, arg->len);
 		ft_putstr(str);
 	}
 	arg->len += i;
@@ -47,7 +50,7 @@ static int	ft_write_justify_precision_str(t_env *arg, char *str)
 	int	i;
 
 	i = 0;
-	if (arg->size > arg->precision.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
+	if (arg->size > arg->precision.len && arg->precision.len < arg->len)
 	{
 		ft_putstr_n(str, arg->precision.len);
 		i+= ft_write_flag_spaces(arg->size, arg->precision.len);
@@ -63,16 +66,16 @@ static int	ft_write_precision_str(t_env *arg, char *str)
 	i = 0;
 	if (arg->flags.options[LESS] && arg->size)
 		return (ft_write_justify_precision_str(arg, str));
-	if (arg->size > arg->precision.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
+	if (arg->size > arg->precision.len && arg->precision.len < arg->len)
 	{
 		i+= ft_write_flag_spaces(arg->size, arg->precision.len);
 		ft_putstr_n(str, arg->precision.len);
 		return (arg->size);
 	}
-//	else if (arg->size > arg->.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
+	//	else if (arg->size > arg->.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
 	else if (arg->precision.len < arg->len)
 		ft_putstr_n(str, arg->precision.len);
-//	arg->len += i;
+	//	arg->len += i;
 	return (ft_nbcmp_min(arg->precision.len, arg->len));
 }
 
@@ -95,14 +98,14 @@ int			ft_write_string(t_env *arg, va_list ap)
 
 	str = va_arg(ap, char *);
 	arg->len = ft_strlen(str);
-//	printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
+	//	printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
 	if (arg->size > arg->len && (arg->precision.len >= arg->len || !arg->precision.actif))
 		return (ft_write_size_str(arg, str));
-//	printf("ICI1\n");
+	//	printf("ICI1\n");
 	if (arg->precision.len < arg->len && arg->precision.actif)
 		return (ft_write_precision_str(arg, str));
-//	if (arg->flags.options[ZERO] == 1 || arg->flags.options[LESS] == 1)
-//		return (ft_write_flag_string(arg, str));
+	//	if (arg->flags.options[ZERO] == 1 || arg->flags.options[LESS] == 1)
+	//		return (ft_write_flag_string(arg, str));
 	ft_putstr(str);
 	return (arg->len);
 }

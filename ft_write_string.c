@@ -6,39 +6,40 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 14:33:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 14:00:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_write_justify_size_str(t_env *arg, char *str)
+{
+	int	i;
+
+	i = 0;
+	ft_putstr(str);
+	while (i < arg->size - arg->len)
+	{
+		ft_putchar(' ');
+		i++;
+	}
+	return (arg->size);
+}
+
 static int	ft_write_size_str(t_env *arg, char *str)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = ft_strlen(str);
-	if (arg->flags.flag[LESS] == 1)
-	{
-		ft_putstr(str);
-		while (i < arg->size - len)
-		{
-			ft_putchar(' ');
-			i++;
-		}
-	}
+	if (arg->flags.options[LESS])
+		return (ft_write_justify_size_str(arg, str));
 	else
 	{
-		while (i < arg->size - len)
-		{
-			ft_putchar(' ');
-			i++;
-		}
+		i += ft_write_flag_spaces(arg->size, arg->len);
 		ft_putstr(str);
 	}
-	len += i;
-	return (len);
+	arg->len += i;
+	return (arg->size);
 }
 
 static int	ft_write_flag_string(t_env *arg, char *str)
@@ -46,7 +47,7 @@ static int	ft_write_flag_string(t_env *arg, char *str)
 	int		len;
 
 	len = ft_strlen(str);
-	if (arg->flags.flag[ZERO] == 1 && arg->flags.flag[LESS] != 1)
+	if (arg->flags.options[ZERO] == 1 && arg->flags.options[LESS] != 1)
 		len += ft_write_flag_zero(arg->size, len);
 	else
 		return (ft_write_size_str(arg, str));
@@ -56,30 +57,25 @@ static int	ft_write_flag_string(t_env *arg, char *str)
 
 static int	ft_write_flag_precision_str(t_env *arg, char *str)
 {
-	int		len;
-
-	len = ft_strlen(str);
-	if (arg->precision > len)
+	if (arg->precision.nbr > arg->len)
 	{
-		ft_putstr_n(str, arg->precision);
+		ft_putstr_n(str, arg->precision.nbr);
 	}
-	return (ft_nbcmp(arg->precision, len));
+	return (ft_nbcmp(arg->precision.nbr, arg->len));
 }
 
 int			ft_write_string(t_env *arg, va_list ap)
 {
 	char	*str;
-	size_t	len;
 
-	len = 0;
 	str = va_arg(ap, char *);
-	if (arg->precision)
-		return (ft_write_flag_precision_str(arg, str));
-	if (arg->flags.flag[ZERO] == 1 || arg->flags.flag[LESS] == 1)
-		return (ft_write_flag_string(arg, str));
-	if (arg->size)
+	arg->len = ft_strlen(str);
+	if (arg->size > arg->len && (arg->precision.nbr <= arg->len || !arg->precision.nbr))
 		return (ft_write_size_str(arg, str));
+	if (arg->precision.nbr > arg->len)
+		return (ft_write_flag_precision_str(arg, str));
+//	if (arg->flags.options[ZERO] == 1 || arg->flags.options[LESS] == 1)
+//		return (ft_write_flag_string(arg, str));
 	ft_putstr(str);
-	len = ft_strlen(str);
-	return (len);
+	return (arg->len);
 }

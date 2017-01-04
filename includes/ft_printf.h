@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/03 14:38:31 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 13:57:35 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,29 @@
 # define J 5
 # define Z 6
 
-typedef struct		s_flags
+typedef struct			s_flags
 {
-	char			flag[6];
-}					t_flags;
+	char				options[6];
+}						t_flags;
 
-typedef struct		s_env
+typedef struct			s_precision
 {
-	const char		*str;
-	size_t			cur;
-	struct s_flags	flags;
-	int				size;
-	int				precision;
-	int				modif;
-	char			conv;
-	size_t			printcar;
-	int			len;
-}					t_env;
+	int					actif;
+	int					nbr;
+}						t_precision;
+
+typedef struct			s_env
+{
+	const char			*str;
+	size_t				cur;
+	struct s_flags		flags;
+	int					size;
+	struct s_precision	precision;
+	int					modif;
+	char				conv;
+	size_t				printcar;
+	int					len;
+}						t_env;
 
 int					ft_printf(const char *format, ...);
 int					ft_reader(t_env *arg, va_list ap);

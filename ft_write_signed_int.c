@@ -6,11 +6,15 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 15:02:05 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 18:56:30 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+/** GERER CE CAS
+Lorsque 0 est converti avec une précision valant 0, la sortie est vide.
+**/
 
 static int	ft_write_justify_size_signed_int(t_env *arg, long long int nbr)
 {
@@ -223,6 +227,21 @@ static int	ft_write_flag_dec(t_env *arg, long long int nbr)
 	return (arg->len);
 }
 
+static int	ft_write_precision_zero_signed_int(t_env *arg, long long int nbr)
+{
+
+	if (!arg->size)
+	{
+		ft_putchar(0);
+		return (0);
+	}
+	else
+	{
+		ft_write_flag_spaces(arg->size, arg->precision.len);
+		return (arg->size);
+	}
+}
+
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
 	long long int	nbr;
@@ -247,6 +266,8 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		arg->len = ft_nbrlen((short int)nbr);
 	else
 		arg->len = ft_nbrlen(nbr);
+	if (nbr == 0 && arg->precision.actif == 1)
+		return (ft_write_precision_zero_signed_int(arg, nbr));
 	if ((nbr >= 0) && (arg->flags.options[MORE] || arg->flags.options[SPACE]) && (!arg->flags.options[LESS]) && ((!arg->size) && (arg->precision.actif == 0)))
 		return (ft_write_flag_dec(arg, nbr));
 	if (arg->size > arg->len && (arg->precision.len <= arg->len || !arg->precision.actif))

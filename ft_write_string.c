@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 15:17:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 16:43:43 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,28 @@ static int	ft_write_size_str(t_env *arg, char *str)
 	arg->len += i;
 	return (arg->size);
 }
-/*
+
 static int	ft_write_justify_precision_str(t_env *arg, char *str)
 {
+	int	i;
 
-
-
+	i = 0;
+	if (arg->size > arg->precision.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
+	{
+		ft_putstr_n(str, arg->precision.len);
+		i+= ft_write_flag_spaces(arg->size, arg->precision.len);
+		return (arg->size);
+	}
+	return (0);
 }
-*/
+
 static int	ft_write_precision_str(t_env *arg, char *str)
 {
 	int	i;
 
 	i = 0;
-//	if (arg->flags.options[LESS] && arg->size)
-//		return (ft_write_justify_precision_str(arg, str));
+	if (arg->flags.options[LESS] && arg->size)
+		return (ft_write_justify_precision_str(arg, str));
 	if (arg->size > arg->precision.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
 	{
 		i+= ft_write_flag_spaces(arg->size, arg->precision.len);
@@ -63,10 +70,9 @@ static int	ft_write_precision_str(t_env *arg, char *str)
 		return (arg->size);
 	}
 //	else if (arg->size > arg->.len && arg->precision.len < arg->len/* && arg->precision.len > arg->len*/)
-
-	if (arg->precision.len < arg->len)
+	else if (arg->precision.len < arg->len)
 		ft_putstr_n(str, arg->precision.len);
-	arg->len += i;
+//	arg->len += i;
 	return (ft_nbcmp_min(arg->precision.len, arg->len));
 }
 

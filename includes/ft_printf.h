@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 14:39:33 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 19:10:57 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 # define MIN_HEXA "0123456789abcdef"
 # define OCTAL "01234567"
 
-# define DIESE 1
-# define ZERO 2
-# define MORE 3
-# define LESS 4
-# define SPACE 5
+# define DIESE 0
+# define ZERO 1
+# define MORE 2
+# define LESS 3
+# define SPACE 4
 
 # define HH 1
 # define H 2
@@ -37,7 +37,7 @@
 
 typedef struct			s_flags
 {
-	char				options[6];
+	char				options[5];
 }						t_flags;
 
 typedef struct			s_precision

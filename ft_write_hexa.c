@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 15:03:03 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 19:06:38 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,20 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 	return (arg->len);
 }
 
+static int	ft_write_precision_zero_hexa(t_env *arg, unsigned long long int nbr)
+{
+	if (!arg->size)
+	{
+		ft_putchar(0);
+		return (0);
+	}
+	else
+	{
+		ft_write_flag_spaces(arg->size, arg->precision.len);
+		return (arg->size);
+	}
+}
+
 int	ft_write_hexa(t_env *arg, va_list ap)
 {
 	unsigned long long int	nbr;
@@ -206,24 +220,16 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
 	arg->len = ft_nbrlen_hexa(nbr);
-//	printf("nbr = %lld\t len = %d\t largeur = %d\t precision = %d\n", nbr, arg->len, arg->size, arg->precision.len);
+	//	printf("nbr = %lld\t len = %d\t largeur = %d\t precision = %d\n", nbr, arg->len, arg->size, arg->precision.len);
 	if (nbr == 0 && !arg->size && arg->precision.actif == 0)
 	{
 		ft_putchar('0');
 		return (1);
 	}
 	if (nbr == 0 && arg->precision.actif == 1)
-	{
-		ft_putchar(0);
-		return (0);
-	}
-/*	if (nbr == 0 && arg->precision.actif == 1)
-	{
-		ft_putchar(0);
-		return (0);
-	}
-*/	arg->len = ft_nbrlen_hexa(nbr);
-	if (arg->flags.options[DIESE] == 1 && !arg->size && arg->precision.actif == 0)
+		return (ft_write_precision_zero_hexa(arg, nbr));
+			arg->len = ft_nbrlen_hexa(nbr);
+	if (arg->flags.options[DIESE] && !arg->size && !arg->precision.actif)
 		return (ft_write_flag(arg, nbr));
 	if(arg->size > arg->len && (arg->precision.len <= arg->len || !arg->precision.actif))
 		return (ft_write_size_hexa(arg, nbr));

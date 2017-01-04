@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 18:56:30 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/04 19:32:05 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,12 +90,7 @@ static int	ft_write_size_signed_int(t_env *arg, long long int nbr)
 			else
 			{
 				i += ft_write_flag_spaces(arg->size, arg->len);
-			/*	while (i < arg->size - arg->len)
-				{
-					ft_putchar (' ');
-					i++;
-				}
-			*/}
+			}
 			if (arg->flags.options[ZERO])
 				ft_putnbr(ft_abs(nbr));
 			else
@@ -214,8 +209,6 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 			}
 		}
 	}
-	//	printf("len = %d||\n prec = %d||\n size = %d||\n\n", arg->len, arg->precision.len, arg->size);
-	//	return (ft_nbcmp(ft_nbcmp(arg->precision.len, arg->len), ft_nbcmp(arg->precision.len, arg->size)));
 	return (0);
 }
 
@@ -229,7 +222,6 @@ static int	ft_write_flag_dec(t_env *arg, long long int nbr)
 
 static int	ft_write_precision_zero_signed_int(t_env *arg, long long int nbr)
 {
-
 	if (!arg->size)
 	{
 		ft_putchar(0);

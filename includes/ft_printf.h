@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 19:10:57 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 14:09:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ int					ft_write_long_int(t_env *arg, va_list ap);
 int					ft_write_octal(t_env *arg, va_list ap);
 int					ft_write_hexa(t_env *arg, va_list ap);
 int					ft_write_char(t_env *arg, va_list ap);
+int					ft_write_double_percent(t_env *arg);
 
 int					ft_write_flag_diese_min(void);
 int					ft_write_flag_diese_maj(void);

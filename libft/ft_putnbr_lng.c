@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_conv.c                                    :+:      :+:    :+:   */
+/*   ft_putnbr_lng.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 14:25:52 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/05 12:53:51 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/05 13:15:09 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_parse_conv(t_env *arg)
-{
-	char	*tmp;
-	int		i;
+void	ft_putnbr_lng(long long int n)
+/*{
+	unsigned long long int max;
 
-	i = 0;
-	tmp = "sSpdDioOuUxXcC%";
-	while (*tmp)
+	max = ULONG_MAX;
+	if (n == max)
+		ft_putstr("18446744073709551615");
+	else if (n < max && n > 9)
 	{
-		if (*tmp == arg->str[arg->cur])
-			arg->conv = *tmp;
-		tmp++;
+		ft_putnbr_lng(n / 10);
+		ft_putnbr_lng(n % 10);
 	}
-	arg->cur++;
+	else
+		ft_putchar(n + '0');
+}*/
+{
+	if (n < 0)
+	{
+		ft_putchar('-');
+		n = -n;
+	}
+	if (n > 9)
+		ft_putnbr_lng(n / 10);
+	ft_putchar(n % 10 + '0');
 }

@@ -6,49 +6,58 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 13:21:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 16:10:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
+static int	ft_write_justify_size_char(t_env *arg, char c)
+{
+	int	i;
+
+	i = 0;
+	ft_putchar(c);
+	i += ft_write_flag_spaces(arg->size, 1);
+	return (arg->size);
+}
+
 static int	ft_write_size_char(t_env *arg, char c)
 {
 	int	i;
-	int	len;
 
 	i = 0;
-	len = 0;
-	if (arg->flags.options[LESS] == 1)
-	{
-		ft_putchar(c);
-		while (i < arg->size - 1)
-		{
-			ft_putchar(' ');
-			i++;
-			len++;
-		}
-	}
+	if (arg->flags.options[LESS])
+		return (ft_write_justify_size_char(arg, c));
 	else
 	{
-		while (i < arg->size - 1)
-		{
-			ft_putchar(' ');
-			i++;
-			len++;
-		}
+		if (arg->flags.options[ZERO])
+			arg->len += ft_write_flag_zero(arg->size, arg->len - 1);
+		else
+			i += ft_write_flag_spaces(arg->size, 1);
 		ft_putchar(c);
 	}
-	return (len + 1);
+	return (arg->size);
 }
 
 int			ft_write_char(t_env *arg, va_list ap)
 {
 	unsigned char	c;
 
+/*	if (arg->conv == '%')
+	{
+		c = '%';
+		if (arg->size > arg->len && !arg->precision.actif)
+			return (ft_write_size_char(arg, c));
+		ft_putchar(c);
+		return (1);
+	}*/
+	//	return (ft_write_double_percent(arg));
 	if (!(arg->modif))
 		c = va_arg(ap, int);
-	if (arg->size)
+//	arg->len = ft_nbrlen(c);
+	arg->len = 1;
+	if (arg->size > arg->len && !arg->precision.actif)
 		return (ft_write_size_char(arg, c));
 	ft_putchar(c);
 	return (1);

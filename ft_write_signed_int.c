@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 21:08:28 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 13:24:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_justify_size_signed_int(t_env *arg, long long int nbr)
+static int	ft_write_justify_size_signed_int(t_env *arg, signed long long int nbr)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ static int	ft_write_justify_size_signed_int(t_env *arg, long long int nbr)
 	return (arg->size);
 }
 
-static int	ft_write_size_signed_int(t_env *arg, long long int nbr)
+static int	ft_write_size_signed_int(t_env *arg, signed long long int nbr)
 {
 	int	i;
 
@@ -71,9 +71,7 @@ static int	ft_write_size_signed_int(t_env *arg, long long int nbr)
 				arg->len += ft_write_flag_zero(arg->size, arg->len);
 			}
 			else
-			{
 				i += ft_write_flag_spaces(arg->size, arg->len);
-			}
 			if (arg->flags.options[ZERO])
 				ft_putnbr(ft_abs(nbr));
 			else
@@ -84,7 +82,7 @@ static int	ft_write_size_signed_int(t_env *arg, long long int nbr)
 	return (ft_nbcmp_max(arg->len, arg->size));
 }
 
-static int	ft_write_justify_precision_signed_int(t_env *arg, long long int nbr)
+static int	ft_write_justify_precision_signed_int(t_env *arg, signed long long int nbr)
 {
 	int	i;
 	int	lenfin;
@@ -127,7 +125,7 @@ static int	ft_write_justify_precision_signed_int(t_env *arg, long long int nbr)
 	return (0);
 }
 
-static int	ft_write_flag_precision(t_env *arg, long long int nbr)
+static int	ft_write_flag_precision(t_env *arg, signed long long int nbr)
 {
 	int		i;
 	int		lenfin;
@@ -144,7 +142,7 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 			{
 				if (arg->flags.options[MORE])
 					lenfin = 1;
-				i += ft_write_flag_spaces(arg->size, arg->precision.len - lenfin);
+				i += ft_write_flag_spaces(arg->size, arg->precision.len + lenfin);
 				if (arg->flags.options[MORE])
 					ft_putchar('+');
 				i = 0;
@@ -187,11 +185,11 @@ static int	ft_write_flag_precision(t_env *arg, long long int nbr)
 				return (ft_nbcmp_max(arg->len, arg->precision.len));
 			}
 		}
-	}
+}
 	return (0);
 }
 
-static int	ft_write_flag_dec(t_env *arg, long long int nbr)
+static int	ft_write_flag_dec(t_env *arg, signed long long int nbr)
 {
 	arg->len += ft_write_flag_more(arg);
 	arg->len += ft_write_flag_space(arg);
@@ -199,7 +197,7 @@ static int	ft_write_flag_dec(t_env *arg, long long int nbr)
 	return (arg->len);
 }
 
-static int	ft_write_precision_zero_signed_int(t_env *arg, long long int nbr)
+static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int nbr)
 {
 	if (!arg->size)
 	{
@@ -215,7 +213,7 @@ static int	ft_write_precision_zero_signed_int(t_env *arg, long long int nbr)
 
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
-	long long int	nbr;
+	signed long long int	nbr;
 
 	if (!(arg->modif))
 		nbr = va_arg(ap, signed int);
@@ -237,19 +235,23 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		arg->len = ft_nbrlen((short int)nbr);
 	else
 		arg->len = ft_nbrlen(nbr);
-	if (nbr == 0 && arg->precision.actif == 1)
+//	printf("nbr = %lld||\tlen = %d||\t prec = %d||\t actif = %d||\t size = %d||\t\n", nbr, arg->len, arg->precision.len, arg->precision.actif, arg->size);
+	if (nbr == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_precision_zero_signed_int(arg, nbr));
 	if ((nbr >= 0) && (arg->flags.options[MORE] || arg->flags.options[SPACE]) && (!arg->flags.options[LESS]) && ((!arg->size) && (arg->precision.actif == 0)))
 		return (ft_write_flag_dec(arg, nbr));
-	if (arg->size > arg->len && (arg->precision.len <= arg->len || !arg->precision.actif))
+	if (arg->size > arg->len && !arg->precision.actif)
 		return (ft_write_size_signed_int(arg, nbr));
-	if (arg->precision.len > arg->len)
+	if (arg->precision.len >= arg->len)
 		return (ft_write_flag_precision(arg, nbr));
 	if (arg->modif == HH)
 		ft_putnbr((signed char)nbr);
 	else if (arg->modif == H)
 		ft_putnbr((short int)nbr);
+	else if (arg->modif == LL)
+		ft_putnbr_lng(nbr);
 	else
-		ft_putnbr(nbr);
+		ft_putnbr_lng(nbr);
 	return (arg->len);
 }
+

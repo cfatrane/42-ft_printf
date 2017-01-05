@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/04 19:12:02 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/05 14:17:25 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_NAME =	ft_printf.c				\
 			ft_write_octal.c		\
 			ft_write_hexa.c			\
 			ft_write_char.c			\
+			ft_write_double_percent.c			\
 			ft_write_flag_zero.c	\
 			ft_write_flag_more.c	\
 			ft_write_flag_space.c	\

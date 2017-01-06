@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 16:59:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 17:25:44 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 static int ft_write_justify_size_hexa(t_env *arg, unsigned long long int nbr)
 {
-	int i;
-
-	i = 0;
-	if (arg->flags.options[DIESE])
-		arg->len += ft_write_flag_diese(arg);
+	arg->len += ft_write_flag_diese(arg);
 	ft_printf_puthexa(arg, nbr);
-	i += ft_write_flag_spaces(arg->size, arg->len);
+	ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
 
@@ -32,7 +28,6 @@ static int ft_write_size_hexa(t_env *arg, unsigned long long int nbr)
 	if (arg->flags.options[DIESE])
 		arg->len += 2;
 	if (arg->flags.options[ZERO] && !arg->precision.actif)
-		//	if (arg->flags.options[ZERO]/* && (arg->precision.len > arg->size || !arg->precision.len)*/)
 	{
 		if (arg->flags.options[DIESE])
 			ft_write_flag_diese(arg);
@@ -64,8 +59,7 @@ static int ft_write_justify_precision_hexa(t_env *arg, unsigned long long int nb
 	lenfin = 0;
 	if (arg->size > arg->precision.len/* && arg->precision.len > arg->len*/)
 	{
-		if (arg->flags.options[DIESE])
-			lenfin += ft_write_flag_diese(arg);
+		lenfin += ft_write_flag_diese(arg);
 		i += ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_puthexa(arg, nbr);
 		i = 0;
@@ -74,8 +68,7 @@ static int ft_write_justify_precision_hexa(t_env *arg, unsigned long long int nb
 	}
 	else
 	{
-		if (arg->flags.options[DIESE])
-			lenfin += ft_write_flag_diese(arg);
+		lenfin += ft_write_flag_diese(arg);
 		i += ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_puthexa(arg, nbr);
 		arg->len += i + lenfin;
@@ -95,18 +88,15 @@ static int	ft_write_precision_hexa(t_env *arg, unsigned long long int nbr)
 	{
 		if (arg->flags.options[DIESE])
 			lenfin = 2;
-		i += ft_write_flag_spaces(arg->size, arg->precision.len + lenfin);
-		i = 0;
-		if (arg->flags.options[DIESE])
-			ft_write_flag_diese(arg);
-		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_write_flag_spaces(arg->size, arg->precision.len + lenfin);
+		ft_write_flag_diese(arg);
+		ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_puthexa(arg, nbr);
 		return (arg->size);
 	}
 	else
 	{
-		if (arg->flags.options[DIESE])
-			lenfin += ft_write_flag_diese(arg);
+		lenfin += ft_write_flag_diese(arg);
 		i += ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_puthexa(arg, nbr);
 		arg->len += i + lenfin;
@@ -170,8 +160,10 @@ int	ft_write_hexa(t_env *arg, va_list ap)
 		return (ft_write_size_hexa(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
 		return (ft_write_justify_size_hexa(arg, nbr));
-	if(arg->precision.len > arg->len)
+	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
 		return (ft_write_precision_hexa(arg, nbr));
+	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+		return (ft_write_justify_precision_hexa(arg, nbr));
 	ft_printf_puthexa(arg, nbr);
 	return (arg->len);
 }

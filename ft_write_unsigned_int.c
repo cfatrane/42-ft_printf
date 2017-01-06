@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 14:06:22 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 19:38:29 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,18 @@
 
 static int ft_write_justify_size_uns_int(t_env *arg, unsigned long long int nbr)
 {
-	int i;
-
-	i = 0;
 	ft_printf_putnbr_uns(arg, nbr);
-	i += ft_write_flag_spaces(arg->size, arg->len);
-	arg->len += i;
+	ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
 
 static int	ft_write_size_uns_int(t_env *arg, unsigned long long int nbr)
 {
-	int	i;
-
-	i = 0;
-	if (arg->flags.options[LESS])
-		return (ft_write_justify_size_uns_int(arg, nbr));
+	if (arg->flags.options[ZERO] && !arg->precision.actif)
+		ft_write_flag_zero(arg->size, arg->len);
 	else
-	{
-		if (arg->flags.options[ZERO]/* && (arg->precision.len > arg->size || !arg->precision.len)*/)
-			arg->len += ft_write_flag_zero(arg->size, arg->len);
-		else
-			arg->len += ft_write_flag_spaces(arg->size, arg->len);
-		ft_printf_putnbr_uns(arg, nbr);
-	}
-	//	arg->len += i;
+		ft_write_flag_spaces(arg->size, arg->len);
+	ft_printf_putnbr_uns(arg, nbr);
 	return (arg->size);
 }
 
@@ -49,15 +36,14 @@ static int ft_write_justify_precision_uns_int(t_env *arg, unsigned long long int
 	i = 0;
 	if (arg->size > arg->precision.len/* && arg->precision.len > arg->len*/)
 	{
-		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_putnbr_uns(arg, nbr);
-		i = 0;
-		i += ft_write_flag_spaces(arg->size, arg->precision.len);
+		ft_write_flag_spaces(arg->size, arg->precision.len);
 		return (arg->size);
 	}
 	else
 	{
-		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_write_flag_zero(arg->precision.len, arg->len);
 		ft_printf_putnbr_uns(arg, nbr);
 		return (arg->precision.len);
 	}
@@ -69,26 +55,21 @@ static int	ft_write_precision_uns_int(t_env *arg, unsigned long long int nbr)
 	int		i;
 
 	i = 0;
-	if (arg->flags.options[LESS] && arg->size)
-		return (ft_write_justify_precision_uns_int(arg, nbr));
+	if (arg->size > arg->precision.len)
+	{
+		i += ft_write_flag_spaces(arg->size, arg->precision.len);
+		//	arg->len += i;
+		i = 0;
+		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_putnbr_uns(nbr);
+		arg->len += i;
+		return (arg->size);
+	}
 	else
 	{
-		if (arg->size > arg->precision.len)
-		{
-			i += ft_write_flag_spaces(arg->size, arg->precision.len);
-			//	arg->len += i;
-			i = 0;
-			i += ft_write_flag_zero(arg->precision.len, arg->len);
-			ft_putnbr_uns(nbr);
-			arg->len += i;
-			return (arg->size);
-		}
-		else
-		{
-			i += ft_write_flag_zero(arg->precision.len, arg->len);
-			ft_printf_putnbr_uns(arg, nbr);
-			return (arg->precision.len);
-		}
+		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_printf_putnbr_uns(arg, nbr);
+		return (arg->precision.len);
 	}
 	return (0);
 }
@@ -137,13 +118,17 @@ int	ft_write_unsigned_int(t_env *arg, va_list ap)
 		nbr = va_arg(ap, uintmax_t);
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
-	arg->len = ft_nbrlen_uns(nbr);
+	arg->len = ft_printf_nbrlen_uns(arg, nbr);
 	if (nbr == 0 && arg->precision.actif == 1)
 		return (ft_write_precision_zero_uns_int(arg, nbr));
-	if(arg->size > arg->len && (arg->precision.len <= arg->len || !arg->precision.actif))
+	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
 		return (ft_write_size_uns_int(arg, nbr));
-	if(arg->precision.len > arg->len)
+	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
+		return (ft_write_justify_size_uns_int(arg, nbr));
+	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
 		return (ft_write_precision_uns_int(arg, nbr));
+	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+		return (ft_write_justify_precision_uns_int(arg, nbr));
 	ft_printf_putnbr_uns(arg, nbr);
 	return (arg->len);
 }

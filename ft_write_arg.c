@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 15:32:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 19:37:50 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,11 @@ int	ft_write_maj(t_env *arg, va_list ap)
 	if (arg->conv == 'S')
 		return (ft_write_string(arg, ap));
 	else if (arg->conv == 'D')
-		return (ft_write_long_int(arg, ap));
+		return (ft_write_signed_int(arg, ap));
 	else if (arg->conv == 'O')
 		return (ft_write_octal(arg, ap));
 	else if (arg->conv == 'U')
-		return (ft_write_long_int(arg, ap));
+		return (ft_write_unsigned_int(arg, ap));
 	else if (arg->conv == 'X')
 		return (ft_write_hexa(arg, ap));
 	else if (arg->conv == 'C')

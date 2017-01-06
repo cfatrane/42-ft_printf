@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 13:24:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 14:38:39 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 19:48:11 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,10 @@ void	ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr)
 	else if (arg->modif == H)
 		ft_putnbr((unsigned short int)nbr);
 	else if (arg->modif == LL)
+		ft_putnbr_uns(nbr);
+	else if (arg->modif == L || arg->conv == 'U')
+		ft_putnbr_uns((unsigned long int)nbr);
+	else if (arg->conv == 'U')
 		ft_putnbr_uns(nbr);
 	else
 		ft_putnbr_uns(nbr);

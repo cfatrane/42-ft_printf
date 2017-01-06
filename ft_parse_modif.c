@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 13:56:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/30 12:18:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 10:59:05 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ft_parse_modif(t_env *arg)
 {
-	if (arg->str[arg->cur] == 'h' || arg->str[arg->cur] == 'l' ||
-			arg->str[arg->cur] == 'j' || arg->str[arg->cur] == 'z')
-	{
+//	if (arg->str[arg->cur] == 'h' || arg->str[arg->cur] == 'l' ||
+//			arg->str[arg->cur] == 'j' || arg->str[arg->cur] == 'z')
+//	{
 		if (arg->str[arg->cur] == 'h' && arg->str[arg->cur + 1] == 'h')
 		{
 			arg->modif = HH;
@@ -36,5 +36,5 @@ void	ft_parse_modif(t_env *arg)
 		else if (arg->str[arg->cur] == 'z')
 			arg->modif = Z;
 		arg->cur++;
-	}
+//	}
 }

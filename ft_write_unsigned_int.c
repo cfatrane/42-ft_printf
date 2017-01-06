@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 13:45:34 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 14:06:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int ft_write_justify_size_uns_int(t_env *arg, unsigned long long int nbr)
 	int i;
 
 	i = 0;
-	ft_putnbr_uns(nbr);
+	ft_printf_putnbr_uns(arg, nbr);
 	i += ft_write_flag_spaces(arg->size, arg->len);
 	arg->len += i;
 	return (arg->size);
@@ -36,9 +36,9 @@ static int	ft_write_size_uns_int(t_env *arg, unsigned long long int nbr)
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 			arg->len += ft_write_flag_spaces(arg->size, arg->len);
-		ft_putnbr_uns(nbr);
+		ft_printf_putnbr_uns(arg, nbr);
 	}
-//	arg->len += i;
+	//	arg->len += i;
 	return (arg->size);
 }
 
@@ -50,7 +50,7 @@ static int ft_write_justify_precision_uns_int(t_env *arg, unsigned long long int
 	if (arg->size > arg->precision.len/* && arg->precision.len > arg->len*/)
 	{
 		i += ft_write_flag_zero(arg->precision.len, arg->len);
-		ft_putnbr_uns(nbr);
+		ft_printf_putnbr_uns(arg, nbr);
 		i = 0;
 		i += ft_write_flag_spaces(arg->size, arg->precision.len);
 		return (arg->size);
@@ -58,7 +58,7 @@ static int ft_write_justify_precision_uns_int(t_env *arg, unsigned long long int
 	else
 	{
 		i += ft_write_flag_zero(arg->precision.len, arg->len);
-		ft_putnbr_uns(nbr);
+		ft_printf_putnbr_uns(arg, nbr);
 		return (arg->precision.len);
 	}
 	return (0);
@@ -86,7 +86,7 @@ static int	ft_write_precision_uns_int(t_env *arg, unsigned long long int nbr)
 		else
 		{
 			i += ft_write_flag_zero(arg->precision.len, arg->len);
-			ft_putnbr_uns(nbr);
+			ft_printf_putnbr_uns(arg, nbr);
 			return (arg->precision.len);
 		}
 	}
@@ -102,7 +102,7 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 		len += ft_write_flag_zero(arg->size, len);
 	else if (arg->flags.options[ZERO] == 1 && arg->flags.options[LESS] == 1)
 		return (ft_write_size(arg, nbr));
-	ft_putnbr_uns(nbr);
+	ft_printf_putnbr_uns(arg, nbr);
 	return (ft_nbcmp_max(arg->size, len));
 }
 static int ft_write_precision_zero_uns_int(t_env *arg, unsigned long long int nbr)
@@ -144,6 +144,6 @@ int	ft_write_unsigned_int(t_env *arg, va_list ap)
 		return (ft_write_size_uns_int(arg, nbr));
 	if(arg->precision.len > arg->len)
 		return (ft_write_precision_uns_int(arg, nbr));
-	ft_putnbr_uns(nbr);
+	ft_printf_putnbr_uns(arg, nbr);
 	return (arg->len);
 }

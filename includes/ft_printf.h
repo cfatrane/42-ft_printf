@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 17:46:09 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 16:39:11 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,14 +79,17 @@ int					ft_write_hexa(t_env *arg, va_list ap);
 int					ft_write_char(t_env *arg, va_list ap);
 int					ft_write_double_percent(t_env *arg);
 
-int					ft_write_flag_diese_min(void);
-int					ft_write_flag_diese_maj(void);
+int					ft_write_flag_diese(t_env *arg);
+int					ft_write_flag_more(t_env *arg);
+int					ft_write_flag_space(t_env *arg);
 
 int					ft_write_flag_zero(int start, int end);
 int					ft_write_flag_spaces(int start, int end);
 
-int					ft_write_flag_space(t_env *arg);
-int					ft_write_flag_more(t_env *arg);
+
+void				ft_printf_putnbr(t_env *arg, signed long long int nbr);
+void				ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr);
+void				ft_printf_puthexa(t_env *arg, unsigned long long int nbr);
 
 int					ft_write_size(t_env *arg, int nbr);
 

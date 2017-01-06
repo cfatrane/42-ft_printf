@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 16:28:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 15:05:32 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int			ft_write_char(t_env *arg, va_list ap)
 		c = va_arg(ap, int);
 //	arg->len = ft_nbrlen(c);
 	arg->len = 1;
-	if (arg->size > arg->len && !arg->precision.actif)
+	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))
 		return (ft_write_size_char(arg, c));
 	ft_putchar(c);
 	return (1);

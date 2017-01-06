@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/05 14:08:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 16:26:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/06 15:04:34 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,9 @@ int	ft_write_double_percent(t_env *arg)
 
 	c = '%';
 	arg->len = 1;
-	if (arg->size > 1 && !arg->precision.actif)
+	if (arg->size > 1 && (!arg->precision.actif || arg->precision.actif))
 		return (ft_write_size_double_percent(arg, c));
+//	printf("ICI");
 	ft_putchar(c);
 	return (1);
 }

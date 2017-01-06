@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 16:12:59 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 17:49:07 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ int	main(void)
 //	ret = ft_printf("@moulitest: %5.o %5.0o|", 0, 0);
 //	ft_printf("\tret = %d\n", ret - 1);
 
-	ret = printf("%05%|");
+	ret = printf("%-5+d|", -42);
 	printf("\tret = %lld\n", ret - 1);
-	ret = ft_printf("%05%|");
+	ret = ft_printf("%-5+d|", -42);
 	ft_printf("\tret = %d\n", ret - 1);
-	
+
 	printf("\n1234567890123456789012345678901234567890123456789\n");
 	printf("        10        20        30        40\n\n");
 

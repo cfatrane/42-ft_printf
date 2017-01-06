@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 14:09:39 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 17:46:09 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct			s_env
 
 int					ft_printf(const char *format, ...);
 int					ft_reader(t_env *arg, va_list ap);
-int					ft_parse(t_env *arg, va_list ap);
+int					ft_parse(t_env *arg);
 void				ft_parse_flag(t_env *arg);
 void				ft_parse_size(t_env *arg);
 void				ft_parse_precision(t_env *arg);

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 16:10:24 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/05 16:28:07 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	ft_write_size_char(t_env *arg, char c)
 	else
 	{
 		if (arg->flags.options[ZERO])
-			arg->len += ft_write_flag_zero(arg->size, arg->len - 1);
+			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 			i += ft_write_flag_spaces(arg->size, 1);
 		ft_putchar(c);

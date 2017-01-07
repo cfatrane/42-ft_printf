@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 19:38:29 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/07 18:48:54 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,11 +104,11 @@ int	ft_write_unsigned_int(t_env *arg, va_list ap)
 {
 	unsigned long long int	nbr;
 
-	if (!(arg->modif))
+	if (!(arg->modif) && arg->conv != 'U')
 		nbr = va_arg(ap, unsigned int);
 	else if (arg->modif == HH)
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == H)
+	else if (arg->modif == H && arg->conv != 'U')
 		nbr = va_arg(ap, unsigned int);
 	else if (arg->modif == LL)
 		nbr = va_arg(ap, unsigned long long int);

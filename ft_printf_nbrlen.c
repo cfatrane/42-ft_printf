@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 18:41:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 19:33:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/07 18:50:00 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	ft_printf_nbrlen(t_env *arg, unsigned long long int nbr)
 
 int	ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr)
 {
-	if (!(arg->modif))
+	if (!(arg->modif) && arg->conv != 'U')
 		return (ft_nbrlen_uns((unsigned int)nbr));
 	else if (arg->modif == HH)
 		return (ft_nbrlen_uns((unsigned char)nbr));
-	else if (arg->modif == H)
+	else if (arg->modif == H && arg->conv != 'U')
 		return (ft_nbrlen_uns((unsigned short)nbr));
 	else if (arg->modif == LL)
 		return (ft_nbrlen_uns((unsigned long long int)nbr));

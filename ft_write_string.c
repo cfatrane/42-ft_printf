@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 19:35:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 20:11:43 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,23 +59,8 @@ static int	ft_write_precision_str(t_env *arg, char *str)
 		ft_putstr_n(str, arg->precision.len);
 		return (arg->size);
 	}
-	//	else if (arg->size > arg->.len && arg->precision.len < arg->len)
 	else if (arg->precision.len < arg->len)
 		ft_putstr_n(str, arg->precision.len);
-	/*
-	if (arg->size > arg->precision.len && arg->precision.len)
-	{
-		if (arg->flags.options[ZERO])
-			i += ft_write_flag_zero(arg->size, arg->precision.len);
-		else
-			i+= ft_write_flag_spaces(arg->size, arg->precision.len);
-		ft_putstr_n(str, arg->precision.len);
-		return (arg->size);
-	}
-	//	else if (arg->size > arg->.len && arg->precision.len < arg->len)
-	else if (arg->precision.len < arg->len)
-		ft_putstr_n(str, arg->precision.len);*/
-	//	arg->len += i;
 	return (ft_nbcmp_min(arg->precision.len, arg->len));
 }
 
@@ -99,17 +84,18 @@ int			ft_write_string(t_env *arg, va_list ap)
 
 	str = va_arg(ap, char *);
 	arg->len = ft_printf_strlen(str);
-	//		printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
+//			printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
 	if (str == 0 && arg->precision.actif == 1/* && arg->precision.len == 0*/)
 		return (ft_write_precision_zero_str(arg, str));
 	if (arg->size > arg->len && (arg->precision.len >= arg->len || !arg->precision.actif) && !arg->flags.options[LESS])
 		return (ft_write_size_str(arg, str));
 	if (arg->size > arg->len && (arg->precision.len >= arg->len || !arg->precision.actif) && arg->flags.options[LESS])
 		return (ft_write_justify_size_str(arg, str));
-	if (arg->precision.actif && !arg->flags.options[LESS])
+	if (arg->precision.actif && (arg->size > arg->len || arg->precision.len < arg->len) && !arg->flags.options[LESS])
 		return (ft_write_precision_str(arg, str));
 //	printf("ICI");
-	if (arg->precision.actif && arg->flags.options[LESS])
+	if (arg->precision.actif && (arg->size > arg->len || arg->precision.len < arg->len) && arg->flags.options[LESS])
+//	if (arg->precision.actif && arg->flags.options[LESS])
 		return (ft_write_justify_precision_str(arg, str));
 	ft_printf_putstr(str);
 	return (arg->len);

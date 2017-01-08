@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 19:30:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 20:08:09 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ int	main(void)
 	printf("        10        20        30        40");
 	printf("\n1234567890123456789012345678901234567890123456789\n");
 
-	ret = printf("%5.2s|", "");
+	ret = printf("%4.15s|", "I am 42");
 	printf("\tret = %lld\n", ret - 1);
-	ret = ft_printf("%5.2s|", "");
+	ret = ft_printf("%4.15s|", "I am 42");
 	ft_printf("\tret = %lld\n", ret - 1);
 //	long long int i = -54;
 //	ret = printf("%hlld|", "string");

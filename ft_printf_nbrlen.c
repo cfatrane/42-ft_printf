@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 18:41:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 16:44:43 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 19:59:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr)
 {
 	if (!arg->modif && arg->conv != 'O')
 		return (ft_nbrlen_octal((unsigned int)nbr));
-	else if (arg->modif == HH)
+	else if (arg->modif == HH && arg->conv != 'O')
 		return (ft_nbrlen_octal((unsigned char)nbr));
 	else if (arg->modif == H && arg->conv != 'O')
 		return (ft_nbrlen_octal((unsigned short)nbr));
@@ -66,5 +66,24 @@ int	ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr)
 		return (ft_nbrlen_octal((uintmax_t)nbr));
 	else if (arg->modif == Z)
 		return (ft_nbrlen_octal((size_t)nbr));
+	return (0);
+}
+
+int	ft_printf_nbrlen_hexa(t_env *arg, unsigned long long int nbr)
+{
+	if (!arg->modif)
+		return (ft_nbrlen_hexa((unsigned int)nbr));
+	else if (arg->modif == HH)
+		return (ft_nbrlen_hexa((unsigned char)nbr));
+	else if (arg->modif == H)
+		return (ft_nbrlen_hexa((unsigned short)nbr));
+	else if (arg->modif == LL)
+		return (ft_nbrlen_hexa((unsigned long long int)nbr));
+	else if (arg->modif == L)
+		return (ft_nbrlen_hexa((unsigned long int)nbr));
+	else if (arg->modif == J)
+		return (ft_nbrlen_hexa((uintmax_t)nbr));
+	else if (arg->modif == Z)
+		return (ft_nbrlen_hexa((size_t)nbr));
 	return (0);
 }

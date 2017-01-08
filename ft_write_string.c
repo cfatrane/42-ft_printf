@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 19:32:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 19:35:50 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,23 +21,16 @@ static int	ft_write_justify_size_str(t_env *arg, char *str)
 
 static int	ft_write_size_str(t_env *arg, char *str)
 {
-	int	i;
-
-	i = 0;
 	if (arg->flags.options[ZERO])
-		i += ft_write_flag_zero(arg->size, arg->len);
+		ft_write_flag_zero(arg->size, arg->len);
 	else
-		i += ft_write_flag_spaces(arg->size, arg->len);
+		ft_write_flag_spaces(arg->size, arg->len);
 	ft_printf_putstr(str);
-	arg->len += i;
 	return (arg->size);
 }
 
 static int	ft_write_justify_precision_str(t_env *arg, char *str)
 {
-	int	i;
-
-	i = 0;
 	if (arg->size > arg->precision.len && arg->precision.len < arg->len)
 	{
 		ft_putstr_n(str, arg->precision.len);

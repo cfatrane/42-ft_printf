@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 17:25:44 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:43:25 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,10 +115,7 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 static int	ft_write_precision_zero_hexa(t_env *arg, unsigned long long int nbr)
 {
 	if (!arg->size)
-	{
-		ft_putchar(0);
 		return (0);
-	}
 	else
 	{
 		ft_write_flag_spaces(arg->size, arg->precision.len);

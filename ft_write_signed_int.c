@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 19:34:34 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:39:49 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -178,10 +178,7 @@ static int	ft_write_flag_dec(t_env *arg, signed long long int nbr)
 static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int nbr)
 {
 	if (!arg->size)
-	{
-		ft_putchar(0);
 		return (0);
-	}
 	else
 	{
 		ft_write_flag_spaces(arg->size, arg->precision.len);
@@ -192,16 +189,15 @@ static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int n
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
 	signed long long int	nbr;
-
-	if (!(arg->modif))
+	if (!(arg->modif) && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
-	else if (arg->modif == HH)
+	else if (arg->modif == HH && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
-	else if (arg->modif == H)
+	else if (arg->modif == H && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
 	else if (arg->modif == LL)
 		nbr = va_arg(ap, signed long long int);
-	else if (arg->modif == L)
+	else if (arg->modif == L || arg->conv == 'D')
 		nbr = va_arg(ap, signed long int);
 	else if (arg->modif == J)
 		nbr = va_arg(ap, intmax_t);

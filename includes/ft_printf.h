@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 18:59:26 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 12:50:28 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # define MAJ_HEXA "0123456789ABCDEF"
 # define MIN_HEXA "0123456789abcdef"
 # define OCTAL "01234567"
+# define CONVERSION "sSpdDioOuUxXcC%"
 
 # define DIESE 0
 # define ZERO 1
@@ -90,7 +91,10 @@ void					ft_printf_putnbr(t_env *arg, signed long long int nbr);
 void					ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr);
 void					ft_printf_puthexa(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen(t_env *arg, unsigned long long int nbr);
+int						ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr);
+size_t					ft_printf_strlen(const char *s);
+void					ft_printf_putstr(char const *s);
 
 int						ft_write_size(t_env *arg, int nbr);
 

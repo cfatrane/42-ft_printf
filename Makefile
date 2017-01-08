@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/06 18:56:35 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/08 12:50:43 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,8 @@ SRC_NAME =	ft_printf.c				\
 			ft_printf_putnbr.c		\
 			ft_printf_puthexa.c		\
 			ft_printf_nbrlen.c		\
+			ft_printf_putstr.c		\
+			ft_printf_strlen.c		\
 
 OBJ_PATH = ./objs/
 

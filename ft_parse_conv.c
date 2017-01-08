@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/05 14:25:52 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/07 19:22:19 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	ft_parse_conv(t_env *arg)
 	int		i;
 
 	i = 0;
-	tmp = "sSpdDioOuUxXcC%";
+	tmp = CONVERSION;
 	while (*tmp)
 	{
 		if (*tmp == arg->str[arg->cur])

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/23 16:56:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 19:42:23 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:25:58 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 int	main(void)
 {
 	long long int ret;
-	short int nbr = 4242;
+	long long int nbr = 4294967296;
 
 /*	ret = printf("%05hhd|", nbr);
 	printf("\tret = %d\n", ret - 1);
@@ -26,9 +26,9 @@ int	main(void)
 	printf("        10        20        30        40");
 	printf("\n1234567890123456789012345678901234567890123456789\n");
 
-	ret = printf("%U", "4294967296");
+	ret = printf("%.0p, %.p|", 0, 0);
 	printf("\tret = %lld\n", ret - 1);
-	ret = ft_printf("%U", "4294967296");
+	ret = ft_printf("%.0p, %.p|", 0, 0);
 	ft_printf("\tret = %lld\n", ret - 1);
 //	long long int i = -54;
 //	ret = printf("%hlld|", "string");

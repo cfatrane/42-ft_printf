@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/07 18:48:54 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:40:42 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,10 +89,7 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 static int ft_write_precision_zero_uns_int(t_env *arg, unsigned long long int nbr)
 {
 	if (!arg->size)
-	{
-		ft_putchar(0);
 		return (0);
-	}
 	else
 	{
 		ft_write_flag_spaces(arg->size, arg->precision.len);
@@ -106,7 +103,7 @@ int	ft_write_unsigned_int(t_env *arg, va_list ap)
 
 	if (!(arg->modif) && arg->conv != 'U')
 		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == HH)
+	else if (arg->modif == HH && arg->conv != 'U')
 		nbr = va_arg(ap, unsigned int);
 	else if (arg->modif == H && arg->conv != 'U')
 		nbr = va_arg(ap, unsigned int);

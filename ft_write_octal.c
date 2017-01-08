@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 16:18:25 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 20:25:56 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 15:42:13 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,13 @@
 
 static int ft_write_justify_size_octal(t_env *arg, unsigned long long int nbr)
 {
-	int i;
-
-	i = 0;
-	if (arg->flags.options[DIESE] == 1)
+	if (arg->flags.options[DIESE])
 	{
 		ft_putchar('0');
 		arg->len++;
 	}
 	ft_putnbr_base(nbr, OCTAL);
-	i += ft_write_flag_spaces(arg->size, arg->len);
-	arg->len += i;
+	ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
 
@@ -33,20 +29,16 @@ static int	ft_write_size_oct(t_env *arg, unsigned long long int nbr)
 	int	i;
 
 	i = 0;
-	if (arg->flags.options[LESS])
-		return (ft_write_justify_size_octal(arg, nbr));
+	if (arg->flags.options[DIESE] == 1)
+		arg->len++;
+	if (arg->flags.options[ZERO] && !arg->precision.actif)
+		//	if (arg->flags.options[ZERO] == 1/* && (arg->precision.len > arg->size || !arg->precision.len)*/)
+		arg->len += ft_write_flag_zero(arg->size, arg->len);
 	else
-	{
-		if (arg->flags.options[DIESE] == 1)
-			arg->len++;
-		if (arg->flags.options[ZERO] == 1/* && (arg->precision.len > arg->size || !arg->precision.len)*/)
-			arg->len += ft_write_flag_zero(arg->size, arg->len);
-		else
-			i += ft_write_flag_spaces(arg->size, arg->len);
-		if (arg->flags.options[DIESE] == 1)
-			ft_putchar('0');
-		ft_putnbr_base(nbr, OCTAL);
-	}
+		i += ft_write_flag_spaces(arg->size, arg->len);
+	if (arg->flags.options[DIESE] == 1)
+		ft_putchar('0');
+	ft_putnbr_base(nbr, OCTAL);
 	//	arg->len += i;
 	return (arg->size);
 }
@@ -78,34 +70,29 @@ static int	ft_write_precision_oct(t_env *arg, unsigned long long int nbr)
 	int		i;
 
 	i = 0;
-	if (arg->flags.options[LESS] && arg->size)
-		return (ft_write_justify_precision_octal(arg, nbr));
+	if (arg->size > arg->precision.len)
+	{
+		i += ft_write_flag_spaces(arg->size, arg->precision.len);
+		//	arg->len += i;
+		i = 0;
+		//	arg->len = ft_nbrlen_uns(nbr);
+		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		arg->len += i;
+		return (arg->size);
+		//	return (ft_nbcmp(arg->precision.len, len));
+	}
 	else
 	{
-		if (arg->size > arg->precision.len)
-		{
-			i += ft_write_flag_spaces(arg->size, arg->precision.len);
-			//	arg->len += i;
-			i = 0;
-			//	arg->len = ft_nbrlen_uns(nbr);
-			i += ft_write_flag_zero(arg->precision.len, arg->len);
-			ft_putnbr_base(nbr, OCTAL);
-			arg->len += i;
-			return (arg->size);
-			//	return (ft_nbcmp(arg->precision.len, len));
-		}
-		else
-		{
-			i += ft_write_flag_zero(arg->precision.len, arg->len);
-			ft_putnbr_base(nbr, OCTAL);
-			return (arg->precision.len);
-		}
+		i += ft_write_flag_zero(arg->precision.len, arg->len);
+		ft_putnbr_base(nbr, OCTAL);
+		return (arg->precision.len);
 	}
 	return (0);
 }
 
 static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
-{
+{	
 	if (arg->flags.options[DIESE] == 1)
 	{
 		ft_putchar('0');
@@ -121,7 +108,6 @@ static int ft_write_precision_zero_oct(t_env *arg, unsigned long long int nbr)
 	{
 		if (!arg->size)
 		{
-			ft_putchar(0);
 			return (0);
 		}
 		else
@@ -173,16 +159,20 @@ int	ft_write_octal(t_env *arg, va_list ap)
 		nbr = va_arg(ap, uintmax_t);
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
-	arg->len = ft_nbrlen_octal(nbr);
+	arg->len = ft_printf_nbrlen_octal(arg, nbr);
 	//	printf("len = %d||\n prec = %d||\n size = %d||\n\n", arg->len, arg->precision.len, arg->size);
 	if (nbr == 0 && arg->precision.actif == 1)
 		return (ft_write_precision_zero_oct(arg, nbr));
-	if (nbr > 0 && arg->flags.options[DIESE] == 1 && !arg->size && arg->precision.actif == 0)
+	if (nbr > 0 && arg->flags.options[DIESE] && !arg->size && !arg->precision.actif)
 		return (ft_write_flag(arg, nbr));
-	if(arg->size > arg->len && (arg->precision.len <= arg->len || !arg->precision.len))
+	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
 		return (ft_write_size_oct(arg, nbr));
-	if(arg->precision.len > arg->len)
+	else if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
+		return (ft_write_justify_size_octal(arg, nbr));
+	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
 		return (ft_write_precision_oct(arg, nbr));
+	else if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+		return (ft_write_justify_precision_octal(arg, nbr));
 	ft_putnbr_base(nbr, OCTAL);
 	return (arg->len);
 }

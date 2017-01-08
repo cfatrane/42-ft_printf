@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 15:05:32 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:44:19 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,10 @@ int			ft_write_char(t_env *arg, va_list ap)
 		return (1);
 	}*/
 	//	return (ft_write_double_percent(arg));
-	if (!(arg->modif))
+	if (!arg->modif && arg->conv != 'C')
 		c = va_arg(ap, int);
+	else if (arg-> modif == L || arg->conv == 'C')
+		c = va_arg(ap, wint_t);
 //	arg->len = ft_nbrlen(c);
 	arg->len = 1;
 	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))

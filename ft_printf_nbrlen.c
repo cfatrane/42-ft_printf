@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/06 18:41:27 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 13:37:49 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:44:43 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_printf_nbrlen(t_env *arg, unsigned long long int nbr)
 {
-	if (!(arg->modif) && arg->conv != 'D')
+	if (!arg->modif && arg->conv != 'D')
 		return (ft_nbrlen((signed int)nbr));
 	else if (arg->modif == HH && arg->conv != 'D')
 		return (ft_nbrlen((signed char)nbr));
@@ -33,7 +33,7 @@ int	ft_printf_nbrlen(t_env *arg, unsigned long long int nbr)
 
 int	ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr)
 {
-	if (!(arg->modif) && arg->conv != 'U')
+	if (!arg->modif && arg->conv != 'U')
 		return (ft_nbrlen_uns((unsigned int)nbr));
 	else if (arg->modif == HH && arg->conv != 'U')
 		return (ft_nbrlen_uns((unsigned char)nbr));
@@ -52,7 +52,7 @@ int	ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr)
 
 int	ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr)
 {
-	if (!(arg->modif) && arg->conv != 'O')
+	if (!arg->modif && arg->conv != 'O')
 		return (ft_nbrlen_octal((unsigned int)nbr));
 	else if (arg->modif == HH)
 		return (ft_nbrlen_octal((unsigned char)nbr));

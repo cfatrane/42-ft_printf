@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/06 19:37:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 17:31:34 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	ft_write_maj(t_env *arg, va_list ap)
 	else if (arg->conv == 'C')
 		return (ft_write_char(arg, ap));
 	else if (arg->conv == '%' && arg->str[arg->cur - 2] != '%'/* &&*/)
-	//	return (ft_write_char(arg, ap));
 		return (ft_write_double_percent(arg));
 	return (0);
 }
@@ -61,5 +60,7 @@ int	ft_write_arg(t_env *arg, va_list ap)
 			(arg->conv == 'U') || (arg->conv == 'X') || (arg->conv == 'C') ||
 			(arg->conv == '%'))
 		return (ft_write_maj(arg, ap));
+	else
+		return (ft_write_non_valid(arg));
 	return (0);
 }

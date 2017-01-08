@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 15:39:49 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 16:44:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 static int	ft_write_justify_size_sgn_int(t_env *arg, signed long long int nbr)
 {
-	int	i;
-
-	i = 0;
 	if (nbr >= 0)
 	{
 		arg->len += ft_write_flag_more(arg);
 		arg->len += ft_write_flag_space(arg);
 		ft_printf_putnbr(arg, nbr);
-		i += ft_write_flag_spaces(arg->size, arg->len);
+		ft_write_flag_spaces(arg->size, arg->len);
 	}
 	else
 	{
@@ -42,6 +39,7 @@ static int	ft_write_size_sgn_int(t_env *arg, signed long long int nbr)
 		if (arg->flags.options[ZERO] && !arg->precision.actif)
 		{
 			arg->len += ft_write_flag_more(arg);
+			arg->len += ft_write_flag_space(arg);
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		}
 		else
@@ -189,7 +187,7 @@ static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int n
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
 	signed long long int	nbr;
-	if (!(arg->modif) && arg->conv != 'D')
+	if (!arg->modif && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
 	else if (arg->modif == HH && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
@@ -204,16 +202,16 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
 	arg->len = ft_printf_nbrlen(arg, nbr);
-	//	printf("nbr = %lld||len nbr = %d||prec = %d||actif = %d||size = %d|||\t\n", nbr, arg->len, arg->precision.len, arg->precision.actif, arg->size);
+//		printf("nbr = %lld||len nbr = %d||prec = %d||actif = %d||size = %d|||\t\n", nbr, arg->len, arg->precision.len, arg->precision.actif, arg->size);
 	if (nbr == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_precision_zero_signed_int(arg, nbr));
-	else if ((nbr >= 0) && (arg->flags.options[MORE] || arg->flags.options[SPACE]) && (!arg->flags.options[LESS]) && ((!arg->size) && !arg->precision.actif))
+	if ((nbr >= 0) && (arg->flags.options[MORE] || arg->flags.options[SPACE]) && (!arg->flags.options[LESS]) && arg->size < arg->len && !arg->precision.actif)
 		return (ft_write_flag_dec(arg, nbr));
-	else if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
+	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
 		return (ft_write_size_sgn_int(arg, nbr));
-	else if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
+	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
 		return (ft_write_justify_size_sgn_int(arg, nbr));
-	else if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
 		return (ft_write_precision_sng_int(arg, nbr));
 	else if (arg->precision.len >= arg->len && arg->flags.options[LESS])
 		return (ft_write_justify_precision_sgn_int(arg, nbr));
@@ -222,3 +220,4 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 }
 
 
+//	printf("|||ICI|||\n");

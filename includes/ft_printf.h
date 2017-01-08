@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 12:50:28 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/08 19:03:21 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define FT_PRINTF_H
 
 # include <stdarg.h>
+#include <wchar.h>
 # include "../libft/libft.h"
 
 # include <stdio.h> // A ENLEVER WALLAH
@@ -21,7 +22,7 @@
 # define MAJ_HEXA "0123456789ABCDEF"
 # define MIN_HEXA "0123456789abcdef"
 # define OCTAL "01234567"
-# define CONVERSION "sSpdDioOuUxXcC%"
+# define CONVERSION "sSpdDioOuUxXcC%BHIJKMNOPQRTVWYZ"
 
 # define DIESE 0
 # define ZERO 1
@@ -79,6 +80,7 @@ int						ft_write_octal(t_env *arg, va_list ap);
 int						ft_write_hexa(t_env *arg, va_list ap);
 int						ft_write_char(t_env *arg, va_list ap);
 int						ft_write_double_percent(t_env *arg);
+int						ft_write_non_valid(t_env *arg);
 
 int						ft_write_flag_diese(t_env *arg);
 int						ft_write_flag_more(t_env *arg);
@@ -88,8 +90,10 @@ int						ft_write_flag_zero(int start, int end);
 int						ft_write_flag_spaces(int start, int end);
 
 void					ft_printf_putnbr(t_env *arg, signed long long int nbr);
-void					ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr);
 void					ft_printf_puthexa(t_env *arg, unsigned long long int nbr);
+void					ft_printf_putnbr_octal(t_env *arg, unsigned long long int nbr);
+void					ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr);
+
 int						ft_printf_nbrlen(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr);

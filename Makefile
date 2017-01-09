@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/09 17:16:16 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/09 19:53:32 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,8 @@ SRC_NAME =	ft_printf.c				\
 			ft_write_wstring.c		\
 			ft_write_pointor.c		\
 			ft_write_signed_int.c	\
+			ft_write_signed_int_pos.c	\
+			ft_write_signed_int_neg.c	\
 			ft_write_unsigned_int.c	\
 			ft_write_long_int.c		\
 			ft_write_octal.c		\

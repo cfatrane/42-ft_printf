@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 17:00:12 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 18:20:31 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 18:56:51 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_write_justify_size_wstr(t_env *arg, wchar_t *str)
 {
-	ft_putwstr(str);
+	ft_printf_putwstr(str);
 	ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
@@ -25,7 +25,7 @@ static int	ft_write_size_wstr(t_env *arg, wchar_t *str)
 		ft_write_flag_zero(arg->size, arg->len);
 	else
 		ft_write_flag_spaces(arg->size, arg->len);
-	ft_putwstr(str);
+	ft_printf_putwstr(str);
 	return (arg->size);
 }
 
@@ -82,10 +82,10 @@ int			ft_write_wstring(t_env *arg, va_list ap)
 {
 	wchar_t	*str;
 
-	str = va_arg(ap, wchar_t *);
-	arg->len = ft_strwlen(str);
+	str = va_arg(ap, wint_t *);
+	arg->len = ft_printf_strwlen(str);
 //			printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
-	if (str == 0 && arg->precision.actif == 1/* && arg->precision.len == 0*/)
+	if (arg->precision.actif && arg->precision.len == 0)
 		return (ft_write_precision_zero_wstr(arg));
 	if (arg->size > arg->len && (arg->precision.len >= arg->len || !arg->precision.actif) && !arg->flags.options[LESS])
 		return (ft_write_size_wstr(arg, str));
@@ -95,8 +95,7 @@ int			ft_write_wstring(t_env *arg, va_list ap)
 		return (ft_write_precision_wstr(arg, str));
 //	printf("ICI");
 	if (arg->precision.actif && (arg->size > arg->len || arg->precision.len < arg->len) && arg->flags.options[LESS])
-//	if (arg->precision.actif && arg->flags.options[LESS])
 		return (ft_write_justify_precision_wstr(arg, str));
-	ft_putwstr(str);
+	ft_printf_putwstr(str);
 	return (arg->len);
 }

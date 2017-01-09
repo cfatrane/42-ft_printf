@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 16:51:21 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 18:31:12 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,9 @@ int			ft_write_string(t_env *arg, va_list ap)
 	str = va_arg(ap, char *);
 	arg->len = ft_printf_strlen(str);
 //			printf("str = %s||\tlen = %d||\t prec = %d||\t size = %d||\t\n", str, arg->len, arg->precision.len, arg->size);
-	if (str == 0 && arg->precision.actif == 1/* && arg->precision.len == 0*/)
+//	if (str == 0 && arg->precision.actif == 1/* && arg->precision.len == 0*/)
+//		return (ft_write_precision_zero_str(arg));
+	if (arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_precision_zero_str(arg));
 	if (arg->size > arg->len && (arg->precision.len >= arg->len || !arg->precision.actif) && !arg->flags.options[LESS])
 		return (ft_write_size_str(arg, str));

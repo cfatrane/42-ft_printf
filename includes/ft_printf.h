@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 17:14:20 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 19:49:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,13 @@ int						ft_write_arg(t_env *arg, va_list ap);
 int						ft_write_string(t_env *arg, va_list ap);
 int						ft_write_wstring(t_env *arg, va_list ap);
 int						ft_write_pointor(t_env *arg, va_list ap);
+
+
 int						ft_write_signed_int(t_env *arg, va_list ap);
+int						ft_write_signed_int_pos(t_env *arg, signed long long int nbr);
+int						ft_write_signed_int_neg(t_env *arg, signed long long int nbr);
+
+
 int						ft_write_unsigned_int(t_env *arg, va_list ap);
 int						ft_write_long_int(t_env *arg, va_list ap);
 int						ft_write_octal(t_env *arg, va_list ap);
@@ -105,6 +111,7 @@ int						ft_printf_nbrlen_hexa(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr);
 int						ft_printf_strlen(const char *s);
+int						ft_printf_strwlen(const wchar_t *s);
 
 int						ft_write_size(t_env *arg, int nbr);
 

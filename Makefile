@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/08 17:29:16 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/09 17:16:16 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ SRC_NAME =	ft_printf.c				\
 			ft_reader.c				\
 			ft_write_arg.c			\
 			ft_write_string.c		\
+			ft_write_wstring.c		\
 			ft_write_pointor.c		\
 			ft_write_signed_int.c	\
 			ft_write_unsigned_int.c	\
@@ -29,6 +30,7 @@ SRC_NAME =	ft_printf.c				\
 			ft_write_octal.c		\
 			ft_write_hexa.c			\
 			ft_write_char.c			\
+			ft_write_wchar.c		\
 			ft_write_double_percent.c			\
 			ft_write_non_valid.c	\
 			ft_write_flag_zero.c	\
@@ -37,6 +39,7 @@ SRC_NAME =	ft_printf.c				\
 			ft_write_flag_space.c	\
 			ft_caste.c				\
 			ft_printf_putnbr.c		\
+			ft_printf_putchar.c		\
 			ft_printf_puthexa.c		\
 			ft_printf_nbrlen.c		\
 			ft_printf_putstr.c		\

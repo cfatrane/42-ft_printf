@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_char.c                                    :+:      :+:    :+:   */
+/*   ft_write_wchar.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 17:22:58 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/09 17:09:50 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/09 17:31:14 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_justify_size_char(t_env *arg, char c)
+static int	ft_write_justify_size_char(t_env *arg, wchar_t c)
 {
 	int	i;
 
 	i = 0;
-	ft_putchar(c);
+	ft_putwchar(c);
 	i += ft_write_flag_spaces(arg->size, 1);
 	return (arg->size);
 }
 
-static int	ft_write_size_char(t_env *arg, char c)
+static int	ft_write_size_char(t_env *arg, wchar_t c)
 {
 	int	i;
 
@@ -35,24 +35,21 @@ static int	ft_write_size_char(t_env *arg, char c)
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 			i += ft_write_flag_spaces(arg->size, 1);
-		ft_putchar(c);
+		ft_putwchar(c);
 	}
 	return (arg->size);
 }
 
-int			ft_write_char(t_env *arg, va_list ap)
+int			ft_write_wchar(t_env *arg, va_list ap)
 {
-	unsigned char	c;
+	wchar_t	c;
 
-	if (!arg->modif && arg->conv != 'C')
-		c = va_arg(ap, int);
-	else if (arg-> modif == L || arg->conv == 'C')
-		c = va_arg(ap, wint_t);
+	c = va_arg(ap, wint_t);
 	//	arg->len = ft_nbrlen(c);
-	arg->len = 1;
+	arg->len = ft_strwcharlen(c);
 	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))
 		return (ft_write_size_char(arg, c));
-	ft_putchar(c);
+	ft_putwchar(c);
 	//	ft_printf_putchar(arg, c);
-	return (1);
+	return (arg->len);
 }

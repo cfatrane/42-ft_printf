@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 16:26:54 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 15:37:07 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 18:00:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,9 @@ static int ft_write_justify_precision_pointor(t_env *arg, void *pointor)
 		if (arg->size > arg->precision.len/* && arg->precision.len > arg->len*/)
 		{
 			ft_putstr("0x");
-			i += ft_write_flag_zero(arg->precision.len, arg->len - 2);
+			ft_write_flag_zero(arg->precision.len, arg->len - 2);
 			ft_print_hex((size_t)pointor);
-			i = 0;
-			i += ft_write_flag_spaces(arg->size, arg->precision.len + 2);
+			ft_write_flag_spaces(arg->size, arg->precision.len + 2);
 			return (arg->size);
 		}
 		else
@@ -80,8 +79,6 @@ static int	ft_write_precision_pointor(t_env *arg, void *pointor)
 	if (arg->size > arg->precision.len)
 	{
 		ft_write_flag_spaces(arg->size, arg->precision.len + 2);
-		//	arg->len += i;
-		//	arg->len = ft_nbrlen_uns(nbr);
 		ft_putstr("0x");
 		ft_write_flag_zero(arg->precision.len, arg->len - 2);
 		ft_print_hex((size_t)pointor);
@@ -98,12 +95,18 @@ static int	ft_write_precision_pointor(t_env *arg, void *pointor)
 	return (0);
 }
 
-static int	ft_write_precision_zero_pointor(t_env *arg, void *pointor)
+static int	ft_write_precision_zero_pointor(t_env *arg)
 {
 	if (!arg->size)
 	{
 		ft_putstr("0x");
 		return (2);
+	}
+	else
+	{
+		ft_write_flag_spaces(arg->size, arg->precision.len + 2);
+		ft_putstr("0x");
+		return (arg->size);
 	}
 	return (0);
 }
@@ -114,8 +117,9 @@ int	ft_write_pointor(t_env *arg, va_list ap)
 
 	pointor = va_arg(ap, void *);
 	arg->len = ft_nbrlen_hexa((unsigned long long)pointor) + 2;
+//	printf("ptr = %p||len nbr = %d||prec = %d||actif = %d||size = %d|||\t\n", pointor, arg->len, arg->precision.len, arg->precision.actif, arg->size);
 	if (pointor == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
-		return (ft_write_precision_zero_pointor(arg, pointor));
+		return (ft_write_precision_zero_pointor(arg));
 	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
 		return (ft_write_size_pointor(arg, pointor));
 	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
@@ -123,7 +127,7 @@ int	ft_write_pointor(t_env *arg, va_list ap)
 	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
 		return (ft_write_precision_pointor(arg, pointor));
 	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
-		return (ft_write_precision_pointor(arg, pointor));
+		return (ft_write_justify_precision_pointor(arg, pointor));
 	ft_putstr("0x");
 	ft_print_hex((size_t)pointor);
 	return (arg->len/*(ft_size_tab_base((size_t)pointor, 16)) + 2*/);

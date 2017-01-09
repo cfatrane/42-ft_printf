@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 17:31:34 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:16:02 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	ft_write_min(t_env *arg, va_list ap)
 int	ft_write_maj(t_env *arg, va_list ap)
 {
 	if (arg->conv == 'S')
-		return (ft_write_string(arg, ap));
+		return (ft_write_wstring(arg, ap));
 	else if (arg->conv == 'D')
 		return (ft_write_signed_int(arg, ap));
 	else if (arg->conv == 'O')
@@ -44,7 +44,7 @@ int	ft_write_maj(t_env *arg, va_list ap)
 	else if (arg->conv == 'X')
 		return (ft_write_hexa(arg, ap));
 	else if (arg->conv == 'C')
-		return (ft_write_char(arg, ap));
+		return (ft_write_wchar(arg, ap));
 	else if (arg->conv == '%' && arg->str[arg->cur - 2] != '%'/* &&*/)
 		return (ft_write_double_percent(arg));
 	return (0);

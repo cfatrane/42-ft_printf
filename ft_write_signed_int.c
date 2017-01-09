@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 16:44:26 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 15:33:54 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ static int	ft_write_flag_dec(t_env *arg, signed long long int nbr)
 	return (arg->len);
 }
 
-static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int nbr)
+static int	ft_write_precision_zero_signed_int(t_env *arg)
 {
 	if (!arg->size)
 		return (0);
@@ -187,6 +187,8 @@ static int	ft_write_precision_zero_signed_int(t_env *arg, signed long long int n
 int	ft_write_signed_int(t_env *arg, va_list ap)
 {
 	signed long long int	nbr;
+
+	nbr = 0;
 	if (!arg->modif && arg->conv != 'D')
 		nbr = va_arg(ap, signed int);
 	else if (arg->modif == HH && arg->conv != 'D')
@@ -201,10 +203,12 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 		nbr = va_arg(ap, intmax_t);
 	else if (arg->modif == Z)
 		nbr = va_arg(ap, size_t);
+	else
+		nbr = va_arg(ap, signed int);
 	arg->len = ft_printf_nbrlen(arg, nbr);
 //		printf("nbr = %lld||len nbr = %d||prec = %d||actif = %d||size = %d|||\t\n", nbr, arg->len, arg->precision.len, arg->precision.actif, arg->size);
 	if (nbr == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
-		return (ft_write_precision_zero_signed_int(arg, nbr));
+		return (ft_write_precision_zero_signed_int(arg));
 	if ((nbr >= 0) && (arg->flags.options[MORE] || arg->flags.options[SPACE]) && (!arg->flags.options[LESS]) && arg->size < arg->len && !arg->precision.actif)
 		return (ft_write_flag_dec(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
@@ -218,6 +222,5 @@ int	ft_write_signed_int(t_env *arg, va_list ap)
 	ft_printf_putnbr(arg, nbr);
 	return (arg->len);
 }
-
 
 //	printf("|||ICI|||\n");

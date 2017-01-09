@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 19:45:57 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/09 17:14:20 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void					ft_parse_conv(t_env *arg);
 
 int						ft_write_arg(t_env *arg, va_list ap);
 int						ft_write_string(t_env *arg, va_list ap);
+int						ft_write_wstring(t_env *arg, va_list ap);
 int						ft_write_pointor(t_env *arg, va_list ap);
 int						ft_write_signed_int(t_env *arg, va_list ap);
 int						ft_write_unsigned_int(t_env *arg, va_list ap);
@@ -79,6 +80,7 @@ int						ft_write_long_int(t_env *arg, va_list ap);
 int						ft_write_octal(t_env *arg, va_list ap);
 int						ft_write_hexa(t_env *arg, va_list ap);
 int						ft_write_char(t_env *arg, va_list ap);
+int						ft_write_wchar(t_env *arg, va_list ap);
 int						ft_write_double_percent(t_env *arg);
 int						ft_write_non_valid(t_env *arg);
 
@@ -93,13 +95,16 @@ void					ft_printf_putnbr(t_env *arg, signed long long int nbr);
 void					ft_printf_putnbr_hexa(t_env *arg, unsigned long long int nbr);
 void					ft_printf_putnbr_octal(t_env *arg, unsigned long long int nbr);
 void					ft_printf_putnbr_uns(t_env *arg, unsigned long long int nbr);
+void					ft_printf_putchar(t_env *arg, unsigned char c);
+void					ft_printf_putstr(char const *s);
+void					ft_printf_putwstr(wchar_t const *s);
+void					ft_printf_putwstr_n(wchar_t const *s, int n);
 
 int						ft_printf_nbrlen(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_hexa(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr);
 int						ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr);
-size_t					ft_printf_strlen(const char *s);
-void					ft_printf_putstr(char const *s);
+int						ft_printf_strlen(const char *s);
 
 int						ft_write_size(t_env *arg, int nbr);
 

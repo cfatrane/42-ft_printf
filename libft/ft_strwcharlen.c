@@ -1,28 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_strlen.c                                 :+:      :+:    :+:   */
+/*   ft_strwcharlen.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/08 12:49:03 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 16:47:56 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/09 17:28:12 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/09 17:30:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int	ft_printf_strlen(const char *s)
+int	ft_strwcharlen(wchar_t s)
 {
-	size_t i;
+	int j;
 
-	i = 0;
-	if (s == NULL)
-		return (6);
-	if (s)
-	{
-		while (s[i] != '\0')
-			i++;
-	}
-	return (i);
+	j = 0;
+	if ((int)s < 0x80)
+		j += 1;
+	else if ((int)s < 0x800)
+		j += 2;
+	else if ((int)s < 0x10000)
+		j += 3;
+	else
+		j += 4;
+	return (j);
 }

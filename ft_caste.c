@@ -6,33 +6,38 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/22 15:07:15 by cfatrane          #+#    #+#             */
-/*   Updated: 2016/12/28 19:22:15 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 13:05:15 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void	*ft_caste_unsigned(t_env *arg, void *arg_ptr)
+int	ft_caste_unsigned(t_env *arg, va_list ap)
 {
-
+	if ((!arg->modif || arg->modif == HH || arg->modif == H) && arg->conv != 'O')
+		return (va_arg(ap, unsigned int));
+	else if (arg->modif == LL)
+		return (va_arg(ap, unsigned long long int));
+	else if (arg->modif == L || arg->conv == 'O')
+		return (va_arg(ap, unsigned long int));
+	else if (arg->modif == J)
+		return (va_arg(ap, uintmax_t));
+	else if (arg->modif == Z)
+		return (va_arg(ap, size_t));
 	return (0);
 }
 
-void	*ft_caste_signed(t_env *arg, void *arg_ptr)
+int	ft_caste_signed(t_env *arg, va_list ap)
 {
-	if (arg->conv == 's')
-		return ((char*)arg_ptr);
-	else if (arg->conv == 'p')
-		return ((void*)arg_ptr);
-	else if (arg->conv == 'd' || arg->conv == 'i')
-		return ((char*)arg_ptr);
-	else if (arg->conv == 'o')
-		return ((char*)arg_ptr);
-	else if (arg->conv == 'u')
-		return ((char*)arg_ptr);
-	else if (arg->conv == 'x')
-		return ((char*)arg_ptr);
-	else if (arg->conv == 'c')
-		return ((char*)arg_ptr);
+	if (arg->modif == Z)
+		return (va_arg(ap, size_t));
+	else if (arg->modif == LL)
+		return (va_arg(ap, unsigned long long int));
+	else if (arg->modif == J)
+		return (va_arg(ap, uintmax_t));
+	else if (arg->modif == L || arg->conv == 'D')
+		return (va_arg(ap, unsigned long int));
+	else if ((!arg->modif || arg->modif == HH || arg->modif == H) && arg->conv != 'D')
+		return (va_arg(ap, unsigned int));
 	return (0);
 }

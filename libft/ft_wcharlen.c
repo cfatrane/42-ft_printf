@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strwcharlen.c                                   :+:      :+:    :+:   */
+/*   ft_wcharlen.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/01/09 17:28:12 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 17:30:22 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/10 11:28:03 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/10 11:28:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_strwcharlen(wchar_t s)
+int	ft_wcharlen(wchar_t s)
 {
 	int j;
 

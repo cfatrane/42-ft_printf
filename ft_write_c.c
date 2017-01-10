@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 17:22:58 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 11:26:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_justify_size_char(t_env *arg, char c)
+static int	ft_write_justify_size_c(t_env *arg, char c)
 {
 	int	i;
 
@@ -22,13 +22,13 @@ static int	ft_write_justify_size_char(t_env *arg, char c)
 	return (arg->size);
 }
 
-static int	ft_write_size_char(t_env *arg, char c)
+static int	ft_write_size_c(t_env *arg, char c)
 {
 	int	i;
 
 	i = 0;
 	if (arg->flags.options[LESS])
-		return (ft_write_justify_size_char(arg, c));
+		return (ft_write_justify_size_c(arg, c));
 	else
 	{
 		if (arg->flags.options[ZERO])
@@ -40,19 +40,17 @@ static int	ft_write_size_char(t_env *arg, char c)
 	return (arg->size);
 }
 
-int			ft_write_char(t_env *arg, va_list ap)
+int			ft_write_c(t_env *arg, va_list ap)
 {
 	unsigned char	c;
 
-	if (!arg->modif && arg->conv != 'C')
+	if (!arg->modif)
 		c = va_arg(ap, int);
-	else if (arg-> modif == L || arg->conv == 'C')
-		c = va_arg(ap, wint_t);
-	//	arg->len = ft_nbrlen(c);
+	else if (arg-> modif == L)
+		return (ft_write_wc(arg, ap));
 	arg->len = 1;
 	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))
-		return (ft_write_size_char(arg, c));
+		return (ft_write_size_c(arg, c));
 	ft_putchar(c);
-	//	ft_printf_putchar(arg, c);
 	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/09 18:17:43 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/10 11:28:49 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,7 @@ SRC_NAME =	ft_memset.c				\
 			ft_putwchar.c			\
 			ft_putwstr.c			\
 			ft_putwstr_n.c			\
-			ft_strwcharlen.c		\
+			ft_wcharlen.c			\
 			ft_strwlen.c			\
 			ft_print_hex.c			\
 			ft_swap_bits.c			\

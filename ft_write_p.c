@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 16:26:54 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/09 19:29:40 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 11:10:00 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_justify_size_pointor(t_env *arg, void *pointor)
+static int	ft_write_justify_size_p(t_env *arg, void *pointor)
 {
 	ft_putstr("0x");
 	ft_print_hex((size_t)pointor);
@@ -20,7 +20,7 @@ static int	ft_write_justify_size_pointor(t_env *arg, void *pointor)
 	return (arg->size);
 }
 
-static int	ft_write_size_pointor(t_env *arg, void *pointor)
+static int	ft_write_size_p(t_env *arg, void *pointor)
 {
 	if (arg->flags.options[ZERO])
 	{
@@ -39,7 +39,7 @@ static int	ft_write_size_pointor(t_env *arg, void *pointor)
 	return (arg->size);
 }
 
-static int	ft_write_justify_precision_pointor(t_env *arg, void *pointor)
+static int	ft_write_justify_prc_p(t_env *arg, void *pointor)
 {
 	if (arg->size > arg->precision.len)
 	{
@@ -59,7 +59,7 @@ static int	ft_write_justify_precision_pointor(t_env *arg, void *pointor)
 	return (0);
 }
 
-static int	ft_write_precision_pointor(t_env *arg, void *pointor)
+static int	ft_write_prc_p(t_env *arg, void *pointor)
 {
 	if (arg->size > arg->precision.len)
 	{
@@ -79,7 +79,7 @@ static int	ft_write_precision_pointor(t_env *arg, void *pointor)
 	return (0);
 }
 
-static int	ft_write_precision_zero_pointor(t_env *arg)
+static int	ft_write_prc_zero_p(t_env *arg)
 {
 	if (!arg->size)
 	{
@@ -95,24 +95,24 @@ static int	ft_write_precision_zero_pointor(t_env *arg)
 	return (0);
 }
 
-int			ft_write_pointor(t_env *arg, va_list ap)
+int			ft_write_p(t_env *arg, va_list ap)
 {
 	void	*pointor;
 
 	pointor = va_arg(ap, void *);
 	arg->len = ft_nbrlen_hexa((unsigned long long)pointor) + 2;
 	if (pointor == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
-		return (ft_write_precision_zero_pointor(arg));
+		return (ft_write_prc_zero_p(arg));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
 			!arg->flags.options[LESS])
-		return (ft_write_size_pointor(arg, pointor));
+		return (ft_write_size_p(arg, pointor));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
 			arg->flags.options[LESS])
-		return (ft_write_justify_size_pointor(arg, pointor));
+		return (ft_write_justify_size_p(arg, pointor));
 	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
-		return (ft_write_precision_pointor(arg, pointor));
+		return (ft_write_prc_p(arg, pointor));
 	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
-		return (ft_write_justify_precision_pointor(arg, pointor));
+		return (ft_write_justify_prc_p(arg, pointor));
 	ft_putstr("0x");
 	ft_print_hex((size_t)pointor);
 	return (arg->len);

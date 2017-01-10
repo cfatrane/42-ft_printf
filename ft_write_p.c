@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 16:26:54 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:10:00 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:53 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_write_justify_size_p(t_env *arg, void *pointor)
 
 static int	ft_write_size_p(t_env *arg, void *pointor)
 {
-	if (arg->flags.options[ZERO])
+	if (arg->flag[ZERO])
 	{
 		ft_putstr("0x");
 		if (arg->precision.actif)
@@ -104,14 +104,14 @@ int			ft_write_p(t_env *arg, va_list ap)
 	if (pointor == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_prc_zero_p(arg));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			!arg->flags.options[LESS])
+			!arg->flag[LESS])
 		return (ft_write_size_p(arg, pointor));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			arg->flags.options[LESS])
+			arg->flag[LESS])
 		return (ft_write_justify_size_p(arg, pointor));
-	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flag[LESS])
 		return (ft_write_prc_p(arg, pointor));
-	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && arg->flag[LESS])
 		return (ft_write_justify_prc_p(arg, pointor));
 	ft_putstr("0x");
 	ft_print_hex((size_t)pointor);

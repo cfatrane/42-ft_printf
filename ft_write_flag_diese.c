@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 18:48:05 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 10:10:08 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:26 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_write_flag_diese(t_env *arg)
 {
-	if (arg->flags.options[DIESE])
+	if (arg->flag[DIESE])
 	{
 		if (arg->conv == 'x')
 		{

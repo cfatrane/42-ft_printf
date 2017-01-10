@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/09 19:40:56 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:04:29 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:13 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,14 @@ static int	ft_write_justify_size_D_d_i(t_env *arg, signed long long int nbr)
 
 static int	ft_write_size_D_d_i(t_env *arg, signed long long int nbr)
 {
-	if (arg->flags.options[ZERO])
+	if (arg->flag[ZERO])
 	{
 		ft_putchar('-');
 		arg->len += ft_write_flag_zero(arg->size, arg->len);
 	}
 	else
 		ft_write_flag_spaces(arg->size, arg->len);
-	if (arg->flags.options[ZERO])
+	if (arg->flag[ZERO])
 		ft_printf_putnbr(arg, ft_abs(nbr));
 	else
 		ft_printf_putnbr(arg, nbr);
@@ -66,14 +66,14 @@ static int	ft_write_prc_D_d_i(t_env *arg, signed long long int nbr)
 int			ft_write_D_d_i_neg(t_env *arg, signed long long int nbr)
 {
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			!arg->flags.options[LESS])
+			!arg->flag[LESS])
 		return (ft_write_size_D_d_i(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			arg->flags.options[LESS])
+			arg->flag[LESS])
 		return (ft_write_justify_size_D_d_i(arg, nbr));
-	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flag[LESS])
 		return (ft_write_prc_D_d_i(arg, nbr));
-	else if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+	else if (arg->precision.len >= arg->len && arg->flag[LESS])
 		return (ft_write_justify_prc_D_d_i(arg, nbr));
 	ft_printf_putnbr(arg, nbr);
 	return (arg->len);

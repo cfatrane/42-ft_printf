@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:51:22 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:18:30 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:58:12 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	ft_write_justify_size_X_x(t_env *arg, unsigned long long nbr)
 
 static int	ft_write_size_X_x(t_env *arg, unsigned long long nbr)
 {
-	if (arg->flags.options[DIESE])
+	if (arg->flag[DIESE])
 		arg->len += 2;
-	if (arg->flags.options[ZERO] && !arg->precision.actif)
+	if (arg->flag[ZERO] && !arg->precision.actif)
 	{
 		ft_write_flag_diese(arg);
 		ft_write_flag_zero(arg->size, arg->len);
@@ -70,7 +70,7 @@ static int	ft_write_precision_X_x(t_env *arg, unsigned long long nbr)
 	lenfin = 0;
 	if (arg->size > arg->precision.len)
 	{
-		if (arg->flags.options[DIESE])
+		if (arg->flag[DIESE])
 			lenfin = 2;
 		ft_write_flag_spaces(arg->size, arg->precision.len + lenfin);
 		ft_write_flag_diese(arg);
@@ -133,17 +133,17 @@ int			ft_write_X_x(t_env *arg, va_list ap)
 	if (nbr == 0)
 		return (ft_write_precision_zero_X_x(arg, nbr));
 	arg->len = ft_printf_nbrlen(arg, nbr);
-	if (arg->flags.options[DIESE] && !arg->size && !arg->precision.actif)
+	if (arg->flag[DIESE] && !arg->size && !arg->precision.actif)
 		return (ft_write_flag(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			!arg->flags.options[LESS])
+			!arg->flag[LESS])
 		return (ft_write_size_X_x(arg, nbr));
 	else if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			arg->flags.options[LESS])
+			arg->flag[LESS])
 		return (ft_write_justify_size_X_x(arg, nbr));
-	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flag[LESS])
 		return (ft_write_precision_X_x(arg, nbr));
-	else if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+	else if (arg->precision.len >= arg->len && arg->flag[LESS])
 		return (ft_write_justify_precision_X_x(arg, nbr));
 	ft_printf_putnbr(arg, nbr);
 	return (arg->len);

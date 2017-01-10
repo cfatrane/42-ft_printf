@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 13:01:47 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:55:48 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ typedef struct			s_env
 {
 	const char			*str;
 	size_t				cur;
-	struct s_flags		flags;
+	char				flag[5];
 	int					size;
 	struct s_precision	precision;
 	int					modif;

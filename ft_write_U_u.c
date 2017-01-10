@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 18:32:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:08:17 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:58:01 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	ft_write_justify_size_U_u(t_env *arg, unsigned long long nbr)
 
 static int	ft_write_size_U_u(t_env *arg, unsigned long long nbr)
 {
-	if (arg->flags.options[ZERO] && !arg->precision.actif)
+	if (arg->flag[ZERO] && !arg->precision.actif)
 		ft_write_flag_zero(arg->size, arg->len);
 	else
 		ft_write_flag_spaces(arg->size, arg->len);
@@ -70,9 +70,9 @@ static int	ft_write_flag(t_env *arg, unsigned long long nbr)
 	int		len;
 
 	len = ft_nbrlen_uns(nbr);
-	if (arg->flags.options[ZERO] == 1 && arg->flags.options[LESS] != 1)
+	if (arg->flag[ZERO] == 1 && arg->flag[LESS] != 1)
 		len += ft_write_flag_zero(arg->size, len);
-	else if (arg->flags.options[ZERO] == 1 && arg->flags.options[LESS] == 1)
+	else if (arg->flag[ZERO] == 1 && arg->flag[LESS] == 1)
 		return (ft_write_size(arg, nbr));
 	ft_printf_putnbr(arg, nbr);
 	return (ft_nbcmp_max(arg->size, len));
@@ -106,13 +106,13 @@ int			ft_write_U_u(t_env *arg, va_list ap)
 	arg->len = ft_printf_nbrlen(arg, nbr);
 	if (nbr == 0 && arg->precision.actif == 1)
 		return (ft_write_precision_zero_uns_int(arg, nbr));
-	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flags.options[LESS])
+	if (arg->size > arg->len && arg->precision.len <= arg->len && !arg->flag[LESS])
 		return (ft_write_size_U_u(arg, nbr));
-	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flags.options[LESS])
+	if (arg->size > arg->len && arg->precision.len <= arg->len && arg->flag[LESS])
 		return (ft_write_justify_size_U_u(arg, nbr));
-	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flag[LESS])
 		return (ft_write_prc_U_u(arg, nbr));
-	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && arg->flag[LESS])
 		return (ft_write_justify_prc_U_u(arg, nbr));
 	ft_printf_putnbr(arg, nbr);
 	return (arg->len);

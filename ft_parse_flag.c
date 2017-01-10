@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 14:03:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 12:19:18 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:56:19 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,27 +16,27 @@ void	ft_parse_flag(t_env *arg)
 {
 	if (arg->str[arg->cur] == '#')
 	{
-		arg->flags.options[DIESE] = 1;
+		arg->flag[DIESE] = 1;
 		arg->cur++;
 	}
 	else if (arg->str[arg->cur] == '0')
 	{
-		arg->flags.options[ZERO] = 1;
+		arg->flag[ZERO] = 1;
 		arg->cur++;
 	}
 	else if (arg->str[arg->cur] == '-')
 	{
-		arg->flags.options[LESS] = 1;
+		arg->flag[LESS] = 1;
 		arg->cur++;
 	}
 	else if (arg->str[arg->cur] == '+')
 	{
-		arg->flags.options[MORE] = 1;
+		arg->flag[MORE] = 1;
 		arg->cur++;
 	}
 	else if (arg->str[arg->cur] == ' ')
 	{
-		arg->flags.options[SPACE] = 1;
+		arg->flag[SPACE] = 1;
 		arg->cur++;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:50:17 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 13:08:21 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:48 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ static int	ft_write_justify_size_O_o(t_env *arg, unsigned long long nbr)
 
 static int	ft_write_size_O_o(t_env *arg, unsigned long long nbr)
 {
-	if (arg->flags.options[DIESE])
+	if (arg->flag[DIESE])
 		arg->len++;
-	if (arg->flags.options[ZERO] && !arg->precision.actif)
+	if (arg->flag[ZERO] && !arg->precision.actif)
 		ft_write_flag_zero(arg->size, arg->len);
 	else
 		ft_write_flag_spaces(arg->size, arg->len);
@@ -78,7 +78,7 @@ static int	ft_write_flag(t_env *arg, unsigned long long int nbr)
 
 static int	ft_write_precision_zero_O_o(t_env *arg, unsigned long long int nbr)
 {
-	if (!arg->flags.options[DIESE])
+	if (!arg->flag[DIESE])
 	{
 		if (!arg->size)
 			return (0);
@@ -88,12 +88,12 @@ static int	ft_write_precision_zero_O_o(t_env *arg, unsigned long long int nbr)
 			return (arg->size);
 		}
 	}
-	else if (arg->flags.options[DIESE])
+	else if (arg->flag[DIESE])
 	{
 		if (!arg->size)
 			return (ft_write_flag_diese(arg));
 		{
-			if (arg->flags.options[LESS])
+			if (arg->flag[LESS])
 			{
 				ft_putchar('0');
 				ft_write_flag_spaces(arg->size, arg->precision.len + 1);
@@ -127,17 +127,17 @@ int			ft_write_O_o(t_env *arg, va_list ap)
 	arg->len = ft_printf_nbrlen(arg, nbr);
 	if (nbr == 0 && arg->precision.actif && arg->precision.len == 0)
 		return (ft_write_precision_zero_O_o(arg, nbr));
-	if (nbr > 0 && arg->flags.options[DIESE] && !arg->flags.options[LESS] && arg->size < arg->len && arg->precision.len == 0)
+	if (nbr > 0 && arg->flag[DIESE] && !arg->flag[LESS] && arg->size < arg->len && arg->precision.len == 0)
 		return (ft_write_flag(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			!arg->flags.options[LESS])
+			!arg->flag[LESS])
 		return (ft_write_size_O_o(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&
-			arg->flags.options[LESS])
+			arg->flag[LESS])
 		return (ft_write_justify_size_O_o(arg, nbr));
-	if (arg->precision.len >= arg->len && !arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && !arg->flag[LESS])
 		return (ft_write_precision_O_o(arg, nbr));
-	if (arg->precision.len >= arg->len && arg->flags.options[LESS])
+	if (arg->precision.len >= arg->len && arg->flag[LESS])
 		return (ft_write_justify_precision_O_o(arg, nbr));
 	ft_printf_putnbr(arg, nbr);
 	return (arg->len);

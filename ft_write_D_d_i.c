@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:13:56 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:08 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,8 @@ int			ft_write_D_d_i(t_env *arg, va_list ap)
 	arg->len = ft_printf_nbrlen(arg, nbr);
 	if (nbr == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_precision_zero_D_d_i(arg));
-	if (nbr >= 0 && (arg->flags.options[MORE] || arg->flags.options[SPACE]) &&
-	!arg->flags.options[LESS] && arg->size < arg->len && !arg->precision.actif)
+	if (nbr >= 0 && (arg->flag[MORE] || arg->flag[SPACE]) &&
+	!arg->flag[LESS] && arg->size < arg->len && !arg->precision.actif)
 		return (ft_write_flag_D_d_i(arg, nbr));
 	if (nbr >= 0)
 		return (ft_write_D_d_i_pos(arg, nbr));

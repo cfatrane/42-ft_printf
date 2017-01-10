@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/21 14:36:02 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/04 13:20:55 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:35 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_write_flag_space(t_env *arg)
 {
-	if (arg->flags.options[SPACE] == 1 && arg->flags.options[MORE] != 1)
+	if (arg->flag[SPACE] == 1 && arg->flag[MORE] != 1)
 	{
 		ft_putchar(' ');
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 11:26:22 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/10 18:57:03 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static int	ft_write_size_c(t_env *arg, char c)
 	int	i;
 
 	i = 0;
-	if (arg->flags.options[LESS])
+	if (arg->flag[LESS])
 		return (ft_write_justify_size_c(arg, c));
 	else
 	{
-		if (arg->flags.options[ZERO])
+		if (arg->flag[ZERO])
 			arg->len += ft_write_flag_zero(arg->size, arg->len);
 		else
 			i += ft_write_flag_spaces(arg->size, 1);

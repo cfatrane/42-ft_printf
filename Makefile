@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/10 12:51:36 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/11 10:41:24 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,25 +23,27 @@ SRC_NAME =	ft_printf.c					\
 			ft_write_arg.c				\
 			ft_write_c.c				\
 			ft_write_wc.c				\
-			ft_write_D_d_i.c			\
-			ft_write_D_d_i_pos.c		\
-			ft_write_D_d_i_neg.c		\
-			ft_write_O_o.c				\
+			ft_write_sgn.c				\
+			ft_write_sgn_pos.c			\
+			ft_write_sgn_neg.c			\
+			ft_write_octal.c				\
 			ft_write_p.c				\
 			ft_write_s.c				\
 			ft_write_ws.c				\
-			ft_write_U_u.c				\
-			ft_write_X_x.c				\
+			ft_write_uns.c				\
+			ft_write_hexa.c				\
 			ft_write_double_percent.c	\
 			ft_write_non_valid.c		\
 			ft_write_flag_zero.c		\
 			ft_write_flag_diese.c		\
 			ft_write_flag_more.c		\
 			ft_write_flag_space.c		\
-			ft_printf_putnbr.c			\
+			ft_printf_putnbr_sgn.c		\
+			ft_printf_putnbr_uns.c		\
 			ft_printf_putchar.c			\
 			ft_printf_puthexa.c			\
-			ft_printf_nbrlen.c			\
+			ft_printf_nbrlen_sgn.c		\
+			ft_printf_nbrlen_uns.c		\
 			ft_printf_putstr.c			\
 			ft_printf_strlen.c			\
 			ft_caste.c					\

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 18:55:48 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 10:46:15 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,18 @@ void					ft_parse_conv(t_env *arg);
 int						ft_write_arg(t_env *arg, va_list ap);
 
 
-int						ft_write_D_d_i(t_env *arg, va_list ap);
-int						ft_write_D_d_i_pos(t_env *arg, signed long long nbr);
-int						ft_write_D_d_i_neg(t_env *arg, signed long long nbr);
+int						ft_write_sgn(t_env *arg, long long nbr);
+int						ft_write_sgn_pos(t_env *arg, signed long long nbr);
+int						ft_write_sgn_neg(t_env *arg, signed long long nbr);
 
 int						ft_write_c(t_env *arg, va_list ap);
 int						ft_write_wc(t_env *arg, va_list ap);
-int						ft_write_O_o(t_env *arg, va_list ap);
+int						ft_write_octal(t_env *arg, va_list ap);
 int						ft_write_p(t_env *arg, va_list ap);
 int						ft_write_s(t_env *arg, va_list ap);
 int						ft_write_ws(t_env *arg, va_list ap);
-int						ft_write_U_u(t_env *arg, va_list ap);
-int						ft_write_X_x(t_env *arg, va_list ap);
+int						ft_write_uns(t_env *arg, va_list ap);
+int						ft_write_hexa(t_env *arg, va_list ap);
 int						ft_write_double_percent(t_env *arg);
 int						ft_write_non_valid(t_env *arg);
 
@@ -96,24 +96,22 @@ int						ft_write_flag_space(t_env *arg);
 int						ft_write_flag_zero(int start, int end);
 int						ft_write_flag_spaces(int start, int end);
 
-void					ft_printf_putnbr(t_env *arg, unsigned long long nbr);
-void					ft_printf_putnbr_sng(t_env *arg, signed long long nbr);
-void					ft_printf_putnbr_X_x(t_env *arg, unsigned long long nbr);
+void					ft_printf_putnbr_sgn(t_env *arg, signed long long nbr);
+void					ft_printf_putnbr_uns(t_env *arg, unsigned long long nbr);
+void					ft_printf_putnbr_uns_hexa(t_env *arg, unsigned long long nbr);
 void					ft_printf_putchar(t_env *arg, unsigned char c);
 void					ft_printf_putstr(char const *s);
 void					ft_printf_putwstr(wchar_t const *s);
 void					ft_printf_putwstr_n(wchar_t const *s, int n);
 
-int						ft_printf_nbrlen(t_env *arg, unsigned long long int nbr);
-int						ft_printf_nbrlen_hexa(t_env *arg, unsigned long long int nbr);
-int						ft_printf_nbrlen_octal(t_env *arg, unsigned long long int nbr);
+int						ft_printf_nbrlen_sgn(t_env *arg, signed long long int nbr);
 int						ft_printf_nbrlen_uns(t_env *arg, unsigned long long int nbr);
 int						ft_printf_strlen(const char *s);
 int						ft_printf_strwlen(const wchar_t *s);
 
 int						ft_write_size(t_env *arg, int nbr);
 
-int						ft_caste_signed(t_env *arg, va_list ap);
+int						ft_caste_sgn(t_env *arg, va_list ap);
 int						ft_caste_unsigned(t_env *arg, va_list ap);
 
 #endif

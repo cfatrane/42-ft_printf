@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 15:27:31 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:45:08 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_write_size_s(t_env *arg, char *str)
 {
@@ -30,34 +30,34 @@ static int	ft_write_size_s(t_env *arg, char *str)
 
 static int	ft_write_justify_prc_s(t_env *arg, char *str)
 {
-	if (arg->size > arg->precision.len && arg->precision.len < arg->len)
+	if (arg->size > arg->precision && arg->precision < arg->len)
 	{
-		ft_putstr_n(str, arg->precision.len);
-		ft_write_flag_spaces(arg->size, arg->precision.len);
+		ft_putstr_n(str, arg->precision);
+		ft_write_flag_spaces(arg->size, arg->precision);
 		return (arg->size);
 	}
 	else
 	{
-		ft_putstr_n(str, arg->precision.len);
-		return (ft_nbcmp_min(arg->precision.len, arg->len));
+		ft_putstr_n(str, arg->precision);
+		return (ft_nbcmp_min(arg->precision, arg->len));
 	}
 	return (0);
 }
 
 static int	ft_write_prc_s(t_env *arg, char *str)
 {
-	if (arg->size > arg->precision.len && arg->precision.len)
+	if (arg->size > arg->precision && arg->precision)
 	{
 		if (arg->flag[ZERO])
-			ft_write_flag_zero(arg->size, arg->precision.len);
+			ft_write_flag_zero(arg->size, arg->precision);
 		else
-			ft_write_flag_spaces(arg->size, arg->precision.len);
-		ft_putstr_n(str, arg->precision.len);
+			ft_write_flag_spaces(arg->size, arg->precision);
+		ft_putstr_n(str, arg->precision);
 		return (arg->size);
 	}
-	else if (arg->precision.len < arg->len)
-		ft_putstr_n(str, arg->precision.len);
-	return (ft_nbcmp_min(arg->precision.len, arg->len));
+	else if (arg->precision < arg->len)
+		ft_putstr_n(str, arg->precision);
+	return (ft_nbcmp_min(arg->precision, arg->len));
 }
 
 static int	ft_write_prc_zero_s(t_env *arg)
@@ -83,16 +83,16 @@ int			ft_write_s(t_env *arg, va_list ap)
 	else
 		str = va_arg(ap, char *);
 	arg->len = ft_printf_strlen(str);
-	if (arg->precision.actif == 1 && arg->precision.len == 0)
+	if (arg->dot == 1 && arg->precision == 0)
 		return (ft_write_prc_zero_s(arg));
 	if (arg->size > arg->len &&
-			(arg->precision.len >= arg->len || !arg->precision.actif))
+			(arg->precision >= arg->len || !arg->dot))
 		return (ft_write_size_s(arg, str));
-	if (arg->precision.actif && (arg->size > arg->len
-				|| arg->precision.len < arg->len) && !arg->flag[LESS])
+	if (arg->dot && (arg->size > arg->len
+				|| arg->precision < arg->len) && !arg->flag[LESS])
 		return (ft_write_prc_s(arg, str));
-	if (arg->precision.actif && (arg->size > arg->len
-				|| arg->precision.len < arg->len) && arg->flag[LESS])
+	if (arg->dot && (arg->size > arg->len
+				|| arg->precision < arg->len) && arg->flag[LESS])
 		return (ft_write_justify_prc_s(arg, str));
 	ft_printf_putstr(str);
 	return (arg->len);

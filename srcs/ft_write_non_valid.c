@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 17:26:48 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 16:40:10 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:44:39 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_write_justify_size_non_valid(t_env *arg, char c)
 {
@@ -40,7 +40,7 @@ int			ft_write_non_valid(t_env *arg)
 
 	c = arg->conv;
 	arg->len = 1;
-	if (arg->size > 1 && (!arg->precision.actif || arg->precision.actif))
+	if (arg->size > 1 && (!arg->dot || arg->dot))
 		return (ft_write_size_non_valid(arg, c));
 	ft_putchar(c);
 	return (1);

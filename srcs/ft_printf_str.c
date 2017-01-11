@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:37:42 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 14:56:45 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:43:59 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_printf_putstr(char const *s)
 {

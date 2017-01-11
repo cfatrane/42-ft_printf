@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/10 10:46:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 18:58:04 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:45:42 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_write_justify_size_wc(t_env *arg, wchar_t c)
 {
@@ -46,7 +46,7 @@ int			ft_write_wc(t_env *arg, va_list ap)
 
 	c = va_arg(ap, wint_t);
 	arg->len = ft_wcharlen(c);
-	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))
+	if (arg->size > arg->len && (!arg->dot || arg->dot))
 		return (ft_write_size_wc(arg, c));
 	ft_putwchar(c);
 	return (arg->len);

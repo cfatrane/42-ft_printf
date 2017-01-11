@@ -1,35 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_size.c                                    :+:      :+:    :+:   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/18 15:20:36 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 15:56:11 by cfatrane         ###   ########.fr       */
+/*   Created: 2016/12/19 13:01:55 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/11 19:39:56 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
-void	ft_parse_size(t_env *arg)
+int	ft_printf(const char *format, ...)
 {
-	char	*str;
-	int		i;
+	size_t	ret;
+	t_env	arg;
+	va_list	ap;
 
-	i = 0;
-	while (ft_isdigit(arg->str[i]))
-		i++;
-	if (!(str = ft_strnew(i)))
-		return ;
-	i = 0;
-	while (ft_isdigit(arg->str[arg->cur]))
-	{
-		str[i] = arg->str[arg->cur];
-		arg->cur++;
-		i++;
-	}
-	str[i] = '\0';
-	arg->size = ft_atoi(str);
-	free(str);
+	if (!format)
+		return (-1);
+	ft_bzero(&arg, sizeof(t_env));
+	arg.str = format;
+	va_start(ap, format);
+	arg.ret = ft_reader(&arg, ap);
+	if (arg.ret == 1)
+		ret = -1;
+	va_end(ap);
+	ret = arg.ret;
+	ft_bzero(&arg, sizeof(t_env));
+	return (ret);
 }

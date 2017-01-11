@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 13:10:26 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 18:25:19 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:46:24 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 int	ft_caste_uns_octal(t_env *arg, va_list ap)
 {
@@ -86,12 +86,12 @@ int	ft_caste_uns_hexa(t_env *arg, va_list ap)
 	else if (arg->modif[H] == 1)
 	{
 		cast = va_arg(ap, unsigned int);
-		return (ft_write_hexa(arg, va_arg(ap, unsigned short)));
+		return (ft_write_hexa(arg, (unsigned short)cast));
 	}
 	else if (arg->modif[HH] == 1)
 	{
 		cast = va_arg(ap, unsigned int);
-		return (ft_write_hexa(arg, va_arg(ap, unsigned char)));
+		return (ft_write_hexa(arg, (unsigned char)cast));
 	}
 	else
 		return (ft_write_hexa(arg, va_arg(ap, unsigned)));

@@ -6,11 +6,13 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/11 18:24:44 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/11 19:41:21 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libftprintf.a
+
+SRC_PATH = ./srcs/
 
 SRC_NAME =	ft_printf.c					\
 			ft_parse.c					\
@@ -40,13 +42,13 @@ SRC_NAME =	ft_printf.c					\
 			ft_caste_sgn.c				\
 			ft_caste_uns.c				\
 
+SRC = $(addprefix $(SRC_PATH)/,$(SRC_NAME))
+
 OBJ_PATH = ./objs/
 
 OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
-
-CPPFLAGS = -I./includes/
 
 LDFLAGS = -L./libft/
 
@@ -63,13 +65,12 @@ all: $(NAME)
 $(NAME): $(OBJ)
 	@make -C ./libft/
 	@echo "Creation of $(NAME) ..."
-#	@$(CC) $(CPPFLAGS) -c $(SRC)
 	@ar rc $(TEMP) $(OBJ)
 	@libtool -static -o $(NAME) $(TEMP) $(LIB)
 	@ranlib $(NAME)
 	@echo "$(NAME) created\n"
 
-$(OBJ_PATH)%.o: %.c
+$(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
 	@$(CC) $(CPPFLAGS) -o $@ -c $<
 

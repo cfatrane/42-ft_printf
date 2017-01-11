@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:16 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 13:08:51 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:44:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 static int	ft_write_justify_size_c(t_env *arg, char c)
 {
@@ -43,7 +43,7 @@ int			ft_write_c(t_env *arg, va_list ap)
 	else
 		c = va_arg(ap, int);
 	arg->len = 1;
-	if (arg->size > arg->len && (!arg->precision.actif || arg->precision.actif))
+	if (arg->size > arg->len && (!arg->dot || arg->dot))
 		return (ft_write_size_c(arg, c));
 	ft_putchar(c);
 	return (1);

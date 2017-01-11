@@ -6,11 +6,11 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/17 13:56:35 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 10:56:30 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 19:43:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "../includes/ft_printf.h"
 
 void	ft_parse_modif(t_env *arg)
 {

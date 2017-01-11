@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/26 17:49:39 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 10:42:36 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 13:43:10 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_flag_sgn(t_env *arg, signed long long int nbr)
+static int	ft_write_flag_sgn(t_env *arg, ssize_t nbr)
 {
 	arg->len += ft_write_flag_more(arg);
 	arg->len += ft_write_flag_space(arg);
@@ -31,9 +31,9 @@ static int	ft_write_precision_zero_sgn(t_env *arg)
 	}
 }
 
-int			ft_write_sgn(t_env *arg, long long int nbr)
+int			ft_write_sgn(t_env *arg, ssize_t nbr)
 {
-	arg->len = ft_printf_nbrlen_sgn(arg, nbr);
+	arg->len = ft_nbrlen(nbr);
 	if (nbr == 0 && arg->precision.actif == 1 && arg->precision.len == 0)
 		return (ft_write_precision_zero_sgn(arg));
 	if (nbr >= 0 && (arg->flag[MORE] || arg->flag[SPACE]) &&

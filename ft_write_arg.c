@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 10:16:26 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 17:40:44 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,10 @@ int	ft_write_arg_uns(t_env *arg, va_list ap)
 {
 	if (arg->conv == 'p')
 		return (ft_write_p(arg, ap));
-	else if (arg->conv == 'O' || arg->conv == 'o')
-		return (ft_write_octal(arg, ap));
-	else if (arg->conv == 'U' || arg->conv == 'u')
-		return (ft_write_uns(arg, ap));
-	else if (arg->conv == 'X' || arg->conv == 'x')
-		return (ft_write_hexa(arg, ap));
-//	else if (arg->conv == '%' && arg->str[arg->cur - 2] != '%'/* &&*/)
-//		return (ft_write_double_percent(arg));
+	else if (arg->conv == 'O' || arg->conv == 'o' ||
+			arg->conv == 'U' || arg->conv == 'u' ||
+			arg->conv == 'X' || arg->conv == 'x')
+		return (ft_caste_uns(arg, ap));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/16 17:22:52 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/08 12:22:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 16:45:33 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	ft_take_precision(t_env *arg)
 	int		i;
 
 	i = 0;
-	while (ft_isdigit(arg->str[i]))
+	while (ft_isdigit(arg->str[i]) && arg->str[i] != '\0')
 		i++;
 	if (!(str = ft_strnew(i)))
 		return ;
 	i = 0;
-	while (ft_isdigit(arg->str[arg->cur]))
+	while (ft_isdigit(arg->str[arg->cur]) && arg->str[i] != '\0')
 	{
 		str[i] = arg->str[arg->cur];
 		arg->cur++;

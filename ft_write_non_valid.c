@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/08 17:26:48 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 18:57:42 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 16:40:10 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,27 @@
 
 static int	ft_write_justify_size_non_valid(t_env *arg, char c)
 {
-	int	i;
-
-	i = 0;
 	ft_putchar(c);
-	i += ft_write_flag_spaces(arg->size, arg->len);
+	ft_write_flag_spaces(arg->size, arg->len);
 	return (arg->size);
 }
 
 static int	ft_write_size_non_valid(t_env *arg, char c)
 {
-	int	i;
-
-	i = 0;
 	if (arg->flag[LESS])
 		return (ft_write_justify_size_non_valid(arg, c));
 	else
 	{
 		if (arg->flag[ZERO])
-			i += ft_write_flag_zero(arg->size, arg->len);
+			ft_write_flag_zero(arg->size, arg->len);
 		else
-			i += ft_write_flag_spaces(arg->size, arg->len);
+			ft_write_flag_spaces(arg->size, arg->len);
 		ft_putchar(c);
 	}
 	return (arg->size);
 }
 
-int	ft_write_non_valid(t_env *arg)
+int			ft_write_non_valid(t_env *arg)
 {
 	unsigned char	c;
 
@@ -48,7 +42,6 @@ int	ft_write_non_valid(t_env *arg)
 	arg->len = 1;
 	if (arg->size > 1 && (!arg->precision.actif || arg->precision.actif))
 		return (ft_write_size_non_valid(arg, c));
-//	printf("ICI");
 	ft_putchar(c);
 	return (1);
 }

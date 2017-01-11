@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/07 19:22:19 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 18:03:51 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,24 @@
 void	ft_parse_conv(t_env *arg)
 {
 	char	*tmp;
+	char	*non_val;
 	int		i;
 
 	i = 0;
-	tmp = CONVERSION;
-	while (*tmp)
+	tmp = "sSpdDioOuUxXcC";
+	non_val = "%BHIJKMNPQRTVWYZ{}";
+	while (tmp[i] != '\0')
 	{
-		if (*tmp == arg->str[arg->cur])
-			arg->conv = *tmp;
-		tmp++;
+		if (tmp[i] == arg->str[arg->cur])
+			arg->conv = tmp[i];
+		i++;
+	}
+	i = 0;
+	while (non_val[i] != '\0')
+	{
+		if (non_val[i] == arg->str[arg->cur])
+			arg->conv = non_val[i];
+		i++;
 	}
 	arg->cur++;
 }

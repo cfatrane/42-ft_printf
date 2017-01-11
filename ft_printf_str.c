@@ -1,36 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_write_flag_diese.c                              :+:      :+:    :+:   */
+/*   ft_printf_str.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/20 18:48:05 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/10 18:57:26 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/11 14:37:42 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/11 14:56:45 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_write_flag_diese(t_env *arg)
+void	ft_printf_putstr(char const *s)
 {
-	if (arg->flag[DIESE])
-	{
-		if (arg->conv == 'x')
-		{
-			ft_putstr("0x");
-			return (2);
-		}
-		else if (arg->conv == 'X')
-		{
-			ft_putstr("0X");
-			return (2);
-		}
-		else if (arg->conv == 'o' || arg->conv == 'O')
-		{
-			ft_putchar('0');
-			return (1);
-		}
-	}
+	if (s == NULL)
+		ft_putstr("(null)");
+	if (s)
+		ft_putstr(s);
+}
+
+void	ft_printf_putwstr(wchar_t const *s)
+{
+	if (s == NULL)
+		ft_putstr("(null)");
+	if (s)
+		ft_putwstr(s);
+}
+
+int		ft_printf_strlen(const char *s)
+{
+	if (s == NULL)
+		return (6);
+	if (s)
+		return (ft_strlen(s));
+	return (0);
+}
+
+int		ft_printf_strwlen(const wchar_t *s)
+{
+	if (s == NULL)
+		return (6);
+	if (s)
+		return (ft_strwlen(s));
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/19 13:01:55 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/02 17:27:50 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 16:25:25 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,11 @@ int	ft_printf(const char *format, ...)
 	ft_bzero(&arg, sizeof(t_env));
 	arg.str = format;
 	va_start(ap, format);
-	ret = ft_reader(&arg, ap);
+	arg.ret = ft_reader(&arg, ap);
+	if (arg.ret == 1)
+		ret = -1;
 	va_end(ap);
+	ret = arg.ret;
 	ft_bzero(&arg, sizeof(t_env));
 	return (ret);
 }

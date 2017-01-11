@@ -6,13 +6,13 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 10:03:19 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 10:44:54 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/11 14:12:18 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int	ft_write_justify_size_hexa(t_env *arg, unsigned long long nbr)
+static int	ft_write_justify_size_hexa(t_env *arg, size_t nbr)
 {
 	arg->len += ft_write_flag_diese(arg);
 	ft_printf_putnbr_uns(arg, nbr);
@@ -20,7 +20,7 @@ static int	ft_write_justify_size_hexa(t_env *arg, unsigned long long nbr)
 	return (arg->size);
 }
 
-static int	ft_write_size_hexa(t_env *arg, unsigned long long nbr)
+static int	ft_write_size_hexa(t_env *arg, size_t nbr)
 {
 	if (arg->flag[DIESE])
 		arg->len += 2;
@@ -39,7 +39,7 @@ static int	ft_write_size_hexa(t_env *arg, unsigned long long nbr)
 	return (ft_nbcmp_max(arg->len, arg->size));
 }
 
-static int	ft_write_justify_precision_hexa(t_env *arg, unsigned long long nbr)
+static int	ft_write_justify_precision_hexa(t_env *arg, size_t nbr)
 {
 	int		lenfin;
 
@@ -63,7 +63,7 @@ static int	ft_write_justify_precision_hexa(t_env *arg, unsigned long long nbr)
 	return (0);
 }
 
-static int	ft_write_precision_hexa(t_env *arg, unsigned long long nbr)
+static int	ft_write_precision_hexa(t_env *arg, size_t nbr)
 {
 	int		lenfin;
 
@@ -89,14 +89,14 @@ static int	ft_write_precision_hexa(t_env *arg, unsigned long long nbr)
 	return (0);
 }
 
-static int	ft_write_flag(t_env *arg, unsigned long long nbr)
+static int	ft_write_flag(t_env *arg, size_t nbr)
 {
 	arg->len += ft_write_flag_diese(arg);
 	ft_printf_putnbr_uns(arg, nbr);
 	return (arg->len);
 }
 
-static int	ft_write_precision_zero_hexa(t_env *arg, unsigned long long nbr)
+static int	ft_write_precision_zero_hexa(t_env *arg, size_t nbr)
 {
 	if (nbr == 0 && !arg->size && arg->precision.actif == 0)
 	{
@@ -116,23 +116,11 @@ static int	ft_write_precision_zero_hexa(t_env *arg, unsigned long long nbr)
 	return (0);
 }
 
-int			ft_write_hexa(t_env *arg, va_list ap)
+int			ft_write_hexa(t_env *arg, size_t nbr)
 {
-	unsigned long long int	nbr;
-
-	if (!arg->modif || arg->modif == HH || arg->modif == H)
-		nbr = va_arg(ap, unsigned int);
-	else if (arg->modif == LL)
-		nbr = va_arg(ap, unsigned long long int);
-	else if (arg->modif == L)
-		nbr = va_arg(ap, unsigned long int);
-	else if (arg->modif == J)
-		nbr = va_arg(ap, uintmax_t);
-	else if (arg->modif == Z)
-		nbr = va_arg(ap, size_t);
 	if (nbr == 0)
 		return (ft_write_precision_zero_hexa(arg, nbr));
-	arg->len = ft_printf_nbrlen_uns(arg, nbr);
+	arg->len = ft_nbrlen_hexa(nbr);
 	if (arg->flag[DIESE] && !arg->size && !arg->precision.actif)
 		return (ft_write_flag(arg, nbr));
 	if (arg->size > arg->len && arg->precision.len <= arg->len &&

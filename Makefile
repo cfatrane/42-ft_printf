@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/11 19:41:21 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/12 11:51:19 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC_NAME =	ft_printf.c					\
 			ft_write_sgn_pos.c			\
 			ft_write_sgn_neg.c			\
 			ft_write_octal.c			\
+			ft_write_b.c				\
 			ft_write_p.c				\
 			ft_write_s.c				\
 			ft_write_ws.c				\
@@ -58,7 +59,7 @@ CC = gcc $(CFLAGS)
 
 CFLAGS = -Wall -Wextra -Werror
 
-TEMP = temp.a
+TEMP = .temp.a
 
 all: $(NAME)
 

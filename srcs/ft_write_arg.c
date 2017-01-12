@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/15 13:36:40 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 19:44:14 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/12 11:41:22 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,20 @@ int	ft_write_arg_uns(t_env *arg, va_list ap)
 		return (ft_write_p(arg, ap));
 	else if (arg->conv == 'O' || arg->conv == 'o' ||
 			arg->conv == 'U' || arg->conv == 'u' ||
-			arg->conv == 'X' || arg->conv == 'x')
+			arg->conv == 'X' || arg->conv == 'x' || arg->conv == 'b')
 		return (ft_caste_uns(arg, ap));
 	return (0);
 }
 
 int	ft_write_arg(t_env *arg, va_list ap)
 {
-	if ((arg->conv == 's') || (arg->conv == 'S') || (arg->conv == 'D') ||
-			(arg->conv == 'd') || (arg->conv == 'i') || (arg->conv == 'C') ||
-			(arg->conv == 'c'))
+	if (arg->conv == 's' || arg->conv == 'S' || arg->conv == 'D' ||
+			arg->conv == 'd' || arg->conv == 'i' || arg->conv == 'C' ||
+			arg->conv == 'c')
 		return (ft_write_arg_sgn(arg, ap));
-	else if ((arg->conv == 'p') || (arg->conv == 'O') || (arg->conv == 'o') ||
-			(arg->conv == 'U') || (arg->conv == 'u') || (arg->conv == 'X') ||
-			(arg->conv == 'x'))
+	else if (arg->conv == 'p' || arg->conv == 'O' || arg->conv == 'o' ||
+			arg->conv == 'U' || arg->conv == 'u' || arg->conv == 'X' ||
+			arg->conv == 'x' || arg->conv == 'b')
 		return (ft_write_arg_uns(arg, ap));
 	else
 		return (ft_write_non_valid(arg));

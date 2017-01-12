@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_parse_conv.c                                    :+:      :+:    :+:   */
+/*   ft_nbrlen_binary.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/15 13:36:08 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/12 11:37:08 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/12 11:44:13 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/12 11:46:31 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "libft.h"
 
-void	ft_parse_conv(t_env *arg)
+int	ft_nbrlen_binary(unsigned long long int nb)
 {
-	char	*tmp;
-	char	*non_val;
-	int		i;
+	int len;
 
-	i = 0;
-	tmp = CONVERSION;
-	non_val = NON_VALID;
-	while (tmp[i] != '\0')
-	{
-		if (tmp[i] == arg->str[arg->cur])
-			arg->conv = tmp[i];
-		i++;
-	}
-	i = 0;
-	while (non_val[i] != '\0')
-	{
-		if (non_val[i] == arg->str[arg->cur])
-			arg->conv = non_val[i];
-		i++;
-	}
-	arg->cur++;
+	len = 1;
+	while (nb /= 2)
+		len++;
+	return (len);
 }

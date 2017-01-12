@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/01/11 14:05:09 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 19:44:28 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/12 13:03:29 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,11 @@ int	ft_write_flag_diese(t_env *arg)
 		{
 			ft_putchar('0');
 			return (1);
+		}
+		else if (arg->conv == 'b')
+		{
+			ft_putstr("0x");
+			return (2);
 		}
 	}
 	return (0);

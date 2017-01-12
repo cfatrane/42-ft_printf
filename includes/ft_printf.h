@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/12 18:22:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/11 18:32:11 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/12 13:00:28 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@
 # define MAJ_HEXA "0123456789ABCDEF"
 # define MIN_HEXA "0123456789abcdef"
 # define OCTAL "01234567"
-# define CONVERSION "sSpdDioOuUxXcC"
-# define NON_VALID "%BHIJKMNOPQRTVWYZ"
+# define BINARY "01"
+# define CONVERSION "sSpdDioOuUxXcCb"
+# define NON_VALID "%BHIJKMNPQRTVWYZ{}"
 
 # define DIESE 0
 # define ZERO 1
@@ -73,6 +74,7 @@ int				ft_write_sgn(t_env *arg, ssize_t nbr);
 int				ft_write_sgn_pos(t_env *arg, ssize_t nbr);
 int				ft_write_sgn_neg(t_env *arg, ssize_t nbr);
 
+int				ft_write_b(t_env *arg, size_t nbr);
 int				ft_write_p(t_env *arg, va_list ap);
 int				ft_write_octal(t_env *arg, size_t nbr);
 int				ft_write_uns(t_env *arg, size_t nbr);

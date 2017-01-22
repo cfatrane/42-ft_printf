@@ -6,7 +6,7 @@
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/22 10:45:03 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/12 11:46:22 by cfatrane         ###   ########.fr       */
+/*   Updated: 2017/01/21 14:24:07 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,9 @@ int					ft_islower(int c);
 int					ft_isspace(int c);
 int					ft_isupper(int c);
 int					ft_isxdigit(int c);
+int					ft_isupphexa(int c);
+int					ft_islowhexa(int c);
+int					ft_isalhexa(int c);
 char				*ft_strndup(const char *s1, size_t n);
 int					ft_abs(int nb);
 void				ft_putwchar(wchar_t c);
@@ -117,9 +120,13 @@ size_t				ft_strwlen_n(const wchar_t *s, int n);
 void				ft_print_hex(size_t n);
 unsigned char		ft_swap_bits(unsigned char octet);
 void				ft_print_bits(unsigned char octet);
+int					ft_max(int *tab, unsigned int len);
 
 size_t				ft_tabintlen(int *tab);
-int					**ft_createtab(int nblin, int nbcol);
+char				**ft_strnew_two(int x, int y);
+char				***ft_strnew_three(int x, int y, int z);
+int					**ft_tabnew_two(int x, int y);
+int					***ft_tabnew_three(int x, int y, int z);
 int					ft_nbrlen(long long int nb);
 int					ft_nbrlen_binary(unsigned long long int nb);
 int					ft_nbrlen_octal(unsigned long long int nb);
@@ -145,5 +152,6 @@ char				*ft_strcpy_c(char *dst, const char *src, char c);
 char				*ft_strdup_c(const char *s1, char c);
 void				ft_putstr_n(const char *s, int n);
 void				ft_putnbr_n(long long int nb, int n);
+int					ft_hex_to_dec(char *hex);
 
 #endif

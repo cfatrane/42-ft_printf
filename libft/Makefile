@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/12 11:46:44 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/21 14:23:27 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,6 +75,9 @@ SRC_NAME =	ft_memset.c				\
 			ft_isupper.c			\
 			ft_isspace.c			\
 			ft_isxdigit.c			\
+			ft_isupphexa.c			\
+			ft_islowhexa.c			\
+			ft_isalhexa.c			\
 			ft_strndup.c			\
 			ft_abs.c				\
 			ft_putwchar.c			\
@@ -86,8 +89,12 @@ SRC_NAME =	ft_memset.c				\
 			ft_print_hex.c			\
 			ft_swap_bits.c			\
 			ft_print_bits.c			\
+			ft_max.c				\
 			ft_tabintlen.c			\
-			ft_createtab.c			\
+			ft_strnew_two.c			\
+			ft_strnew_three.c		\
+			ft_tabnew_two.c			\
+			ft_tabnew_three.c		\
 			ft_nbrlen.c				\
 			ft_nbrlen_binary.c		\
 			ft_nbrlen_octal.c		\
@@ -113,6 +120,7 @@ SRC_NAME =	ft_memset.c				\
 			ft_strdup_c.c			\
 			ft_putstr_n.c			\
 			ft_putnbr_n.c			\
+			ft_hex_to_dec.c			\
 
 OBJ_PATH = ./objs/
 
@@ -120,7 +128,7 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-CC = gcc
+CC = gcc $(CFLAGS)
 
 CFLAGS = -Wall -Wextra -Werror
 
@@ -132,9 +140,9 @@ $(NAME): $(OBJ)
 	@ranlib $(NAME)
 	@echo "$(NAME) created\n"
 
-$(OBJ_PATH)%.o: $(SRC)%.c
+$(OBJ_PATH)%.o: %.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(CFLAGS) -o $@ -c $<
+	@$(CC) -o $@ -c $<
 
 clean:
 	@echo "Removal of .o files of $(NAME) ..."

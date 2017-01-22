@@ -1,18 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isxdigit.c                                      :+:      :+:    :+:   */
+/*   ft_tabnew_three.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 18:10:18 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/16 14:54:21 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/21 14:24:48 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/21 14:24:55 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isxdigit(int c)
+int	***ft_tabnew_three(int x, int y, int z)
 {
-	return (ft_isdigit(c) || ft_islowhexa(c) || ft_isupphexa(c));
+	int	i;
+	int j;
+	int	***tab;
+
+	i = -1;
+	if (!(tab = (int***)malloc(sizeof(*tab) * y)))
+		return (NULL);
+	while (++i < y)
+	{
+		if (!(tab[i] = (int**)malloc(sizeof(**tab) * x)))
+			return (NULL);
+	}
+	i = -1;
+	while (++i < y)
+	{
+		j = -1;
+		while (++j < x)
+		{
+			if (!(tab[i][j] = (int*)malloc(sizeof(***tab) * z)))
+				return (NULL);
+		}
+	}
+	return (tab);
 }

@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isxdigit.c                                      :+:      :+:    :+:   */
+/*   ft_max.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/12 18:10:18 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/01/16 14:54:21 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/01/14 22:31:38 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/01/14 22:53:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_isxdigit(int c)
+int	ft_max(int *tab, unsigned int len)
 {
-	return (ft_isdigit(c) || ft_islowhexa(c) || ft_isupphexa(c));
+	unsigned int	i;
+	int				max;
+
+	if (len == 0)
+		return (0);
+	i = 1;
+	max = *tab;
+	while (i != len)
+	{
+		if (max < *(tab + i))
+			max = *(tab + i);
+		i++;
+	}
+	return (max);
 }

@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/29 17:48:09 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/29 17:49:47 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -93,7 +93,7 @@ re: fclean all
 git:
 	@git add .
 	@git commit -m "$(NAME)"
-	@git push .
+	@git push
 
 norme:
 	norminette $(SRC)

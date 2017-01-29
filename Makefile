@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/16 15:53:34 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/01/29 17:48:09 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,11 +65,11 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@make -C ./libft/
-	@echo "Creation of $(NAME) ..."
+	@echo "\033[34mCreation of $(NAME) ...\033[0m"
 	@ar rc $(TEMP) $(OBJ)
 	@libtool -static -o $(NAME) $(TEMP) $(LIB)
 	@ranlib $(NAME)
-	@echo "$(NAME) created\n"
+	@echo "\033[32m$(NAME) created\n\033[0m"
 
 $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
@@ -77,18 +77,23 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 
 clean:
 	@make clean -C ./libft/
-	@echo "Removal of .o files of $(NAME) ..."
+	@echo "\033[33mRemoval of .o files of $(NAME) ...\033[0m"
 	@rm -f $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
-	@echo "Files .o deleted\n"
+	@echo "\033[31mFiles .o deleted\n\033[0m"
 
 fclean: clean
 	@make fclean -C ./libft/
-	@echo "Removal of $(NAME)..."
+	@echo "\033[33mRemoval of $(NAME)...\033[0m"
 	@rm -f $(NAME) $(TEMP)
-	@echo "Binary $(NAME) deleted\n"
+	@echo "\033[31mBinary $(NAME) deleted\n\033[0m"
 
 re: fclean all
+
+git:
+	@git add .
+	@git commit -m "$(NAME)"
+	@git push .
 
 norme:
 	norminette $(SRC)

@@ -1,31 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min.c                                           :+:      :+:    :+:   */
+/*   ft_iseven.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/03 10:38:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/02/04 18:52:18 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/02/13 16:06:31 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/02/13 16:38:23 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_min(int *tab, unsigned int len)
+int	ft_iseven(int nb)
 {
-	unsigned int	i;
-	int				min;
+	long long int	nbr;
+	int				ret;
 
-	if (len == 0)
-		return (0);
-	i = 1;
-	min = *tab;
-	while (i != len)
-	{
-		if (min > *(tab + i))
-			min = *(tab + i);
-		i++;
-	}
-	return (min);
+	nbr = nb;
+	ret = nbr % 2;
+	return (ret == 0 ? 1 : -1);
 }

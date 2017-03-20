@@ -6,7 +6,7 @@
 #    By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 16:05:24 by cfatrane          #+#    #+#              #
-#*   Updated: 2017/01/29 17:49:47 by cfatrane         ###   ########.fr       *#
+#*   Updated: 2017/02/08 14:20:57 by cfatrane         ###   ########.fr       *#
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,9 +51,9 @@ OBJ_NAME = $(SRC_NAME:.c=.o)
 
 OBJ = $(addprefix $(OBJ_PATH), $(OBJ_NAME))
 
-LDFLAGS = -L./libft/
+LDFLAGS = -L../libft/
 
-LIB = ./libft/libft.a
+LIB = ../libft/libft.a
 
 CC = gcc $(CFLAGS)
 
@@ -64,7 +64,7 @@ TEMP = .temp.a
 all: $(NAME)
 
 $(NAME): $(OBJ)
-	@make -C ./libft/
+	@make -C ../libft/
 	@echo "\033[34mCreation of $(NAME) ...\033[0m"
 	@ar rc $(TEMP) $(OBJ)
 	@libtool -static -o $(NAME) $(TEMP) $(LIB)
@@ -76,14 +76,14 @@ $(OBJ_PATH)%.o: $(SRC_PATH)%.c
 	@$(CC) -o $@ -c $<
 
 clean:
-	@make clean -C ./libft/
+	@make clean -C ../libft/
 	@echo "\033[33mRemoval of .o files of $(NAME) ...\033[0m"
 	@rm -f $(OBJ)
 	@rmdir $(OBJ_PATH) 2> /dev/null || true
 	@echo "\033[31mFiles .o deleted\n\033[0m"
 
 fclean: clean
-	@make fclean -C ./libft/
+	@make fclean -C ../libft/
 	@echo "\033[33mRemoval of $(NAME)...\033[0m"
 	@rm -f $(NAME) $(TEMP)
 	@echo "\033[31mBinary $(NAME) deleted\n\033[0m"

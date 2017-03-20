@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_min.c                                           :+:      :+:    :+:   */
+/*   ft_atoull.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: cfatrane <cfatrane@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/02/03 10:38:34 by cfatrane          #+#    #+#             */
-/*   Updated: 2017/02/04 18:52:18 by cfatrane         ###   ########.fr       */
+/*   Created: 2017/02/16 14:59:45 by cfatrane          #+#    #+#             */
+/*   Updated: 2017/02/16 18:10:03 by cfatrane         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_min(int *tab, unsigned int len)
+unsigned long long	ft_atoull(const char *str)
 {
-	unsigned int	i;
-	int				min;
+	unsigned long long	nb;
+	unsigned long long	tmp;
 
-	if (len == 0)
-		return (0);
-	i = 1;
-	min = *tab;
-	while (i != len)
+	nb = 0;
+	tmp = 0;
+	while (ft_isspace((int)*str))
+		str++;
+	if (*str == '+')
+		str++;
+	while (ft_isdigit((int)*str))
 	{
-		if (min > *(tab + i))
-			min = *(tab + i);
-		i++;
+		tmp = tmp * 10 + *str - '0';
+		str++;
+		if (tmp < nb)
+			return (0);
+		nb = tmp;
 	}
-	return (min);
+	return (nb);
 }
